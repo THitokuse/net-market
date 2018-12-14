@@ -14,7 +14,7 @@
 |email|varchar(255)|null: false|
 |tel|varchar(32)|null: false|
 |password|varchar(255)|null: false|
-|prefecture_id|reference|null: false, foreign_key: true|
+|prefecture_code|integer(11)|null: false|
 |zip|varchar(16)|null: false|
 |city|varchar(255)|null: false|
 |street|varchar(255)|-------|
@@ -23,26 +23,16 @@
 |birth_year|integer(8)|null: false|
 |introduce|text|-------|
 
+- prefecture_code
+jp_prefecture導入
+
 ### Association
 - has_many salers
 - has_many buyers
 - has_many likes
 - has_many evalutes
 - has_many todos
-- belongs_to prefecture
-
-
-## Prefecturesテーブル
-- 都道府県マスターテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|null: false|
-
-### Association
-- has_many users
-- has_many items
+- has_many notice
 
 
 ## Itemsテーブル
@@ -54,12 +44,20 @@
 |name|varchar(255)|null: false|
 |content|text|-------|
 |price|int(16)|null: false|
-|status_id|reference|null: false, foreign_key: true|
-|prefecture_id|reference|null: false, foreign_key: true|
-|deliverymethod_id|reference|null: false, foreign_key: true|
-|deliveryburden_id|reference|null: false, foreign_key: true|
-|deliverydate_id|reference|null: false, foreign_key: true|
-|brand_id|reference|null: false, foreign_key: true|
+|prefecture_code|integer(11)|null: false|
+|status|integer(2)|null:false, default: 0|
+|deliverymethod|reference|null: false, foreign_key: true|
+|deliveryburden|reference|null: false, foreign_key: true|
+|deliverydate|reference|null: false, foreign_key: true|
+|brand|reference|null: false, foreign_key: true|
+
+- prefecture_code
+jp_prefecture導入
+
+### enum
+- 商品ステータスenum
+- Status: { 出品中:1, 取引中:2, 売却済:3 }
+
 
 ### Association
 - has_many salers
@@ -70,7 +68,6 @@
 - has_many item_categories
 - has_many categories through item_categories
 - has_many itemimages
-- belongs_to prefecture
 - belongs_to brand
 - belongs_to deliverydate
 - belongs_to deliverymethod
@@ -83,7 +80,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|item_id|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 |name|varchar(255)|null: false|
 |image|varchar(255)|null: false|
 
@@ -97,8 +94,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|null: false, foreign_key: true|
-|item_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -111,27 +108,11 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|null: false, foreign_key: true|
-|item_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
-- belongs_to item
-
-
-## Statusテーブル
-- 商品ステータスマスターテーブル
-1. 出品中
-2. 取引中
-3. 売却済
-
-
-|Column|Type|Options|
-|------|----|-------|
-|id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|null: false|
-
-### Association
 - belongs_to item
 
 
@@ -142,8 +123,8 @@
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
 |comment|text|null: false|
-|item_id|reference|null: false, foreign_key: true|
-|user_id|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -156,8 +137,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|null: false, foreign_key: true|
-|evalute_type_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
+|evalute_type|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -185,7 +166,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
 |to_do|varchar(255)|null: false|
 
 ### Association
@@ -224,8 +205,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|category_id|reference|null: false, foreign_key: true|
-|item_id|reference|null: false, foreign_key: true|
+|category|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to item
@@ -238,8 +219,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|item_id|reference|null: false, foreign_key: true|
-|user_id|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
+|user|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to item
@@ -283,9 +264,22 @@
 
 
 ## Newsテーブル
-- ニューステーブル
+- メルカリ全員分のニューステーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
 |news|text|null: false|
+
+
+## Noticeテーブル
+- 個々のニュースを格納するためのニュース
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|notice|text|null: false|
+|user|reference|null: false, foreign_key: true|
+
+### Association
+- belongs_to user
