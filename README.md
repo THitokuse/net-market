@@ -6,21 +6,21 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|nickname|varchar(255)|NOT NULL|
-|first_name|varchar(255)|NOT NULL|
-|last_name|varchar(255)|NOT NULL|
-|first_name_kana|varchar(255)|NOT NULL|
-|last_name_kana|varchar(255)|NOT NULL|
-|email|varchar(255)|NOT NULL|
-|tel|varchar(32)|NOT NULL|
-|password|varchar(255)|NOT NULL|
-|prefecture_id|reference|NOT NULL, foreign_key|
-|zip|varchar(16)|NOT NULL|
-|city|varchar(255)|NOT NULL|
+|nickname|varchar(255)|null: false|
+|first_name|varchar(255)|null: false|
+|last_name|varchar(255)|null: false|
+|first_name_kana|varchar(255)|null: false|
+|last_name_kana|varchar(255)|null: false|
+|email|varchar(255)|null: false|
+|tel|varchar(32)|null: false|
+|password|varchar(255)|null: false|
+|prefecture_id|reference|NOT NULL, foreign_key: true|
+|zip|varchar(16)|null: false|
+|city|varchar(255)|null: false|
 |street|varchar(255)|-------|
-|birth_day|integer(8)|NOT NULL|
-|birth_month|integer(8)|NOT NULL|
-|birth_year|integer(8)|NOT NULL|
+|birth_day|integer(8)|null: false|
+|birth_month|integer(8)|null: false|
+|birth_year|integer(8)|null: false|
 |introduce|text|-------|
 
 ### Association
@@ -38,7 +38,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many users
@@ -51,15 +51,15 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 |content|text|-------|
-|price|int(16)|NOT NULL|
-|status_id|reference|NOT NULL, foreign_key|
-|prefecture_id|reference|NOT NULL, foreign_key|
-|deliverymethod_id|reference|NOT NULL, foreign_key|
-|deliveryburden_id|reference|NOT NULL, foreign_key|
-|deliverydate_id|reference|NOT NULL, foreign_key|
-|brand_id|reference|NOT NULL, foreign_key|
+|price|int(16)|null: false|
+|status_id|reference|null: false, foreign_key: true|
+|prefecture_id|reference|null: false, foreign_key: true|
+|deliverymethod_id|reference|null: false, foreign_key: true|
+|deliveryburden_id|reference|null: false, foreign_key: true|
+|deliverydate_id|reference|null: false, foreign_key: true|
+|brand_id|reference|null: false, foreign_key: true|
 
 ### Association
 - has_many salers
@@ -83,9 +83,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|item_id|reference|NOT NULL, foreign_key|
-|name|varchar(255)|NOT NULL|
-|image|varchar(255)|NOT NULL|
+|item_id|reference|null: false, foreign_key: true|
+|name|varchar(255)|null: false|
+|image|varchar(255)|null: false|
 
 ### Association
 - belongs_to item
@@ -97,8 +97,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|NOT NULL, foreign_key|
-|item_id|reference|NOT NULL, foreign_key|
+|user_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -111,8 +111,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|NOT NULL, foreign_key|
-|item_id|reference|NOT NULL, foreign_key|
+|user_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -129,7 +129,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)||
+|name|varchar(255)|null: false|
 
 ### Association
 - belongs_to item
@@ -141,9 +141,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|comment|text|NOT NULL|
-|item_id|reference|NOT NULL, foreign_key|
-|user_id|reference|NOT NULL, foreign_key|
+|comment|text|null: false|
+|item_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -156,8 +156,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|NOT NULL, foreign_key|
-|evalute_type_id|reference|NOT NULL, foreign_key|
+|user_id|reference|null: false, foreign_key: true|
+|evalute_type_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to user
@@ -173,7 +173,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many evalutes
@@ -185,8 +185,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|user_id|reference|NOT NULL, foreign_key|
-|to_do|varchar(255)|NOT NULL|
+|user_id|reference|null: false, foreign_key: true|
+|to_do|varchar(255)|null: false|
 
 ### Association
 - belongs_to user
@@ -198,7 +198,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many items
@@ -210,8 +210,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
-|parent_id|integer(16)|NOT NULL|
+|name|varchar(255)|null: false|
+|parent_id|integer(16)|null: false|
 
 ### Association
 - has_many item_categories
@@ -224,8 +224,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|category_id|reference|NOT NULL, foreign_key|
-|item_id|reference|NOT NULL, foreign_key|
+|category_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to item
@@ -238,8 +238,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|item_id|reference|NOT NULL, foreign_key|
-|user_id|reference|NOT NULL, foreign_key|
+|item_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to item
@@ -252,7 +252,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many items
@@ -264,7 +264,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many items
@@ -276,7 +276,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|name|varchar(255)|NOT NULL|
+|name|varchar(255)|null: false|
 
 ### Association
 - has_many items
@@ -288,4 +288,4 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|news|text|NOT NULL|
+|news|text|null: false|
