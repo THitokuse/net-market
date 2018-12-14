@@ -1,24 +1,291 @@
-# README
+# メルカリDB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usersテーブル
+- メルカリユーザ用テーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|nickname|varchar(255)|NOT NULL|
+|first_name|varchar(255)|NOT NULL|
+|last_name|varchar(255)|NOT NULL|
+|first_name_kana|varchar(255)|NOT NULL|
+|last_name_kana|varchar(255)|NOT NULL|
+|email|varchar(255)|NOT NULL|
+|tel|varchar(32)|NOT NULL|
+|password|varchar(255)|NOT NULL|
+|prefecture_id|reference|NOT NULL, foreign_key|
+|zip|varchar(16)|NOT NULL|
+|city|varchar(255)|NOT NULL|
+|street|varchar(255)|-------|
+|birth_day|integer(8)|NOT NULL|
+|birth_month|integer(8)|NOT NULL|
+|birth_year|integer(8)|NOT NULL|
+|introduce|text|-------|
 
-* Ruby version
+### Association
+- has_many salers
+- has_many buyers
+- has_many likes
+- has_many evalutes
+- has_many todos
+- belongs_to prefecture
 
-* System dependencies
 
-* Configuration
+## Prefecturesテーブル
+- 都道府県マスターテーブル
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
 
-* Database initialization
+### Association
+- has_many users
+- has_many items
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Itemsテーブル
+- 商品出品テーブル
 
-* Deployment instructions
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+|content|text|-------|
+|price|int(16)|NOT NULL|
+|status_id|reference|NOT NULL, foreign_key|
+|prefecture_id|reference|NOT NULL, foreign_key|
+|deliverymethod_id|reference|NOT NULL, foreign_key|
+|deliveryburden_id|reference|NOT NULL, foreign_key|
+|deliverydate_id|reference|NOT NULL, foreign_key|
+|brand_id|reference|NOT NULL, foreign_key|
 
-* ...
+### Association
+- has_many salers
+- has_many buyers
+- has_many likes
+- has_many comments
+- has_many status
+- has_many item_categories
+- has_many categories through item_categories
+- has_many itemimages
+- belongs_to prefecture
+- belongs_to brand
+- belongs_to deliverydate
+- belongs_to deliverymethod
+- belongs_to deliveryburden
+
+
+## Itemimagesテーブル
+- 商品画像テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|item_id|reference|NOT NULL, foreign_key|
+|name|varchar(255)|NOT NULL|
+|image|varchar(255)|NOT NULL|
+
+### Association
+- belongs_to item
+
+
+## Salersテーブル
+- 購入者中間テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|user_id|reference|NOT NULL, foreign_key|
+|item_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to user
+- belongs_to item
+
+
+## Buyersテーブル
+- 出品者中間テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|user_id|reference|NOT NULL, foreign_key|
+|item_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to user
+- belongs_to item
+
+
+## Statusテーブル
+- 商品ステータスマスターテーブル
+1. 出品中
+2. 取引中
+3. 売却済
+
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)||
+
+### Association
+- belongs_to item
+
+
+## Commentsテーブル
+- 出品中の商品に対するコメント用テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|comment|text|NOT NULL|
+|item_id|reference|NOT NULL, foreign_key|
+|user_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to user
+- belongs_to item
+
+
+## Evalutesテーブル
+- ユーザー評価テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|user_id|reference|NOT NULL, foreign_key|
+|evalute_type_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to user
+- belongs_to evalute_types
+
+
+## Evalute_typesテーブル
+- 評価種類マスターテーブル
+1. 良い
+2. 普通
+3. 悪い
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+
+### Association
+- has_many evalutes
+
+
+## Todosテーブル
+- やることリストテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|user_id|reference|NOT NULL, foreign_key|
+|to_do|varchar(255)|NOT NULL|
+
+### Association
+- belongs_to user
+
+
+## Brandsテーブル
+- ブランドテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+
+### Association
+- has_many items
+
+
+## Categoriesテーブル
+- カテゴリーテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+|parent_id|integer(16)|NOT NULL|
+
+### Association
+- has_many item_categories
+- has_many items through item_categories
+
+
+## Item_categoriesテーブル
+- 商品カテゴリー中間テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|category_id|reference|NOT NULL, foreign_key|
+|item_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to item
+- belongs_to category
+
+
+## Likeテーブル
+- いいねテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|item_id|reference|NOT NULL, foreign_key|
+|user_id|reference|NOT NULL, foreign_key|
+
+### Association
+- belongs_to item
+- belongs_to user
+
+
+## Deliverymethodテーブル
+- 配送方法マスターテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+
+### Association
+- has_many items
+
+
+## Deliveryburdenテーブル
+- 配送料の負担マスターテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+
+### Association
+- has_many items
+
+
+## Deliverydateテーブル
+-　発送日の目安マスターテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|NOT NULL|
+
+### Association
+- has_many items
+
+
+## Newsテーブル
+- ニューステーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|news|text|NOT NULL|
