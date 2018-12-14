@@ -14,7 +14,7 @@
 |email|varchar(255)|null: false|
 |tel|varchar(32)|null: false|
 |password|varchar(255)|null: false|
-|prefecture_id|reference|NOT NULL, foreign_key: true|
+|prefecture_id|reference|null: false, foreign_key: true|
 |zip|varchar(16)|null: false|
 |city|varchar(255)|null: false|
 |street|varchar(255)|-------|
