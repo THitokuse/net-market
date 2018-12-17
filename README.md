@@ -16,12 +16,12 @@
 |password|varchar(255)|null: false|
 |prefecture_code|integer(11)|null: false|
 |zip|varchar(16)|null: false|
-|city|varchar(255)|null: false|
+|city_name|varchar(255)|null: false|
 |street|varchar(255)|-------|
 |birth_day|integer(8)|null: false|
 |birth_month|integer(8)|null: false|
 |birth_year|integer(8)|null: false|
-|introduce|text|-------|
+|self_introduce|text|-------|
 
 - prefecture_code
 jp_prefecture導入
