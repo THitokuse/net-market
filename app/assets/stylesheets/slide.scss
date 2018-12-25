@@ -1,0 +1,74 @@
+.top-main-visual {
+  background: url("https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg");
+  background-size: cover;
+  display: none;
+  height: 290px;
+  > div {
+    position: relative;
+    max-width: 730px;
+    height: 100%;
+    margin: 0 auto;
+    > img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  }
+  h2 {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: bold;
+
+  }
+  p {
+    margin: 16px 0 0;
+    font-size: 16px;
+    line-height: 1.77778;
+  }
+}
+.top-main-visual-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+}
+.top-main-visual-store {
+  margin: 24px 0 0;
+  line-height: 0;
+  > a {
+    display: inline-block;
+    width: 128px;
+    height: 38px;
+    margin: 0 0 0 8px;
+    &:first-child {
+      margin: 0;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+@media screen and(min-width: 768px) {
+  .top-main-visual {
+    display: block;
+  }
+}
+@media screen and(min-width: 1068px) {
+  .top-main-visual {
+    height: 390px;
+    > div {
+      max-width: 860px;
+    }
+    h2 {
+      font-size: 60px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  .top-main-visual-store > a {
+    width: 170px;
+    height: 50px;
+  }
+}
