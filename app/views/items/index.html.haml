@@ -1,0 +1,40 @@
+.pc-header.visible-pc
+  %header
+    .pc-header__inner
+      .pc-header__inner__upper.clearfix
+        %h1.pc-header__inner__upper__logo
+          = link_to root_path do
+            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "36", width: "134", class: "mercari_logo_horizontal"
+        %form.pc-header__inner__upper__form{action: "https://www.mercari.com/jp/search/"}
+          %input.pc-header__inner__upper__form__input.input-default{name: "keyword", placeholder: "キーワードから探す", type: "search", value: ""}/
+          %i.fas.fa-search.icon-search
+      .pc-header__inner__bottom.clearfix
+        %nav.pc-header__inner__bottom__l-left
+          %ul.search-menu
+            %li.search-menu__list.category
+              %h2
+                %a.search-menu__list__text{href: ""} カテゴリーから探す
+              #search-menu__list__category-list
+            %li.search-menu__list.brand
+              %h2
+                %a.search-menu__list__text{href: ""} ブランドから探す
+                #search-menu__list__brand-list
+        .pc-header__inner__bottom__l-right
+          %ul.personal-menu
+            %li.personal-menu__list.mypage
+              %a.personal-menu__list__mypage-link{href: ""}
+                %div
+                  =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
+                  %a マイページ
+              #personal-menu__list__mypage-field
+            %li.personal-menu__list.notification{"data-id" => "notification", "data-key" => "", "data-url" => ""}
+              %a.personal-menu__list__notification-link{"data-url" => "", href: ""}
+                %i.far.fa-bell.icon
+                %span お知らせ
+                .personal-menu__list__notification-link__count
+              #personal-menu__list__notification-field{"data-id" => "personal-menu__list__notification-field"}
+            %li.personal-menu__list.todo{"data-id" => "todo", "data-key" => "", "data-url" => ""}
+              %a.personal-menu__list__todo-link{"data-url" => "", href: ""}
+                %i.fa.fa-check.icon-check
+                %span やることリスト
+              #personal-menu__list__todo-field{"data-id" => "personal-menu__list__todo-field"}
