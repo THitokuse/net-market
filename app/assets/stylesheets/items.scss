@@ -1,0 +1,139 @@
+.pickup-container {
+  padding: 20px 0 0;
+  background: #f5f5f5;
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+  .items-box-container {
+    > h3 {
+      font-size: 18px;
+      margin: 26px 11px;
+    }
+    .text-center {
+      text-align: center;
+
+    }
+  }
+}
+.font-2 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+.font-5 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+.items-box-num.clearfix {
+  margin: 8px 0 0;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+.items-box-content {
+  width: 92%;
+  margin: 0 auto;
+  width: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 0;
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  >h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+  }
+}
+.view-all {
+  text-align: right;
+  a {
+    color: #0099e8;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      opacity: 0.7;
+    }
+  }
+}
+@media screen and(min-width: 768px) {
+  .pickup-container {
+    padding: 40px 0;
+    h2 {
+      display: block;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: bold;
+      font-size: 28px;
+    }
+    .items-box-container {
+      width: 700px;
+      margin: 0 auto;
+      > h3 {
+        display: block;
+        font-size: 1.17em;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+        font-size: 22px;
+        a {
+          color: #0099e8;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+    .items-box:last-child {
+      display: none;
+    }
+    .view-all {
+      padding: 20px 0 30px;
+      width: 99.5%;
+    }
+  }
+}
+@media screen and(min-width: 1068px) {
+  .pickup-container {
+    .pickup-head {
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      font-size: 28px;
+    }
+    .items-box-container {
+      width: 940px;
+      > h3 {
+        margin: 26px 11px;
+      }
+      .items-box-content {
+        .items-box {
+          margin: 0 0 0 20px;
+          &:first-child {
+            margin: 0;
+          }
+          &:last-child {
+            display: block;
+            margin: 0 0 0 20px;
+          }
+        }
+      }
+    }
+  }
+}
