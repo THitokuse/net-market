@@ -1,0 +1,14 @@
+%section.items-box
+  = link_to do
+    %figure.items-box-photo
+      / -if item.itemimages.first.photo_url
+      = image_tag 'https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg', class: 'lazyload'
+    .items-box-body
+      %h3.items-box-name.font-2
+        = item.name
+      .items-box-num.clearfix
+        .items-box-price.font-5
+          = number_to_currency(item.price, unit: "¥ ", precision:0, format: "%u%n")
+        .items-box-likes.font-2
+          %i.icon-like-border
+        %p.item-box-tax (税込)
