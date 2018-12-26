@@ -13,31 +13,31 @@
           %ul.search-menu
             %li.search-menu__list.category
               %h2
-                %a.search-menu__list__text{href: ""} カテゴリーから探す
+                %a.search-menu__list__text カテゴリーから探す
               #search-menu__list__category-list
             %li.search-menu__list.brand
               %h2
-                %a.search-menu__list__text{href: ""} ブランドから探す
+                %a.search-menu__list__text ブランドから探す
                 #search-menu__list__brand-list
         .pc-header__inner__bottom__l-right
           %ul.personal-menu
             %li.personal-menu__list.mypage
-              %a.personal-menu__list__mypage-link{href: ""}
+              %a.personal-menu__list__mypage-link
                 %div
                   =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
                   %a マイページ
               #personal-menu__list__mypage-field
-            %li.personal-menu__list.notification{"data-id" => "notification", "data-key" => "", "data-url" => ""}
-              %a.personal-menu__list__notification-link{"data-url" => "", href: ""}
+            %li.personal-menu__list.notification
+              %a.personal-menu__list__notification-link
                 %i.far.fa-bell.icon
                 %span お知らせ
                 .personal-menu__list__notification-link__count
-              #personal-menu__list__notification-field{"data-id" => "personal-menu__list__notification-field"}
-            %li.personal-menu__list.todo{"data-id" => "todo", "data-key" => "", "data-url" => ""}
-              %a.personal-menu__list__todo-link{"data-url" => "", href: ""}
+              #personal-menu__list__notification-field
+            %li.personal-menu__list.todo
+              %a.personal-menu__list__todo-link
                 %i.fa.fa-check.icon-check
                 %span やることリスト
-              #personal-menu__list__todo-field{"data-id" => "personal-menu__list__todo-field"}
+              #personal-menu__list__todo-field
 %br
 %br
 %br
@@ -159,7 +159,7 @@
           %li
             %a{href: "https://www.mercari.com/jp/refund-returns/"} 返品・返金ポリシー
           %li
-            %a{href: "https://www.mercari.com/jp/safe/description/", :target => "_blank"} メルカリあんしん・あんぜん宣言！
+            %a{href: "https://www.mercari.com/jp/safe/description/", target: "_blank"} メルカリあんしん・あんぜん宣言！
           %li
             %a{href: "https://www.mercari.com/jp/authenticity/"} 偽ブランド品撲滅への取り組み
           %li
@@ -173,7 +173,7 @@
               United States
           %li
             %a{href: "https://www.mercari.com/uk/"}
-              %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_uk.png?1528449478", :width => "22"}>/
+              %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_uk.png?1528449478", width: "22"}>/
               United Kingdom
           %li
             %a.active{href: "https://www.mercari.com/jp/"}
