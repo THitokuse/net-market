@@ -1,7 +1,7 @@
 .items-box {
   float: left;
   margin: 0 0 20px 20px;
-  background: #fff;
+  background: $white;
   &:nth-child(odd) {
   }
   figure img {
@@ -69,7 +69,7 @@
     margin: 0 0 0 20px;
     a {
       display: block;
-      color: #333;
+      color: $black;
       &:hover {
         opacity: 1;
         text-decoration: none;
