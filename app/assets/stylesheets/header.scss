@@ -18,7 +18,7 @@ $breakpoints: (
   }
   header{
     width: 100%;
-    background-color: #fff;
+    background-color: $white;
     .pc-header__inner{
       @include mq(sm){
         width: 380px;
@@ -86,7 +86,7 @@ $breakpoints: (
               display: inline-block;
               &__text{
                 text-decoration: none;
-                color: #333;
+                color: $black;
                 height: 38px;
                 line-height: 32px;
                 -webkit-transition: all 0.1s ease;
@@ -95,7 +95,7 @@ $breakpoints: (
                 transition: all  0.1s ease;
               }
               &__text:hover{
-                color: #b3d4fc;
+                color: $light_blue;
               }
             }
             .brand{
@@ -113,7 +113,7 @@ $breakpoints: (
             font-weight: normal;
             background: #ea352d;
             border: 1px solid #ea352d;
-            color: #fff;
+            color: $black;
             text-decoration: none;
             border-radius: 4px;
             padding: 8px;
@@ -123,7 +123,7 @@ $breakpoints: (
             font-size: 14px;
             font-weight: normal;
             border: 1px solid #0099e8;
-            background: #fff;
+            background: $white;
             color: #0099e8;
             text-decoration: none;
             border-radius: 4px;
@@ -137,7 +137,7 @@ $breakpoints: (
               line-height: 46px;
               &__mypage-link{
                 text-decoration: none;
-                color: #333;
+                color: $black;
                 -webkit-transition: all 0.1s ease;
                 -moz-transition: all 0.1s ease;
                 -o-transition: all 0.1s ease;
@@ -149,18 +149,18 @@ $breakpoints: (
                 }
               }
               &__mypage-link:hover{
-                color: #b3d4fc;
+                color: $light_blue;
               }
               a {
                 text-decoration: none;
-                color: #333;
+                color: $black;
               }
               a:hover {
-                color: #b3d4fc;
+                color: $light_blue;
               }
               &__notification-link{
                 text-decoration: none;
-                color: #333;
+                color: $black;
                 -webkit-transition: all 0.1s ease;
                 -moz-transition: all 0.1s ease;
                 -o-transition: all 0.1s ease;
@@ -170,11 +170,11 @@ $breakpoints: (
                 }
               }
               &__notification-link:hover{
-                color: #b3d4fc;
+                color: $light_blue;
               }
               &__todo-link{
                 text-decoration: none;
-                color: #333;
+                color: $black;
                 -webkit-transition: all 0.1s ease;
                 -moz-transition: all 0.1s ease;
                 -o-transition: all 0.1s ease;
@@ -184,7 +184,7 @@ $breakpoints: (
                 }
               }
               &__todo-link:hover{
-                color: #b3d4fc;
+                color: $light_blue;
               }
             }
           }
