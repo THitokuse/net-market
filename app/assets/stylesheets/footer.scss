@@ -1,0 +1,190 @@
+.app-banner {
+  background: $white;
+}
+.app-banner-pc {
+  .clearfix {
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+  overflow: hidden;
+  position: relative;
+  width: 800px;
+  height: 260px;
+  margin: 0 auto;
+  color: $white;
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    text-shadow: 0 0 5px $black_40;
+    font-weight: bold;
+  }
+  p {
+    margin: 10px 0 0;
+    font-size: 24px;
+    text-shadow: 0 0 5px $black_40;
+  }
+  > figure {
+    position: absolute;
+    top: 0;
+    left: 450px;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+.app-banner-icon {
+  margin: 20px 0 0;
+  figure {
+    float: left;
+  }
+  ul {
+    float: left;
+    margin: 0 0 0 24px;
+    line-height: 68px;
+  }
+  li {
+    float: left;
+    &:last-child {
+      margin: 0 0 0 16px;
+    }
+  }
+  a {
+    display: block;
+    line-height: 68px;
+  }
+  img {
+    vertical-align: middle;
+  }
+}
+.accordion-parent .icon-minus {
+  font-size: 3px;
+}
+
+@media screen and(min-width: 768px) {
+  .app-banner {
+    background: url("https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?52408201");
+    background-position: center;
+  }
+  .app-banner-pc {
+    display: block;
+  }
+}
+@media screen and(min-width: 1068px) {
+  .app-banner-pc {
+    h2 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 35px;
+    }
+  }
+  .app-banner-pc-inner {
+    left: 0;
+  }
+}
+.app-banner-pc-inner {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translate(0, -50%);
+}
+.global-footer {
+  padding:40px 20px;
+  background:#212121;
+  color:$white;
+  li {
+    color:#333;
+  }
+  a {
+    color:$white;
+    text-decoration: none;
+  }
+  .footer-cell {
+    margin:40px auto 0;
+    &:last-child{
+      margin:0;
+    }
+    .footer-cell__head {
+      color:$white;
+      font-size:16px;
+    }
+    li {
+      margin:16px 0 0;
+      &:first-child{
+        margin:24px 0 0;
+      }
+      a {
+        display:block;
+        font-size:14px;
+      }
+    }
+    .download-app{
+      text-align:center;
+      a {
+        display:block;
+      }
+      img {
+        margin:0 8px 0 0;
+      }
+    }
+    .footer-nav-lang {
+      img {
+        margin:0 8px 0 0;
+      }
+      a {
+        margin:0 auto;
+        opacity:.3;
+        &.active{
+          opacity:1.0;
+        }
+      }
+    }
+    .footer-logo {
+      display:block;
+      margin:40px 0 0;
+      text-align:center;
+    }
+    .footer-copyright {
+      margin:8px 0 0;
+      text-align:center;
+      small {
+        font-size:14px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px){
+  .global-footer {
+    padding:60px 0;text-align:center;
+    nav {
+      width:700px;
+      margin:0 auto;
+    }
+    .footer-cell{
+      display:inline-block;
+      width:23%;
+      margin:0 2% 0 0;
+      vertical-align:top;
+    }
+    .download-app {
+      display:none;
+    }
+    .footer-nav-lang {
+      a {
+        width:auto;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1068px){
+  .global-footer nav {
+    width:1020px;
+  }
+}
