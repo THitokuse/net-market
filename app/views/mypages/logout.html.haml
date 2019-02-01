@@ -1,4 +1,11 @@
 = render "shared/header"
+%br
+%br
+%br
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :logout
+    = render "shared/breadcrumbs"
 = render "shared/app-banner"
 = render "shared/footer"
 = render "shared/sell-btn"

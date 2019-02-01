@@ -1,0 +1,40 @@
+.bread-crumbs__list {
+  position: relative;
+  border-top: 1px solid #eee;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  background: #fff;
+  & ul {
+    padding: 17px 16px 16px;
+    font-size: 0;
+    white-space: nowrap;
+    overflow: auto;
+  }
+  @media screen and (min-width: 768px){
+    & ul {
+      overflow: visible;
+      width: 700px;
+      margin: 0 auto;
+      padding: 17px 0 16px;
+    }
+  }
+  @media screen and (min-width: 1068px){
+    & ul {
+      width: 1020px;
+      .breadcrumbs {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 1.2;
+        a {
+          color: #333;
+          text-decoration: none;
+        }
+        .current{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+
