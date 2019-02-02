@@ -13,21 +13,22 @@
           %ul.search-menu
             %li.search-menu__list.category
               %h2
-                %a.search-menu__list__text カテゴリーから探す
+                = link_to "カテゴリーを探す", items_path, class: "search-menu__list__text"
               #search-menu__list__category-list
             %li.search-menu__list.brand
               %h2
-                %a.search-menu__list__text ブランドから探す
+                = link_to "ブランドを探す", items_path, class: "search-menu__list__text"
                 #search-menu__list__brand-list
         .pc-header__inner__bottom__l-right
           %ul.personal-menu
             %li.personal-menu__list.mypage
               %a.personal-menu__list__mypage-link
+              = link_to
                 %div
                   =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
                   %a マイページ
               #personal-menu__list__mypage-field
-            %li.personal-menu__list.notification
+            %li.personal-menu__list.notibfication
               %a.personal-menu__list__notification-link
                 %i.far.fa-bell.icon
                 %span お知らせ
