@@ -1,43 +1,5 @@
 .pc-header.visible-pc
-  %header
-    .pc-header__inner
-      .pc-header__inner__upper.clearfix
-        %h1.pc-header__inner__upper__logo
-          = link_to root_path do
-            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "36", width: "134", class: "mercari_logo_horizontal"
-        %form.pc-header__inner__upper__form{action: "https://www.mercari.com/jp/search/"}
-          %input.pc-header__inner__upper__form__input.input-default{name: "keyword", placeholder: "キーワードから探す", type: "search", value: ""}/
-          %i.fas.fa-search.icon-search
-      .pc-header__inner__bottom.clearfix
-        %nav.pc-header__inner__bottom__l-left
-          %ul.search-menu
-            %li.search-menu__list.category
-              %h2
-                %a.search-menu__list__text カテゴリーから探す
-              #search-menu__list__category-list
-            %li.search-menu__list.brand
-              %h2
-                %a.search-menu__list__text ブランドから探す
-                #search-menu__list__brand-list
-        .pc-header__inner__bottom__l-right
-          %ul.personal-menu
-            %li.personal-menu__list.mypage
-              %a.personal-menu__list__mypage-link
-                %div
-                  =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
-                  %a マイページ
-              #personal-menu__list__mypage-field
-            %li.personal-menu__list.notification
-              %a.personal-menu__list__notification-link
-                %i.far.fa-bell.icon
-                %span お知らせ
-                .personal-menu__list__notification-link__count
-              #personal-menu__list__notification-field
-            %li.personal-menu__list.todo
-              %a.personal-menu__list__todo-link
-                %i.fa.fa-check.icon-check
-                %span やることリスト
-              #personal-menu__list__todo-field
+  = render  "shared/header"
 %br
 %br
 %br
@@ -53,11 +15,11 @@
         %br>/
         購入時も安心な独自システムのアプリです
       .top-main-visual-store.clearfix
-        %a.pull-left{href: "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8", target: "_blank"}
-          %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?1528449478"}/
-        %a.pull-left{href: "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", target: "_blank"}
-          %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?1528449478"}/
-    %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?1528449478"}/
+        = link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8", target: "_blank", class: "pull-left" do
+          = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?1528449478", alt: ""
+        = link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", target: "_blank", class: "pull-left" do
+          = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?1528449478", alt: ""
+    = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?1528449478", alt: ""
 
 %section.pickup-container
   %h2.pickup-head ピックアップカテゴリー
@@ -75,115 +37,6 @@
       = render partial: "shared/one_items", collection: @items, as: "item"
     .view-all
       =link_to "すべての商品を見る", "#"
-%aside.app-banner
-  .app-banner-pc
-    .app-banner-pc-inner
-      %h2 スマホでかんたんフリマアプリ
-      %p 今すぐ無料ダウンロード！
-      .app-banner-icon.clearfix
-        %figure
-          %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?2960600120", width: "68"}/
-        %ul.clearfix
-          %li
-            %a{href: "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8", target: "_blank"}
-              %img{alt: "", height: "40", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?2960600120", width: "133"}/
-          %li
-            %a{href: "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", target: "_blank"}
-              %img{height: "40", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?2960600120", width: "133"}/
-    %figure
-      %img{src: "//www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?2960600120"}/
-%footer.global-footer
-  %nav
-    %ul
-      %li.download-app
-        %a{href: "http://app.adjust.io/xio2ii?campaign=iOS&adgroup=common.footer"}
-          %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?1528449478", width: "35px"}/
-          今すぐ無料ダウンロード！
-      %li.footer-cell
-        %h2.footer-cell__head メルカリについて
-        %ul.footer-cell__body
-          %li
-            %a{href: "https://about.mercari.com/"} 会社概要（運営会社）
-          %li
-            %a{href: "https://www.mercari.com/jp/privacy/"} プライバシーポリシー
-          %li
-            %a{href: "https://www.mercari.com/jp/tos/"} メルカリ利用規約
-          %li
-            %a{href: "https://www.mercari.com/jp/tos_paid_point/"} メルカリ利用規約・有償ポイントに関する特約
-          %li
-            %a{href: "https://www.mercari.com/jp/tos_smartphone_support/"} あんしんスマホサポート制度に関する利用特約
-          %li
-            %a{href: "https://www.mercari.com/jp/compliance/"} コンプライアンスポリシー
-          %li
-            %a{href: "https://www.mercari.com/jp/data_security/"} 個人データの安全管理に係る基本方針
-          %li
-            %a{href: "https://www.mercari.com/jp/tokutei/"} 特定商取引に関する表記
-          %li
-            %a{href: "https://www.mercari.com/jp/shikin_kessai/"} 資金決済法に基づく表示
-          %li
-            %a{href: "https://about.mercari.com/csr/safety/"} 法令順守と犯罪抑止のために
-          %li
-            %a{href: "https://www.mercari.com/jp/jobs/"} 採用情報
-      %li.footer-cell
-        %h2.footer-cell__head メルカリを見る
-        %ul.footer-cell__body
-          %li
-            %a{href: "https://www.mercari.com/jp/category/"} カテゴリー一覧
-          %li
-            %a{href: "https://www.mercari.com/jp/brand/"} ブランド一覧
-          %li
-            %a{href: "https://www.mercari.com/jp/area/"} 出品地域一覧
-          %li
-            %a{href: "https://jp-news.mercari.com/", target: "_blank"} 公式ブログ
-          %li
-            %a{href: "https://twitter.com/mercari_jp", target: "_blank"} 公式Twitter
-          %li
-            %a{href: "https://www.facebook.com/mercarijp", target: "_blank"} 公式Facebook
-      %li.footer-cell
-        %h2.footer-cell__head ヘルプ＆ガイド
-        %ul.footer-cell__body
-          %li
-            %a{href: "https://www.mercari.com/jp/help_center/"} メルカリガイド
-          %li
-            %a{href: "https://www.mercari.com/jp/logo-guidelines/"} メルカリロゴ利用ガイドライン
-          %li
-            %a{href: "https://about.mercari.com/press/news/"} お知らせ
-          %li
-            %a{href: "https://www.mercari.com/jp/rakuraku-mercari/"} らくらくメルカリ便とは
-          %li
-            %a{href: "https://www.mercari.com/jp/yuyu-mercari/"} ゆうゆうメルカリ便とは
-          %li
-            %a{href: "https://www.mercari.com/jp/rakuraku-ogata/"} 大型らくらくメルカリ便とは
-          %li
-            %a{href: "https://www.mercari.com/jp/guide/car/"} 車体取引ガイド
-          %li
-            %a{href: "https://www.mercari.com/jp/refund-returns/"} 返品・返金ポリシー
-          %li
-            %a{href: "https://www.mercari.com/jp/safe/description/", target: "_blank"} メルカリあんしん・あんぜん宣言！
-          %li
-            %a{href: "https://www.mercari.com/jp/authenticity/"} 偽ブランド品撲滅への取り組み
-          %li
-            %a{href: "https://www.mercari.com/jp/box/"} メルカリボックス
-      %li.footer-cell
-        %h2.footer-cell__head 国
-        %ul.footer-nav-lang
-          %li
-            %a{href: "https://www.mercari.com/"}
-              %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_us.png?1528449478", width: "22"}/
-              United States
-          %li
-            %a{href: "https://www.mercari.com/uk/"}
-              %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_uk.png?1528449478", width: "22"}/
-              United Kingdom
-          %li
-            %a.active{href: "https://www.mercari.com/jp/"}
-              %img{alt: "", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/flag_jp.png?1528449478", width: "22"}/
-              日本
-  %a.footer-logo{href: "https://www.mercari.com/jp/"}
-    %img{alt: "mercari", height: "33", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?1528449478", width: "124"}/
-  %p.footer-copyright
-    %small © 2018 Mercari
-
-  %a.sell-btn
-    %div 出品
-    = fa_icon 'camera'
+= render "shared/app-banner"
+= render "shared/footer"
+= render "shared/sell-btn"
