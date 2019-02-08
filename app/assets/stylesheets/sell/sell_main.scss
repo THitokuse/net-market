@@ -122,8 +122,6 @@ input {
   -webkit-appearance: none;
 }
 
-
-
 pre {
   overflow: auto;
 }
@@ -196,10 +194,6 @@ i[class^='icon-'], i[class*='icon-'] {
   @include clearfix();
   padding: 40px;
   border-top: 1px solid $gray;
-}
-
-.sell-content.sell-btn-box {
-  margin-top: 180px;
 }
 
 .sell-sub-head {
@@ -382,5 +376,3 @@ i[class^='icon-'], i[class*='icon-'] {
   transition: all ease-out .3s;
   opacity: 0;
 }
-
-
