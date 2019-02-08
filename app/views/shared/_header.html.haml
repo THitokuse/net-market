@@ -1,0 +1,40 @@
+.pc-header.visible-pc
+  %header
+    .pc-header__inner
+      .pc-header__inner__upper.clearfix
+        %h1.pc-header__inner__upper__logo
+          = link_to root_path do
+            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "36", width: "134", class: "mercari_logo_horizontal"
+        %form.pc-header__inner__upper__form{action: "https://www.mercari.com/jp/search/"}
+          %input.pc-header__inner__upper__form__input.input-default{name: "keyword", placeholder: "キーワードから探す", type: "search", value: ""}/
+          %i.fas.fa-search.icon-search
+      .pc-header__inner__bottom.clearfix
+        %nav.pc-header__inner__bottom__l-left
+          %ul.search-menu
+            %li.search-menu__list.category
+              %h2
+                = link_to "カテゴリーを探す", items_path, class: "search-menu__list__text"
+              #search-menu__list__category-list
+            %li.search-menu__list.brand
+              %h2
+                = link_to "ブランドを探す", items_path, class: "search-menu__list__text"
+                #search-menu__list__brand-list
+        .pc-header__inner__bottom__l-right
+          %ul.personal-menu
+            %li.personal-menu__list.mypage
+              %a.personal-menu__list__mypage-link
+                %div
+                  =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
+                  %a マイページ
+              #personal-menu__list__mypage-field
+            %li.personal-menu__list.notibfication
+              %a.personal-menu__list__notification-link
+                %i.far.fa-bell.icon
+                %span お知らせ
+                .personal-menu__list__notification-link__count
+              #personal-menu__list__notification-field
+            %li.personal-menu__list.todo
+              %a.personal-menu__list__todo-link
+                %i.fa.fa-check.icon-check
+                %span やることリスト
+              #personal-menu__list__todo-field

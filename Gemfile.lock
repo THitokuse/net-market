@@ -108,6 +108,8 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -272,6 +274,7 @@ DEPENDENCIES
   enum_help
   erb2haml
   font-awesome-rails
+  gretel
   haml-rails
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)

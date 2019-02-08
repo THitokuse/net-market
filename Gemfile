@@ -76,3 +76,5 @@ gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'enum_help'
 gem 'rails-i18n'
+gem 'gretel'
+
