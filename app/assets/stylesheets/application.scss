@@ -1,12 +1,8 @@
 @import "color";
 @import "font-awesome";
+@import "./mixin/clearfix";
 @import "reset";
-@import "header";
-@import "slide";
-@import "items";
-@import "footer";
-@import "sell_btn";
-@import "one_items";
-@import "bread-crumb";
-@import "logout_right";
-@import "logout_left";
+@import "./top/*";
+@import "./sell/*";
+@import "./logout/*";
+
