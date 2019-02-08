@@ -184,6 +184,6 @@
   %p.footer-copyright
     %small © 2018 Mercari
 
-  %a.sell-btn
+  = link_to new_item_path, class: "sell-btn" do
     %div 出品
     = fa_icon 'camera'

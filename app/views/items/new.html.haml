@@ -67,7 +67,7 @@
                       %span.form-require 必須
                     %div
                       .select-wrap
-                        = burden.select :name, Deliveryburden.burdens_i18n.keys.map {|k| [Deliveryburden.burdens_i18n[k], k]}, class: "select-default"
+                        = burden.select :name, DeliveryBurden.burdens_i18n.keys.map {|k| [DeliveryBurden.burdens_i18n[k], k]}, class: "select-default"
                         = fa_icon "arrow-bottom"
                 .form-group
                   %label
@@ -84,7 +84,7 @@
                       %span.form-require 必須
                     %div
                       .select-wrap
-                        = date.select :name, Deliverydate.dates_i18n.keys.map {|k| [Deliverydate.dates_i18n[k], k]}, class: "select-default"
+                        = date.select :name, DeliveryDate.dates_i18n.keys.map {|k| [DeliveryDate.dates_i18n[k], k]}, class: "select-default"
                         = fa_icon "arrow-bottom"
             .sell-content.clearfix
               %h3.sell-sub-head 販売価格(300~9,999,999)

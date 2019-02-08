@@ -1,31 +1,16 @@
 ja:
   enums:
-    deliveryburden:
+    delivery_burden:
       burdens:
         default: ---
         seller_burden: 送料込み(出品者負担)
         buyer_burden: 着払い(購入者負担)
-    deliverydate:
+    delivery_date:
       dates:
         default: ---
         one_or_two_days: 1~2日で発送
         few_days: 2~3日で発送
         to_a_week: 4~7日で発送
-      genres:
-        default: ---
-        ladies: レディース
-        mens: メンズ
-        baby_kids: ベビー・キッズ
-        interia: インテリア・住まい・小物
-        pleasure: 本・音楽・ゲーム
-        toys: おもちゃ・ホビー・グッズ
-        cosmetic: コスメ・香水・美容
-        appliance: 家電・スマホ・カメラ
-        orientation: スポーツ・レジャー
-        handmade: ハンドメイド
-        tickets: チケット
-        cars: 自動車・オートバイ
-        others: その他
 
     category:
       categories:

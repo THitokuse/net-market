@@ -1,8 +1,7 @@
 class Item < ApplicationRecord
   has_many :item_images
-  belongs_to :deliverydate
-  belongs_to :deliverymethod
-  belongs_to :deliveryburden
+  belongs_to :delivery_date
+  belongs_to :delivery_burden
 
   accepts_nested_attributes_for :item_images
 
