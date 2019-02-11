@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   has_many :item_images
   belongs_to :delivery_date
   belongs_to :delivery_burden
+  has_many :comments
 
   accepts_nested_attributes_for :item_images
 
