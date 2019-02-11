@@ -1,24 +1,24 @@
 @media screen and (min-width: 768px) {
-  .items-in-user-profile {
+  .items--in--user__profile {
     width: 700px;
     margin: 0 auto;
     border: 1px solid $gray;
   }
-  .items-box-head {
+  .items--box__head {
     margin-top: 24px;
     margin-bottom: 8px;
   }
-  .items-box-overflow {
-    .items-box-content {
+  .items--box__overflow {
+    .items--box__content {
       padding: 0;
     }
   }
 }
 
-.items-box-overflow {
+.items--box__overflow {
   overflow: hidden;
   @include clearfix();
-  .items-box-content {
+  .items--box__content {
     width: auto;
     overflow-x: auto;
     overflow-y: hidden;
@@ -30,18 +30,18 @@
   }
 }
 
-.items-box-head {
+.items--box__head {
   font-size: 22px;
   line-height: 1.4;
   margin-left: 20px;
 }
 
-.items-box-content {
+.items--box__content {
   @include clearfix();
   margin: 0 auto;
 }
 
-.items-box {
+.items--box {
   border: 1px solid $gray;
 }
 
