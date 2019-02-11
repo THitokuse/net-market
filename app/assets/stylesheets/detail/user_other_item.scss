@@ -1,48 +1,56 @@
 @media screen and (min-width: 768px) {
-  .items--in--user__profile {
-    width: 700px;
-    margin: 0 auto;
+  .item {
+    &--in {
+      &--user {
+        &__profile {
+          width: 700px;
+          margin: 0 auto;
+          border: 1px solid $gray;
+        }
+      }
+    }
+    &--box {
+      &__head {
+        margin-top: 24px;
+        margin-bottom: 8px;
+      }
+      &__content {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.items {
+  &--box {
     border: 1px solid $gray;
-  }
-  .items--box__head {
-    margin-top: 24px;
-    margin-bottom: 8px;
-  }
-  .items--box__overflow {
-    .items--box__content {
-      padding: 0;
+    &__overflow {
+      overflow: hidden;
+      @include clearfix();
+      &__content {
+        width: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        font-size: 0;
+        a {
+          color: #000;
+        }
+      }
+    }
+    &__content {
+      @include clearfix();
+      margin: 0 auto;
+      a {
+        color: #000;
+      }
+    }
+    &__head {
+      font-size: 22px;
+      line-height: 1.4;
+      margin-left: 20px;
     }
   }
-}
-
-.items--box__overflow {
-  overflow: hidden;
-  @include clearfix();
-  .items--box__content {
-    width: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    font-size: 0;
-    a {
-      color: #000;
-    }
-  }
-}
-
-.items--box__head {
-  font-size: 22px;
-  line-height: 1.4;
-  margin-left: 20px;
-}
-
-.items--box__content {
-  @include clearfix();
-  margin: 0 auto;
-}
-
-.items--box {
-  border: 1px solid $gray;
 }
 
 .app-banner-pc {
