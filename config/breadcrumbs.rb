@@ -7,6 +7,11 @@ crumb :mypage do
   parent :root
 end
 
+crumb :show do
+  link '商品名', item_path(1)
+  parent :root
+end
+
 crumb :logout do
   link 'ログアウト', logout_path
   parent :mypage
