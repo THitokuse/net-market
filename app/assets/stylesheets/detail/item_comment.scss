@@ -48,9 +48,10 @@
       background-color: #fff6de;
     }
     .textarea--default {
-      max-width: 97%;
-      width: 97%;
+      max-width: 100%;
+      width: 100%;
       margin-top: 8px;
+      min-height: 104px;
     }
   }
   &__submit {
