@@ -1,0 +1,177 @@
+= render  "shared/header"
+%br
+%br
+%br
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :show
+    = render "shared/breadcrumbs"
+.single-container
+  %section.item-box-container.l-single-container.item-photo-expended
+    %h1.item-name ViVinne Westwood キーケース
+    .item-main-content.clearfix
+      .item-photo
+        .owl-carousel.owl-loaded.owl-drag
+          .owl-stage-outer
+            .owl-stage{style: "left: 0px; width: 3600px;"}
+              .owl-item.active{style: "width: 300px;"}
+                .owl-item-inner
+                  = image_tag "https://static-mercari-jp-imgtr2.akamaized.net/item/detail/orig/photos/m85355037099_1.jpg?1548499392", alt: "Vivienne Westwood キーケース", style: "opacity: 1;"
+          .owl-nav.disabled
+            .owl-prev prev
+            .owl-next next
+          .owl-dots
+            .owl-dot.active
+              %span
+              .owl-dot-inner
+                = image_tag "https://static-mercari-jp-imgtr2.akamaized.net/item/detail/orig/photos/m85355037099_1.jpg?1548499392"
+      %table.item-detail-table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to "でぶねこ (2/8~9出張中)", "https://www.mercari.com/jp/u/940679673/"
+              %div
+                .item-user-ratings
+                  = fa_icon "smile"
+                  %span 302
+                .item-user-ratings
+                  = fa_icon "grin"
+                  %span 4
+                .item-user-ratings
+                  = fa_icon "angry"
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              = link_to "レディース", "https://www.mercari.com/jp/category/1/"
+              = link_to "小物", "https://www.mercari.com/jp/category/23/"
+              = link_to "キーケース", "https://www.mercari.com/jp/category/245/"
+          %tr
+            %th ブランド
+            %td
+              = link_to "ヴィヴィアン ウエストウッド", "https://www.mercari.com/jp/brand/266/"
+          %tr
+            %th 商品の状態
+            %td やや傷や汚れあり
+          %tr
+            %th 配送料の負担
+            %td 送料込み(出品者負担)
+          %tr
+            %th 配送の方法
+            %td らくらくメルカリ便
+          %tr
+            %th 配送元地域
+            %td
+              = link_to "神奈川県", "https://www.mercari.com/jp/area/14/"
+          %tr
+            %th 発送日の目安
+            %td 4~7日で発送
+    .item-price-box.text-center
+      %span.item-price.bold ¥4,000
+      %span.item-tax (税込)
+      %span.item-shipping-free 送料込み
+    .text-center
+      .sales-point-message P 600 をお持ちです
+    = link_to "購入画面に進む", "https://www.mercari.com/jp/transaction/buy/m85355037099/", class: "item-buy-btn f18-24"
+    .item-description.f14
+      %p.item-description-inner
+        viviennewestwood
+        ヴィヴィアンウエストウッド  キーケース 6連
+        %br
+        %br
+        %br
+        ■ 中古品 (箱なし)
+        %br
+        %br
+        ■コンディション
+        表面に細かな傷
+        折目の部分(外側)に擦り傷
+        内側のキーフック接地面(レザー)に傷・汚れが
+        ございます。
+        %br
+        %br
+        その他は状態良です。
+        %br
+        %br
+        ■ デリケートで完璧を求める方はご遠慮下さいませ。
+    .item-button-container.clearfix
+      .item-button-left
+        = button_tag type: "button", name: "like!", class: "item-button item-button-like" do
+          = fa_icon "like-border"
+          %span いいね!
+          %span.fade-in-down{"data-num": "like"} 18
+        = link_to "", class: "item-button item-button-report clearfix" do
+          = fa_icon "flag"
+          %span 不適切な商品の報告
+      .item-button-right
+        = link_to "https://www.mercari.com/jp/safe/description/" do
+          = fa_icon "lock"
+          %span あんしん・あんぜんへの取り組み
+  .item-detail-message
+    .message-container
+      .message-content
+        = form_with models: [@item, @comment], local: true, class: "message-form" do |f|
+          %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          = f.text_area :comment, class: "textarea-default"
+          = f.button type: "submit", class: "message-submit btn-default btn-gray" do
+            %span コメントする
+      %aside.modal{"data-modal": "delete-comment", "data-close": "modal"}
+        .modal-inner.modal-banner
+          .modal-body
+            .modal-head.bold 確認
+            %div{"data-comment": "body"}
+            %br
+            本当にこのコメントを削除してもよろしいですか？
+          %form{action: "https://www.mercari.com/jp/comment/delete/", method: "POST"}
+            .clearfix
+              .modal-btn.modal-btn-cancel{"data-close": "modal"} キャンセル
+              = button_tag "削除する", type: "submit", class: "modal-btn modal-btn-submit"
+  %ul.nav-item-link-prev-next.clearfix
+    %li.nav-item-link-prev
+      = link_to "https://item.mercari.com/jp/m86295651374/" do
+        = fa_icon "arrow-left"
+        ビーズイソギンチャクリング シルバー
+    %li.nav-item-link-next
+      = link_to "https://item.mercari.com/jp/m11479828874/" do
+        エドウィン EDWIN リングベルト ベルト オリーブ 111 本革 キャンパス
+        = fa_icon "arrow-right"
+  .item-social-media-box
+    %ul.social-media-box
+      %li
+        = link_to "http://www.facebook.com/share.php?u=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm85355037099%2F", class: "share-btn" do
+          = fa_icon "facebook"
+      %li
+        = link_to "http://twitter.com/share?count=horizontal&original_referer=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm85355037099%2F&text=Vivienne%20Westwood%20%20%E2%80%A6%20%28%C2%A5%204%2C000%29%20https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm85355037099%2F%20%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8C%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E3%80%8D%E3%81%A7%E8%B2%A9%E5%A3%B2%E4%B8%AD%E2%99%AA%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%20%40mercari_jp%E3%81%95%E3%82%93%E3%81%8B%E3%82%89", class: "share-btn" do
+          = fa_icon "twitter"
+      %li.social-hidden-item
+        = link_to "http://line.me/R/msg/text/?Vivienne Westwood  キーケース%20%7C%20%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%20%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93%20%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA%0D%0Ahttps://item.mercari.com/jp/m85355037099/" do
+          = fa_icon "line"
+      %li
+        = link_to "http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm85355037099%2F&media=https%3A%2F%2Fstatic-mercari-jp-imgtr2.akamaized.net%2Fitem%2Fdetail%2Forig%2Fphotos%2Fm85355037099_1.jpg%3F1548499392&description=%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E5%95%86%E5%93%81%3A%20Vivienne%20Westwood%20%20%E3%82%AD%E3%83%BC%E3%82%B1%E3%83%BC%E3%82%B9%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA", class: "share-btn" do
+          = fa_icon "pinterest"
+  .items-in-user-profile
+    %section.items-box-container.clearfix.items-box-overflow
+      %h2.items-box-head
+        = link_to "でぶねこ (2/8~9出張中)さんのその他の出品", "https://www.mercari.com/jp/u/940679673/"
+      .items-box-content.clearfix
+        = render partial: "shared/one_items", collection: @items, as: "item"
+    %section.items-box-container.clearfix.items-box-overflow
+      %h2.items-box-head
+        = link_to "ヴィヴィアン ウエストウッドのキーケース その他の商品", "https://www.mercari.com/jp/brand/266/245/"
+      .items-box-content.clearfix
+        = render partial: "shared/one_items", collection: @items, as: "item"
+  %aside.modal{"data-modal": "report-item", "data-close": "modal"}
+    .modal-inner.modal-banner
+      .modal-body
+        .modal-head.bold 確認
+        不適切な商品を報告しますか?
+      .clearfix
+        .modal-btn.modal-btn-cancel{"data-close": "modal"} キャンセル
+        = link_to "https://www.mercari.com/jp/report/m85355037099/" do
+          = button_tag "はい", class: "modal-btn modal-btn-submit"
+
+= render "shared/app-banner"
+= render "shared/footer"
+
+

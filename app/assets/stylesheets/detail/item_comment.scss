@@ -1,0 +1,143 @@
+@media screen and (min-width: 768px) {
+  .item-detail-message {
+    margin: 8px auto;
+    width: 700px;
+    border: 1px solid $gray;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.message-content {
+  padding: 24px;
+  background-color: $white;
+}
+
+.message-form {
+  p {
+  padding: 8px;
+  font-size: 14px;
+  background-color: #fff6de;
+  }
+  .textarea-default {
+    max-width: 97%;
+    width: 97%;
+    margin-top: 8px;
+  }
+}
+
+.message-submit {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 0;
+  text-align: center;
+  span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}
+
+ul.nav-item-link-prev-next {
+  @include clearfix();
+  width: 700px;
+  margin: 0 auto;
+  li {
+    position: relative;
+    width: 43%;
+    word-wrap: break-word;
+  }
+  .icon-arrow-left {
+    position: absolute;
+    top: 50%;
+    transform: translate(0 -50%);
+  }
+  .icon-arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translate(0 -50%);
+  }
+}
+
+.nav-item-link-prev {
+  float: left;
+  .icon-arrow-left {
+    left: 0;
+  }
+}
+
+.nav-item-link-next {
+  float: right;
+  text-align: right;
+  .icon-arrow-right {
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .item-social-media-box {
+  width: 700px;
+  margin: 24px auto;
+  background-color: $white;
+  padding-top: 32px;
+  padding-bottom: 24px;
+  border: 1px solid $gray;
+  }
+}
+
+@media screen and (min-width: 1068px) {
+  .social-media-box {
+    li.social-hidden-item {
+      display: none;
+    }
+  }
+}
+
+
+.social-media-box {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0;
+  li {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    vertical-align: middle;
+    text-align: center;
+    a {
+      display: block;
+    }
+  }
+  i {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    line-height: 44px;
+  }
+}
+
+.fa-facebook {
+  color: $white;
+  background-color: #385185;
+  font-size: 18px;
+}
+
+.fa-twitter {
+  color: $white;
+  background-color: #5d9dc9;
+  font-size: 16px;
+}
+
+.fa-line {
+  color: $white;
+  background-color: #00c137;
+  font-size: 22px;
+}
+
+.fa-pinterest {
+  color: $white;
+  background-color: #aa262a;
+  font-size: 18px;
+}
+
+
+
