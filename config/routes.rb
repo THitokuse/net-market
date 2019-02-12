@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  root 'test#index'
+  root 'items#index'
   resources :items, only: [:index, :new, :show] do
     resources :comments, only: [:create]
   end
-  get 'logout' => 'mypages#logout'
-  get 'mypage' => 'mypages#mypage'
+  resources :mypages, only: [:index, :destroy]
 end
