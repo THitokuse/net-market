@@ -1,4 +1,7 @@
 class MypagesController < ApplicationController
-  def logout
+  def index
+  end
+
+  def destroy
   end
 end

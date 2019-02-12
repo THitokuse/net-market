@@ -13,6 +13,6 @@ crumb :show do
 end
 
 crumb :logout do
-  link 'ログアウト', logout_path
+  link 'ログアウト', mypage_path(1)
   parent :mypage
 end
