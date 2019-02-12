@@ -1,0 +1,153 @@
+= render "shared/header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :logout
+    = render "shared/breadcrumbs"
+%main
+  .l-container.cleafix
+    .l-content
+      %section.mypage-user-icon
+        %a{href: "https://www.mercari.com/jp/u/476088996/"}
+          %figure
+            = image_tag "//static-mercari-jp-imgtr2.akamaized.net/thumb/members/476088996.jpg?1479255826", alt: "", height: "60"
+          %h2.bold しょうご
+          .mypage-number
+            %div
+              評価
+              %span.bold 0
+            %div
+              出品数
+              %span.bold 0
+      %section.mypage-tab-container-notification-todo
+        %ul.mypage-tabs
+          %li#mypage-top_left.active
+            %h3
+              %a{"data-toggle": "tab"}
+                お知らせ
+          %li#mypage-top_right
+            %h3
+              %a{"data-toggle": "tab"}
+                やることリスト
+        .tab-content
+          %ul.mypage-tab-notification_top.mypage-top_left
+            %li.mypage-item-not-found.bold 現在、お知らせはありません
+          %ul.mypage-tab-notification_top.mypage-top_right
+            %li.mypage-item-not-found.bold 現在、やることリストはありません
+      %section.mypage-tab-container
+        %h2.mypage-tab-head 購入した商品
+        %ul.mypage-tabs
+          %li#mypage-bottom_left.active
+            %h3
+              %a{"data-toggle": "tab"}
+                取引中
+          %li#mypage-bottom_right
+            %h3
+              %a{"data-toggle": "tab"}
+                過去の取引
+        .tab-content
+          %ul.mypage-tab-notification_bottom.mypage-bottom_left
+            %li.mypage-item-not-found.bold 取引中の商品がありません
+          %ul.mypage-tab-notification_bottom.mypage-bottom_right
+            %li.mypage-item-not-found.bold 過去の取引はありません
+    .l-side
+      %nav.mypage-nav
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item active" do
+              マイページ
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              お知らせ
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              やることリスト
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              いいね！一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 出品中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 取引中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 売却済み
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              購入した商品 - 取引中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              購入した商品 - 過去の取引
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ニューズ一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              評価一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ガイド
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              お問い合わせ
+              = fa_icon "chevron-right", class: "chevron-right"
+        %h3.mypage-nav-head 売上・ポイント
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              売上・振込申請
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ポイント
+              = fa_icon "chevron-right", class: "chevron-right"
+        %h3.mypage-nav-head 設定
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              プロフィール
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              住所変更
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              支払い方法
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              メール/パスワード
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              本人情報
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              電話番号の確認
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ログアウト
+              = fa_icon "chevron-right", class: "chevron-right"
+= render "shared/app-banner"
+= render "shared/footer"
+= render "shared/sell-btn"

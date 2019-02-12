@@ -1,0 +1,135 @@
+ul, ol {
+  list-style: none;
+}
+
+li h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.mypage-user-icon {
+  position: relative;
+  height: 155px;
+  padding: 20px;
+  background: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?72951459);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+@media screen and (min-width: 768px){
+  .mypage-user-icon {
+    height: 200px;
+  }
+}
+
+.mypage-user-icon>a {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #333;
+}
+
+.mypage-user-icon figure {
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.mypage-user-icon h2 {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.mypage-number {
+  margin: 8px 0 0;
+  font-size: 0;
+  div {
+  display: inline-block;
+  font-size: 14px;
+    span {
+    margin: 0 0 0 8px;
+    font-size: 16px;
+    }
+  }
+  div+div {
+    margin: 0 0 0 16px;
+  }
+}
+
+.mypage-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+  margin-bottom: 0;
+}
+
+.mypage-tabs a {
+  position: relative;
+  display: block;
+  color: #333;
+  font-size: 16px;
+  line-height: 72px;
+}
+
+.mypage-tabs li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+.mypage-tabs li a:hover {
+  text-decoration: none;
+  opacity: 0.5 ;
+}
+
+.mypage-tabs .active a {
+  border-top: 2px solid #ea352d;
+  background: #fff;
+}
+
+.mypage-tabs li {
+  width: 50%;
+}
+
+.mypage-item-not-found {
+  padding: 160px 0 60px;
+  background: url(https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?72951459);
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 78px 85px;
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+  background-color: #fff;
+}
+
+.mypage-top_right, .mypage-bottom_right{
+  display: none;
+}
+
+
+.mypage-tab-container {
+  margin: 40px 0 0;
+  background: #fff;
+}
+
+.mypage-tab-head {
+  padding: 0 4%;
+  background: #fafafa;
+  font-size: 16px;
+  line-height: 72px;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px){
+  .mypage-tab-head {
+    padding: 0 16px;
+  }
+}
