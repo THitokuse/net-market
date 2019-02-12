@@ -77,4 +77,6 @@ gem 'carrierwave'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'gretel'
-
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
