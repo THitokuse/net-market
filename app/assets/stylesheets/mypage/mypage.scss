@@ -2,12 +2,6 @@ ul, ol {
   list-style: none;
 }
 
-li h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-
 .mypage-user-icon {
   position: relative;
   height: 155px;
@@ -68,20 +62,24 @@ li h3 {
   background: #eee;
   font-size: 0;
   margin-bottom: 0;
+  li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    width: 50%;
+    a {
+      position: relative;
+      display: block;
+      color: #333;
+      font-size: 16px;
+      line-height: 72px;
+    }
+  }
 }
 
-.mypage-tabs a {
-  position: relative;
-  display: block;
-  color: #333;
-  font-size: 16px;
-  line-height: 72px;
-}
-
-.mypage-tabs li {
-  display: inline-block;
-  text-align: center;
-  vertical-align: top;
+.mypage-tab{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .mypage-tabs li a:hover {
@@ -92,10 +90,6 @@ li h3 {
 .mypage-tabs .active a {
   border-top: 2px solid #ea352d;
   background: #fff;
-}
-
-.mypage-tabs li {
-  width: 50%;
 }
 
 .mypage-item-not-found {
