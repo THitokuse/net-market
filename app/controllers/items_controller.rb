@@ -8,4 +8,10 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.item_images.build
   end
+
+  def show
+    @item = Item.find(1)
+    @comment = Comment.new
+    @items = Item.all
+  end
 end

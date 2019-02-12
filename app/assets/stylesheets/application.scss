@@ -2,6 +2,7 @@
 @import "font-awesome";
 @import "./mixin/clearfix";
 @import "reset";
+@import "bread-crumb";
 @import "./top/*";
 @import "./sell/*";
 @import "./logout/*";
@@ -9,3 +10,4 @@
 @import "./mypage/*";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "./detail/*";

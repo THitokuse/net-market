@@ -12,6 +12,7 @@ html{
     color:#000;
     background:#FFF;
 }
+
 /*
     TODO remove settings on BODY since we can't namespace it.
 */
@@ -124,6 +125,7 @@ legend {
 
 a {
     text-decoration: none;
+    color: #0099e8;
 }
 /* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssreset { display: none; }
