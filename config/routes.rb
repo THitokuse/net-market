@@ -6,6 +6,5 @@ Rails.application.routes.draw do
         get "purchase_concern"
       end
   end
-  get 'logout' => 'mypages#logout'
-
+  resources :mypages, only: [:index, :destroy]
 end
