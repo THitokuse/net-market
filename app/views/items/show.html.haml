@@ -1,4 +1,4 @@
-= render  "shared/header"
+= render  "shared/top-header"
 %br
 %br
 %br
@@ -73,7 +73,7 @@
       %span.item--shipping__fee 送料込み
     .text__center
       .sales--point__message P 600 をお持ちです
-    = link_to "購入画面に進む", "https://www.mercari.com/jp/transaction/buy/m85355037099/", class: "item--buy__btn f18-24"
+    = link_to "購入画面に進む", purchase_concern_item_path(@item), class: "item--buy__btn f18-24"
     .item--description.f14
       %p.item--description__inner
         viviennewestwood
@@ -163,6 +163,6 @@
           = button_tag "はい", class: "modal-btn modal-btn-submit"
 
 = render "shared/app-banner"
-= render "shared/footer"
+= render "shared/top-footer"
 
 

@@ -1,8 +1,5 @@
 .single-container
-  %header.single-header
-    %h1
-      = link_to root_path do
-        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3708647559", alt: "mercari"
+  = render "shared/new-header"
   %main.single-main
     %section.l-single-container.buy-item-container
       #sell-container
@@ -125,16 +122,4 @@
               = button_tag "出品する", type: "submit", class: "btn-default btn-red"
               = link_to "もどる", root_path, class: "btn-default btn-gray"
             .overlay
-  %footer.single-footer
-    %nav
-      %ul.clearfix
-        %li
-          = link_to "プライバシーポリシー", "https:/www.mercari.com/jp/privacy/"
-        %li
-          = link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
-        %li
-          = link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-    = link_to root_path, class: "single-footer-logo" do
-      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?3708647559", alt: "mercari", width: "80", height: "36"
-    %p
-      %small © 2019 Mercari
+  = render "shared/new-footer"

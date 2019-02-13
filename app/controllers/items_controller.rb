@@ -14,4 +14,8 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @items = Item.all
   end
+
+  def purchase_concern
+    @item = Item.find(1)
+  end
 end
