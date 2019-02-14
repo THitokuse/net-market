@@ -6,5 +6,9 @@ Rails.application.routes.draw do
         get "purchase_concern"
       end
   end
-  resources :mypages, only: [:index, :destroy]
+  resources :mypages, only: [:index, :destroy] do
+    collection do
+      get "identify"
+    end
+  end
 end
