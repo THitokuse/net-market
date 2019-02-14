@@ -8,11 +8,16 @@ crumb :mypage do
 end
 
 crumb :show do
-  link '商品名', item_path(1)
+  link 'ViVinne Westwood キーケース', item_path(1)
   parent :root
 end
 
 crumb :logout do
   link 'ログアウト', mypage_path(1)
+  parent :mypage
+end
+
+crumb :identify do
+  link '本人情報の登録', identify_mypages_path
   parent :mypage
 end
