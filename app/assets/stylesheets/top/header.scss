@@ -188,6 +188,34 @@ $breakpoints: (
               }
             }
           }
+          .pc-header__login__nav {
+            li {
+              display: inline-block;
+              margin: 0 0 0 8px;
+              &:first-child {
+                margin: 0;
+              }
+            }
+            .sp-header__btn {
+              border-radius: 4px;
+              text-align: center;
+              margin: 0;
+              padding: 0 10px;
+              line-height: 30px;
+            }
+            .btn--red {
+              display: block;
+              background-color: $red;
+              border: 1px solid $red;
+              color: $white;
+            }
+            .header-signup {
+              display: block;
+              border: 1px solid #0099e8;
+              background-color: $white;
+              color: #0099e8;
+            }
+          }
         }
       }
     }

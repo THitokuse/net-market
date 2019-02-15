@@ -20,21 +20,28 @@
                 = link_to "ブランドを探す", items_path, class: "search-menu__list__text"
                 #search-menu__list__brand-list
         .pc-header__inner__bottom__l-right
-          %ul.personal-menu
-            %li.personal-menu__list.mypage
-              %a.personal-menu__list__mypage-link
-                %div
-                  =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
-                  %a マイページ
-              #personal-menu__list__mypage-field
-            %li.personal-menu__list.notibfication
-              %a.personal-menu__list__notification-link
-                %i.far.fa-bell.icon
-                %span お知らせ
-                .personal-menu__list__notification-link__count
-              #personal-menu__list__notification-field
-            %li.personal-menu__list.todo
-              %a.personal-menu__list__todo-link
-                %i.fa.fa-check.icon-check
-                %span やることリスト
-              #personal-menu__list__todo-field
+          - if user_signed_in?
+            %ul.personal-menu
+              %li.personal-menu__list.mypage
+                %a.personal-menu__list__mypage-link
+                  %div
+                    =image_tag "https://static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", class: "mypage-avator", alt: "", width: "32"
+                    = link_to "マイページ", mypages_path
+                #personal-menu__list__mypage-field
+              %li.personal-menu__list.notibfication
+                %a.personal-menu__list__notification-link
+                  %i.far.fa-bell.icon
+                  %span お知らせ
+                  .personal-menu__list__notification-link__count
+                #personal-menu__list__notification-field
+              %li.personal-menu__list.todo
+                %a.personal-menu__list__todo-link
+                  %i.fa.fa-check.icon-check
+                  %span やることリスト
+                #personal-menu__list__todo-field
+          - else
+            %ul.pc-header__login__nav
+              %li
+                = link_to "ログイン", new_user_session_path, class: "sp-header__btn btn--red"
+              %li
+                = link_to "新規会員登録", new_user_registration_path, class: "sp-header__btn header-signup"
