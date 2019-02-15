@@ -1,0 +1,131 @@
+@media screen and (min-width: 768px) {
+  .l {
+    &-chapter {
+      &-head {
+        font-size: 24px;
+        padding: 8px 24px;
+      }
+    }
+    &-single {
+      &-inner {
+        padding: 64px;
+      }
+    }
+  }
+}
+
+.l {
+  &-chapter {
+    &-head {
+      border-bottom: 1px solid #f5f5f5;
+      text-align: center;
+    }
+  }
+  &-single {
+    &-inner {
+      border-top: 1px solid #f5f5f5;
+      p {
+        margin: 8px 0 0;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+h2 {
+  line-height: 1.4;
+  display: block;
+  font-weight: bold;
+}
+
+.form {
+  &-group {
+    margin-top: 40px;
+    label {
+    font-weight: 600;
+    }
+    .input-default {
+      width: 100%;
+      margin: 8px 0 0;
+    }
+    .select-wrap {
+      margin: 8px 0 0;
+      .fa-arrow-bottom {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        z-index: 2;
+        color: #888;
+        font-size: 8px;
+        transform: translate(0, -50%);
+      }
+    }
+    select {
+      width: 100%;
+    }
+  }
+  &-arbitrary {
+    background-color: $light_gray;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: $white;
+    font-size: 12px;
+    vertical-align: top;
+  }
+}
+
+label {
+  display: inline-block;
+}
+
+.input-default {
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid $light_gray;
+  background-color: $white;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.select {
+  &-wrap {
+    position: relative;
+    background-color: $white;
+  }
+  &-default {
+    position: relative;
+    z-index: 2;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 4px;
+    border: 1px solid $light_gray;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+}
+
+.mypage-identification {
+  button[type="submit"] {
+    margin: 40px 0 0 0;
+  }
+}
+
+.btn {
+  &-red {
+    background-color: $red;
+    border: 1px solid $red;
+    color: $white;
+  }
+  &-default {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+}

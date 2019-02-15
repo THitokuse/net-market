@@ -1,13 +1,13 @@
 @import "color";
 @import "font-awesome";
 @import "./mixin/clearfix";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "reset";
 @import "bread-crumb";
 @import "./top/*";
 @import "./sell/*";
 @import "./logout/*";
-@import "./mypage/*";
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "./detail/*";
 @import "./purchase_concern/*";
+@import "./mypage/*";

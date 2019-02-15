@@ -1,15 +1,59 @@
 = render "shared/top-header"
 %nav.bread-crumbs__list
   %ul
-    - breadcrumb :logout
+    - breadcrumb :identify
     = render "shared/breadcrumbs"
 %main
   .l-container.cleafix
     .l-content
-      .l-chapter-container
-        %form.l-single-inner
-          .l-single-content
-            %button.btn-default.btn-red{:type => "submit"} ログアウト
+      %section.l-chapter-container.mypage-identification
+        %h2.l-chapter-head 本人情報の登録
+        = form_with models: @item, local: true, class: "l-single-inner" do |f|
+          %div
+            %p
+              お客様の本人情報をご登録ください。
+              %br
+              登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+            %p.text-right
+              = link_to "/jp/help_center/article/495/" do
+                本人確認書類のアップロードについて
+                = fa_icon "arrow-right"
+          .form-group
+            = f.label "お名前"
+            %p テック キャンプ太郎
+          .form-group
+            = f.label "お名前カナ"
+            %p テック キャンプタロウ
+          .form-group
+            = f.label :birthday, "生年月日"
+            %p 1901/11/14
+          .form-group
+            = f.label :zip_code, "郵便番号"
+            %span.form-arbitrary 任意
+            = f.text_area :zip_code, placeholder: "例)1234567", class: "input-default"
+          .form-group
+            = f.label :prefecture_code, "都道府県"
+            %span.form-arbitrary 任意
+            .select-wrap
+              = f.select :prefecture_code, Item.prefectures_i18n.keys.map {|k| [Item.prefectures_i18n[k], k]}
+              = fa_icon "arrow-bottom"
+          .form-group
+            = f.label :city, "市区町村"
+            %span.form-arbitrary 任意
+            = f.text_field :city, placeholder: "例) 横浜市緑区", class: "input-default"
+          .form-group
+            = f.label :address1, "番地"
+            %span.form-arbitrary 任意
+            = f.text_field :address1, placeholder: "例) 青山1-1-1", class: "input-default"
+          .form-group
+            = f.label :address2, "建物名"
+            %span.form-arbitrary 任意
+            = f.text_field :address2, placeholder: "例) 柳ビル103", class: "input-default"
+          = f.button "登録する", type: "submit", class: "btn-default btn-red"
+          .from-group.text-right
+            %p
+              = link_to "本人情報の登録について", "/jp/help_center/article/423/"
+              = fa_icon "arrow-right"
     .l-side
       %nav.mypage-nav
         %ul.mypage-nav-list
@@ -98,7 +142,7 @@
               メール/パスワード
               = fa_icon "chevron-right", class: "chevron-right"
           %li
-            = link_to items_path, class: "mypage-nav-list-item" do
+            = link_to items_path, class: "mypage-nav-list-item active" do
               本人情報
               = fa_icon "chevron-right", class: "chevron-right"
           %li
@@ -106,7 +150,7 @@
               電話番号の確認
               = fa_icon "chevron-right", class: "chevron-right"
           %li
-            = link_to items_path, class: "mypage-nav-list-item active" do
+            = link_to items_path, class: "mypage-nav-list-item" do
               ログアウト
               = fa_icon "chevron-right", class: "chevron-right"
 = render "shared/app-banner"
