@@ -9,7 +9,7 @@
       .l-chapter-container
         %form.l-single-inner
           .l-single-content
-            %button.btn-default.btn-red{:type => "submit"} ログアウト
+            = link_to "ログアウト",destroy_user_session_path, method: :delete, class: "btn-default btn-red"
     .l-side
       %nav.mypage-nav
         %ul.mypage-nav-list

@@ -1,7 +1,7 @@
 = render "shared/top-header"
 %nav.bread-crumbs__list
   %ul
-    - breadcrumb :logout
+    - breadcrumb :mypage
     = render "shared/breadcrumbs"
 %main
   .l-container.cleafix
@@ -145,7 +145,7 @@
               電話番号の確認
               = fa_icon "chevron-right", class: "chevron-right"
           %li
-            = link_to items_path, class: "mypage-nav-list-item" do
+            = link_to mypage_path(current_user), method: :delete, class: "mypage-nav-list-item" do
               ログアウト
               = fa_icon "chevron-right", class: "chevron-right"
 = render "shared/app-banner"
