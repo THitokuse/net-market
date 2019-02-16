@@ -1,0 +1,31 @@
+.setting-profile-icon{
+  padding: 72px 16px 24px;
+  background: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?72951459);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 0;
+  figure {
+    display: inline-block;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .input-default {
+    width: 220px;
+    margin: 0 0 0 8px;
+    vertical-align: middle;
+  }
+}
+
+.setting-profile-content {
+    padding: 40px 16px;
+  .textarea-default {
+    min-height: 216px;
+  }
+  .btn-red {
+    margin: 16px 0 0;
+  }
+}

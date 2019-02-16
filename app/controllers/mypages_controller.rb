@@ -8,4 +8,7 @@ class MypagesController < ApplicationController
 
   def destroy
   end
+
+  def edit
+  end
 end

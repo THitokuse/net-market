@@ -1,0 +1,123 @@
+= render "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :profile
+    = render "shared/breadcrumbs"
+%main
+  .l-container.cleafix
+    .l-content
+      %section.l-chapter-container
+        %h2.l-chapter-head プロフィール
+        %form{:action => "https://www.mercari.com/jp/mypage/profile/", :method => "POST"}
+          %input{:name => "__csrf_value", :type => "hidden", :value => "d8f9dbc11f1bed4b73f89cde93f54d78806ac5fcc0db38e3d2241a3681a4f35a0394f8917957ab13dcad25308c114610a48a784e65c553f39fe6459c73ded6c70"}/
+          .setting-profile-icon
+            %figure
+              = image_tag "//static-mercari-jp-imgtr2.akamaized.net/thumb/members/476088996.jpg?1479255826", height: "60",  width: "60"
+            %input.input-default{:name => "nickname", :placeholder => "例)AYA☆セール中", :type => "text", :value => "しょうご"}/
+          .setting-profile-content
+            %textarea.textarea-default{:name => "introduction", :placeholder => "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+            %input{:name => "after_save_callback", :type => "hidden", :value => "https://www.mercari.com/jp/mypage/profile/"}/
+            %button.btn-default.btn-red{:type => "submit"} 変更する
+
+    .l-side
+      %nav.mypage-nav
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              マイページ
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              お知らせ
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              やることリスト
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              いいね！一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 出品中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 取引中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              出品した商品 - 売却済み
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              購入した商品 - 取引中
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              購入した商品 - 過去の取引
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ニューズ一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              評価一覧
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ガイド
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              お問い合わせ
+              = fa_icon "chevron-right", class: "chevron-right"
+        %h3.mypage-nav-head 売上・ポイント
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              売上・振込申請
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ポイント
+              = fa_icon "chevron-right", class: "chevron-right"
+        %h3.mypage-nav-head 設定
+        %ul.mypage-nav-list
+          %li
+            = link_to items_path, class: "mypage-nav-list-item active" do
+              プロフィール
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              住所変更
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              支払い方法
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              メール/パスワード
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              本人情報
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              電話番号の確認
+              = fa_icon "chevron-right", class: "chevron-right"
+          %li
+            = link_to items_path, class: "mypage-nav-list-item" do
+              ログアウト
+              = fa_icon "chevron-right", class: "chevron-right"
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"
