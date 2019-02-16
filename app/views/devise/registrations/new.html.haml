@@ -63,12 +63,12 @@
               = f.select(:birth_day, [], {prompt: "--"}, {class: "input-default__birth"})
               &nbsp;日
             %br
-            .g-recaptcha{"data-callback" => "validateRecaptcha", "data-sitekey" => "6LcXI3cUAAAAAFqqhr2QMLzDjCPYz3KWuQeZoh5L"}
+            = recaptcha_tags
             %br
             「次へ進む」のボタンを押すことにより、
             = link_to '利用規約', 'https://www.mercari.com/jp/tos_list/'
             に同意したものとみなします
             .actions
-              = f.submit "次に進む", class: "recaptcha btn-default btn-red", disabled: "disabled"
+              = f.submit "次に進む", class: "recaptcha btn-default btn-red"
 
 = render partial: "devise/shared/users_footer"
