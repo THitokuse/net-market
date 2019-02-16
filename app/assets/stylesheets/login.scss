@@ -24,7 +24,7 @@ a {
   }
 }
 .l-single-content {
-  max-width: 320px;
+  max-width: 360px;
   margin: 0 auto;
 }
 @media screen and (min-width: 768px) {
@@ -52,6 +52,11 @@ a {
   background: #fff;
   line-height: 1.5;
   font-size: 16px;
+  &__birth {
+    width: calc(100% - 200px);
+    height: 48px;
+    margin-top: 10px;
+  }
 }
 label {
   font-weight: 600;
@@ -213,6 +218,10 @@ button {
   margin: auto;
 }
 
-.logo-user-registration {
+.logo-user {
   text-align: center;
+  &__registration {
+    float: left;
+  }
 }
+
