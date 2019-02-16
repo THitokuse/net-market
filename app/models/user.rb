@@ -4,16 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :first_name_kana, presence: true
-  validates :last_name_kana, presence: true
-  validates :tel, presence: true
-  validates :prefecture_code, presence: true
-  validates :zip, presence: true
-  validates :city_name, presence: true
-  validates :birth_year, presence: true
-  validates :birth_month, presence: true
-  validates :birth_day, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :first_name
+    validates :last_name
+    validates :first_name_kana
+    validates :last_name_kana
+    validates :tel
+    validates :prefecture_code
+    validates :zip
+    validates :city_name
+    validates :birth_year
+    validates :birth_month
+    validates :birth_day
+  end
 end
