@@ -1,0 +1,37 @@
+%script{async: "async", defer: "defer", src: "https://www.google.com/recaptcha/api.js"}
+
+.wrap#create_header
+  %header.single-header
+    %h1.logo-user
+      = link_to root_path do
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?110229100", alt:"mercari", height: "49", width: "185"
+%main.single-main
+  .wrap#sessions_new
+    .single-container
+      .single-main
+        .login-panel
+          .login-account
+            %p アカウントをお持ちでない方はこちら
+            - if devise_mapping.registerable? && controller_name != 'registrations'
+              = link_to "新規会員登録", jp_signup_path
+          .login-inner
+            %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+              %i.fab.fa-facebook-square
+              = link_to 'Facebookでログイン'
+            %button#google-login.btn-default.btn-sns.btn-sns-google
+              %i.fab.fa-google-plus-g
+              = link_to 'Googleでログイン'
+          .login-form-inner
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .form-group.first
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: 'login-input-text input-default', placeholder: 'メールアドレス'
+              .form-group
+                = f.password_field :password, autocomplete: "current-password", class: 'login-input-text input-default', placeholder: 'パスワード'
+              .form-group
+                = recaptcha_tags
+              .login-submit
+                = f.submit "ログイン", class: " btn-default btn-red recaptcha", disabled: "disabled"
+                %a
+              - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+                .pass
+                  = link_to "パスワードをお忘れの方", new_password_path(resource_name)
