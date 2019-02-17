@@ -44,6 +44,9 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -77,3 +80,9 @@ gem 'carrierwave'
 gem 'devise'
 gem 'jp_prefecture'
 gem 'recaptcha'
+gem 'enum_help'
+gem 'rails-i18n'
+gem 'gretel'
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
