@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  include JpPrefecture
+  jp_prefecture :prefecture_code
   with_options presence: true do
     validates :nickname
     validates :first_name
