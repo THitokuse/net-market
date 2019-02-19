@@ -73,6 +73,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#hamlの導入
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'font-awesome-rails'
@@ -86,3 +87,6 @@ gem 'gretel'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 4.1.1'
+#reactの導入
+gem 'webpacker'
+gem 'react-rails'
