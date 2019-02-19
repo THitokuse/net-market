@@ -1,0 +1,286 @@
+a {
+  color: #0099e8;
+  text-decoration: none;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.l-single-head {
+  padding: 32px 16px;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: center;
+}
+.l-single-inner {
+  border-top: 1px solid #f5f5f5;
+  padding: 40px;
+}
+@media screen and (min-width: 768px) {
+  .l-single-inner {
+    padding: 64px;
+  }
+}
+.l-single-content {
+  max-width: 360px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .l-content {
+    float: none;
+    width: 700px;
+  }
+}
+
+// form関係
+.form-group {
+  width: 100%;
+  margin: 40px 0 0;
+  &.first {
+    margin: 0;
+  }
+}
+.input-default {
+  width: 90%;
+  height: 48px;
+  margin: 8px 0 0;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  &__birth {
+    width: calc(100% - 200px);
+    height: 48px;
+    margin-top: 10px;
+  }
+}
+label {
+  font-weight: 600;
+  font-size: 14px;
+}
+.form-repuire{
+  background: $red;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+.form-repuire-any {
+    background: #ccc;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+
+
+
+// button関係
+button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  min-height: 1.5em;
+}
+.btn-sns {
+  position: relative;
+}
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-red {
+  background: $red;
+  border: 1px solid $red;
+  color: $white;
+  line-height: 48px;
+  text-align: center;
+  font-size: 14px;
+  a{
+    color: $white;
+  }
+}
+.btn-sns-facebook {
+  margin: 14px 0 0;
+  background: #385185;
+  color: $white;
+  font-size: 16px;
+  > a {
+    color: $white;
+  }
+  > i {
+    float: left;
+    font-size: 20px;
+    margin: 14px 0px 0px 14px;
+  }
+}
+.btn-sns-google {
+  margin: 14px 0 0;
+  background: #dc4e41;
+  color: $white;
+  font-size: 16px;
+  > a {
+    color: $white;
+  }
+  > i {
+    float: left;
+    font-size: 20px;
+    margin: 14px 0px 0px 14px;
+  }
+}
+.actions {
+  margin-top: 40px;
+}
+
+
+// error_explanation
+#error_explanation {
+  color: $red;
+  margin: 0 0 32px;
+  h2 {
+    font-size: 18px;
+  }
+  ul {
+    padding: 14px 0 0 18px;
+    list-style: initial;
+    li {
+      margin: 8px 0 0 0;
+    }
+  }
+}
+
+
+.l-single-container {
+  width: 700px;
+  margin: 0 auto;
+  background: $white;
+  .l-single-content {
+    .btn-mail {
+      width: 100%;
+      margin: 0;
+      position: relative;
+      background: #eee;
+      a {
+        color: #000;
+      }
+      i {
+        color: #ccc;
+        float: left;
+        font-size: 20px;
+        margin: 14px 0px 0px 14px;
+      }
+    }
+  }
+}
+.single-footer {
+  width: 456px;
+  height: 140px;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+  li {
+
+    display: inline-block;
+    margin-left: 10px;
+    a {
+   text-decoration: none;
+   font-size: 12px;
+   color: #333;
+   }
+ }
+ .single-footer-logo img {
+  margin: 40px auto 10px;
+ }
+  p {
+    font-size: 12px;
+    color: #333;
+ }
+}
+
+#create_header {
+  width: 700px;
+  margin: auto;
+}
+
+.logo-user {
+  text-align: center;
+  &__registration {
+    float: left;
+  }
+}
+
+#sessions_new {
+  .login-panel {
+    max-width: none;
+    width: 456px;
+    margin: 0 auto;
+    background: $white;
+    .login-account {
+      padding: 40px 64px;
+      border-bottom: 1px solid #eee;
+      p {
+        font-size: 14px;
+        text-align: center;
+      }
+      a {
+        display: block;
+        margin: 8px 0 0;
+        border: 1px solid #0099e8;
+        background: #0099e8;
+        color: $white;
+        line-height: 40px;
+        text-decoration: none;
+        text-align: center;
+      }
+    }
+    .login-inner {
+      padding: 32px 64px;
+      .btn-sns-facebook {
+        font-size: 14px;
+        &:first-child {
+          margin: 0;
+        }
+      }
+      .btn-sns-google {
+        font-size: 14px;
+      }
+    }
+    .login-form-inner {
+      padding: 24px 64px 32px;
+      .form-group {
+        margin: 24px 0 0;
+        &.first {
+          margin: 0;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) {
+      .login-form-inner:first-child {
+        margin: 0;
+        padding: 24px 64px 32px;
+      }
+    }
+    .login-submit {
+      margin: 24px 0 0;
+    }
+    .pass {
+      margin: 40px 0 0;
+    }
+  }
+}
