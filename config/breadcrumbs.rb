@@ -21,3 +21,8 @@ crumb :identify do
   link '本人情報の登録', identify_mypages_path
   parent :mypage
 end
+
+crumb :profile do
+  link 'プロフィール', edit_mypage_path
+  parent :mypage
+end
