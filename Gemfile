@@ -86,7 +86,6 @@ gem 'rails-i18n'
 gem 'gretel'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-gem 'bootstrap', '~> 4.1.1'
 #reactの導入
 gem 'webpacker'
 gem 'react-rails'
