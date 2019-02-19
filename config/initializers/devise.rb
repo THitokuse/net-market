@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '63c91ca8ea723e97b55e4de1f6e5c648dd20927165541939cdb880789a1b276a9c0cfe100d0382fe6e2c8b64b9e0e2b6a0e9dfe39a066275cbd2b8fc58b48ad4'
+  # config.secret_key = '938c68c3b4e2c1f4545fa224549e9e5ae4ecffc91cf7c2e92ad80da37fa20b843a898569810e7e74d3d9c9c00f38fdc6046db87790c2768e14c05e3eb05443b6'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -43,7 +43,6 @@ Devise.setup do |config|
   # config.authentication_keys = [:email]
 
   require Rails.root.join("spec/support/controller_macros.rb")
-
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
   # find_for_authentication method and considered in your model lookup. For instance,
@@ -116,7 +115,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '3505b4df402730fbdcbdfe069ff990afd1ae13ea5630871db5a064ed904e0b987cbf56628d9b1698088b5baa90d1eb4fdbacfabbeea64a7fa72023783bf486fb'
+  # config.pepper = '809bcce5d2b87615f2adbc7cc8cbd7a65df838d07588523365439f7862e9038ee7981e4c3246ce5f436da2c6cd5862538cee6a9696da1f135378f4059c46d4c2'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -128,7 +127,8 @@ Devise.setup do |config|
   # A period that the user is allowed to access the website even without
   # confirming their account. For instance, if set to 2.days, the user will be
   # able to access the website for two days without confirming their account,
-  # access will be blocked just in the third day.
+  # access will be blocked just in the third day. Default is 0.days, meaning
+  # the user cannot access the website without confirming their account.
   # You can also set it to nil, which will allow the user to access the website
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
@@ -234,7 +234,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

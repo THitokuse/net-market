@@ -1,0 +1,24 @@
+.wrap#create_header
+  %header.single-header
+    %h1.logo-user
+      = link_to root_path do
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?110229100", alt:"mercari", height: "49", width: "185"
+
+.single-container
+  %main.single-main
+    .l-single-container
+      %h2.l-single-head
+        新規会員登録
+      .l-single-inner
+        .l-single-content
+          %button.btn-default.btn-mail
+            %i.far.fa-envelope
+            = link_to 'メールアドレスで登録', jp_signup_registration_path
+          %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+            %i.fab.fa-facebook-square
+            %a Facebookで登録
+          %button#google-login.btn-default.btn-sns.btn-sns-google
+            %i.fab.fa-google-plus-g
+            %a  Googleで登録
+
+= render partial: "devise/shared/users_footer"

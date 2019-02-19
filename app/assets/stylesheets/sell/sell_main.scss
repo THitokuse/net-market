@@ -30,7 +30,7 @@ form {
 }
 
 .sell-upload-box {
-  width: 620px;
+  width: 100%;
   padding: 40px;
   border: 1px solid $gray;
 }
@@ -99,6 +99,7 @@ form {
       pointer-events: none;
       white-space: pre-wrap;
       word-wrap: break-word;
+      border: none;
     }
   }
 }

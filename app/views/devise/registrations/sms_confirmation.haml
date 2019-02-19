@@ -1,0 +1,24 @@
+.wrap#create_header
+  %header.single-header
+    %h1.logo-user__registration
+      = link_to root_path do
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?110229100", alt:"mercari", height: "49", width: "185"
+%br
+.single-container
+  %main.single-main
+    .l-single-container
+      %h2.l-single-head
+        電話番号の確認
+      .l-single-inner
+        .l-single-content
+          = form_with(url: user_registration_path) do |f|
+            .form-group.first
+              = f.label :携帯電話の番号
+              = f.text_field :tel, autocomplete: "tel", placeholder: "携帯電話の番号を入力", class: "input-default", autofocus: true
+              本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+
+            .actions
+              = f.submit "SMSを送信する", class: "recaptcha btn-default btn-red", disabled: "disabled"
+              ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+
+= render partial: "devise/shared/users_footer"

@@ -1,5 +1,8 @@
 # メルカリDB設計
 
+## ER図
+https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
+
 ## Usersテーブル
 - メルカリユーザ用テーブル
 
