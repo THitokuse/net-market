@@ -22,7 +22,7 @@
               %i.fab.fa-google-plus-g
               = link_to 'Googleでログイン'
           .login-form-inner
-            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            = form_for(resource, as: resource_name, url: '/jp/signup/registration') do |f|
               .form-group.first
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'login-input-text input-default', placeholder: 'メールアドレス'
               .form-group
@@ -34,4 +34,5 @@
                 %a
               - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
                 .pass
-                  = link_to "パスワードをお忘れの方", new_password_path(resource_name)
+                  = link_to "パスワードをお忘れの方", 'https://www.mercari.com/jp/password/reset/start/'
+= render partial: "devise/shared/users_footer"
