@@ -12,12 +12,5 @@ class User < ApplicationRecord
     validates :last_name
     validates :first_name_kana
     validates :last_name_kana
-    validates :tel
-    validates :prefecture_code
-    validates :zip
-    validates :city_name
-    validates :birth_year
-    validates :birth_month
-    validates :birth_day
   end
 end
