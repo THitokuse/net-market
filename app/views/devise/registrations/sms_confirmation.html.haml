@@ -11,14 +11,14 @@
         電話番号の確認
       .l-single-inner
         .l-single-content
-          = form_with(url: user_registration_path) do |f|
+          = form_for(current_user, url: 'sms_confirmation') do |f|
             .form-group.first
               = f.label :携帯電話の番号
               = f.text_field :tel, autocomplete: "tel", placeholder: "携帯電話の番号を入力", class: "input-default", autofocus: true
               本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
 
             .actions
-              = f.submit "SMSを送信する", class: "recaptcha btn-default btn-red", disabled: "disabled"
+              = f.submit "SMSを送信する", class: "recaptcha btn-default btn-red"
               ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
 
 = render partial: "devise/shared/users_footer"

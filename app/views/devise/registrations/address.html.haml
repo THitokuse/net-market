@@ -1,0 +1,44 @@
+.wrap#create_header
+  %header.single-header
+    %h1.logo-user__registration
+      = link_to root_path do
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?110229100", alt:"mercari", height: "49", width: "185"
+%br
+.single-container
+  %main.single-main
+    .l-single-container
+      %h2.l-single-head
+        会員情報入力
+      .l-single-inner
+        .l-single-content
+          = form_for(current_user, url: 'address') do |f|
+            .form-group.first
+              = f.label :郵便番号
+              %span.form-repuire 必須
+              = f.text_field :zip, autocomplete: "zip", placeholder: "例) 123-4567", class: "input-default", autofocus: true
+            .form-group
+              = f.label :都道府県
+              %span.form-repuire 必須
+              = f.collection_select(:prefecture_name, JpPrefecture::Prefecture.all, :name, :name, {prompt: "北海道"}, { class: "input-default" })
+            .form-group
+              = f.label :市区町村
+              %span.form-repuire 必須
+              = f.text_field :city_code, autocomplete: "city_code", placeholder: "例) 横浜市緑区", class: "input-default", autofocus: true
+            .form-group
+              = f.label :番地
+              %span.form-repuire 必須
+              = f.text_field :street, autocomplete: "street", placeholder: "例) 青山1-1-1", class: "input-default", autofocus: true
+            .form-group
+              = f.label :建物名
+              %span.form-repuire 必須
+            %br
+            = recaptcha_tags
+            %br
+            「次へ進む」のボタンを押すことにより、
+            = link_to '利用規約', 'https://www.mercari.com/jp/tos_list/'
+            に同意したものとみなします
+            .actions
+              = f.submit "次に進む", class: "recaptcha btn-default btn-red"
+
+= render partial: "devise/shared/users_footer"
+
