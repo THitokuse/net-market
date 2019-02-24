@@ -89,3 +89,5 @@ gem 'bootstrap-sass'
 #reactの導入
 gem 'webpacker'
 gem 'react-rails'
+#S3の導入
+gem 'fog-aws'
