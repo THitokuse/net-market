@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     # ログイン関連のパス
     get 'jp/login' => 'users/sessions#new'
-    post 'jp/login' => 'users/sessions#new'
+    post 'jp/login' => 'users/sessions#create'
   end
 
   root 'items#index'
