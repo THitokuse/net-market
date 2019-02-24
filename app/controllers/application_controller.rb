@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
       user_params.permit(:email, :password, :password_confirmation, :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana)
     end
 
+    devise_parameter_sanitizer.permit(:account_update) do |user_params|
+      user_params.permit(:tel, :prefecture_code, :zip, :city_code, :street)
+    end
+
     devise_parameter_sanitizer.permit(:sign_in) do |user_params|
       user_params.permit(:email, :password)
     end

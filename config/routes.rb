@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get 'jp/signup/registration' => 'users/registrations#new'
     post 'jp/signup/registration' => 'users/registrations#create'
     get 'jp/signup/sms_confirmation' => 'users/registrations#sms_confirmation'
+    patch 'jp/signup/sms_confirmation' => 'users/registrations#sms_confirmation_create'
+    get 'jp/signup/address' => 'users/registrations#address'
+    patch 'jp/signup/address' => 'users/registrations#address_create'
 
     # ログイン関連のパス
     get 'jp/login' => 'users/sessions#new'
