@@ -22,7 +22,7 @@
               %i.fab.fa-google-plus-g
               = link_to 'Googleでログイン'
           .login-form-inner
-            = form_for(resource, as: resource_name, url: '/jp/signup/registration') do |f|
+            = form_for(resource, as: resource_name, url: 'login') do |f|
               .form-group.first
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'login-input-text input-default', placeholder: 'メールアドレス'
               .form-group
@@ -30,7 +30,7 @@
               .form-group
                 = recaptcha_tags
               .login-submit
-                = f.submit "ログイン", class: " btn-default btn-red recaptcha", disabled: "disabled"
+                = f.submit "ログイン", class: " btn-default btn-red recaptcha"
                 %a
               - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
                 .pass
