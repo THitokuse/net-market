@@ -15,12 +15,13 @@
               .sell-dropbox-container.clearfix.state-image-number-10
                 .sell-upload-items-container
                   .sell-upload-items.have-item-0
-                    %ul
-                = f.fields_for :item_images, ItemImage.new do |image|
-                  = image.label :image, class: "sell-upload-drop-box have-item-0" do
-                    = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
-                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                    = fa_icon "camera"
+                - if current_page?(new_item_path)
+                  - 10.times do
+                    = f.fields_for :item_images, ItemImage.new do |image|
+                      = image.label :image, class: "sell-upload-drop-box have-item-0" do
+                        = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
+                        %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                        = fa_icon "camera"
             .sell-content
               .form-group
                 = f.label :name do
@@ -36,35 +37,13 @@
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
               .sell-form-box
-                .form-group
+                .form-group.category
                   = f.label :upper_category_id do
                     カテゴリー
                     %span.form-require 必須
                   %div
-                    .select-wrap
-                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
-                    .select-wrap
-                      = f.select :middle_category_id, options_from_collection_for_select(@middle_categories, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
-                    .select-wrap
-                      = f.select :lower_category_id, options_from_collection_for_select(@lower_categories, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
-                .form-group
-                  = f.label :size_id do
-                    サイズ
-                    %span.form-require 必須
-                  %div
-                    .select-wrap
-                      = f.select :size_id, options_from_collection_for_select(@size, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
-                .form-group
-                  = f.label :brand_id do
-                    ブランド
-                    %span.form-arbitrary 任意
-                  %div
-                    .select-wrap
-                      = f.text_field :brand_id, placeholder: "例) シャネル", default: "0", class: "input-default"
+                    .select-wrap.upper
+                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
                       = fa_icon "arrow-bottom"
                 .form-group
                   = f.label :status do
@@ -78,23 +57,13 @@
               %h3.sell-sub-head 配送について
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
               .sell-form-box
-                .form-group
-                  %label
+                .form-group.burden
                   = f.label :delivery_burden_id do
                     配送料の負担
                     %span.form-require 必須
                   %div
                     .select-wrap
-                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
-                .form-group
-                  %label
-                  = f.label :delivery_method_id do
-                    配送の方法
-                    %span.form-require 必須
-                  %div
-                    .select-wrap
-                      = f.select :delivery_method_id, options_from_collection_for_select(DeliveryMethod.all, :id, :name), {prompt: "---"}, class: "select-default"
+                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
                       = fa_icon "arrow-bottom"
                 .form-group
                   %label
@@ -124,13 +93,13 @@
                         %span.form-require 必須
                       .l-right.sell-price-input
                         %div
-                          = f.text_field :price, placeholder: "例)300", class: "input-default"
+                          = f.text_field :price, placeholder: "例)300", class: "input-default price"
                   %li.clearfix
                     .l-left 販売手数料(10%)
-                    .l-right -
+                    .l-right.comercial_cost -
                   %li.clearfix.bold
                     .l-left 販売利益
-                    .l-right -
+                    .l-right.profit -
             .modal{role: "dialog", tabindex: "-1"}
               .modal-inner
             .sell-content.sell-btn-box
