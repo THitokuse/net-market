@@ -78,7 +78,12 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'font-awesome-rails'
 gem 'carrierwave'
+#ログイン機能実装
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+#都道府県コード
 gem 'jp_prefecture'
 gem 'recaptcha'
 gem 'enum_help'
