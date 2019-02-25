@@ -9,9 +9,15 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
-    @middle_categories = MiddleCategory.all.where(upper_category_params)
-    @lower_categories = LowerCategory.all.where(middle_category_params)
-    @size = Size.all
+    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
+    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
+    @sizes = Size.all.where(size_type_id: params[:size_type_id])
+    @delivery_methods = DeliveryMethod.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
