@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
     get 'jp/login' => 'users/sessions#new'
   end
-
+  
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show] do
+  
+  resources :items, only: [:index, :new, :show] do
     resources :comments, only: [:create]
       member do
         get "purchase_concern"
@@ -23,7 +24,4 @@ Rails.application.routes.draw do
       get "identify"
     end
   end
-
-  resources :brands, only: [:index]
 end
-
