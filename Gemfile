@@ -91,5 +91,5 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-turbolinks'
 gem 'webpacker'
 gem 'react-rails'
-gem 'fog-aws'
+gem 'fog'
 
