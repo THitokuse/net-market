@@ -19,7 +19,7 @@
             .form-group
               = f.label :都道府県
               %span.form-repuire 必須
-              = f.collection_select(:prefecture_name, JpPrefecture::Prefecture.all, :name, :name, {prompt: "北海道"}, { class: "input-default" })
+              = f.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "北海道"}, { class: "input-default" })
             .form-group
               = f.label :市区町村
               %span.form-repuire 必須
