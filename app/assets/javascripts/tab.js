@@ -1,4 +1,4 @@
-$(window).on("load", function() {
+$(document).on('turbolinks:load', function(){
   $("#mypage-top_left, #mypage-top_right").on("click", function() {
     $(this).addClass("active");
     $(".mypage-tab-notification_top").hide();
