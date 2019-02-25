@@ -5,8 +5,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :configure_permitted_parameters, only: [:create]
   prepend_before_action :user_sms_confirmation, only: [:sms_confirmation_create]
   prepend_before_action :user_address, only: [:address_create]
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+
+  before_action :login_verify, only: [:sms_confirmation, :sms_confirmation_create, :address, :address_create, :registration_complete]
+
   def index
 
   end
@@ -41,6 +42,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       render "address"
     end
+  end
+
+  def registration_complete
+
   end
 
   # GET /resource/edit
@@ -91,6 +96,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless verify_recaptcha(model: resource)
       respond_with_navigational(resource) { render :new }
     end
+  end
+
+  def login_verify
+    redirect_to action: :new unless user_signed_in?
   end
 
   # If you have extra params to permit, append them to the sanitizer.
