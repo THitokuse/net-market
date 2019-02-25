@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     patch 'jp/signup/sms_confirmation' => 'users/registrations#sms_confirmation_create'
     get 'jp/signup/address' => 'users/registrations#address'
     patch 'jp/signup/address' => 'users/registrations#address_create'
+    get 'jp/signup/complete' => 'users/registrations#registration_complete'
 
     # ログイン関連のパス
     get 'jp/login' => 'users/sessions#new'
