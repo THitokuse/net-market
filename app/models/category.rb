@@ -1,7 +1,6 @@
-class UpperCategory < ApplicationRecord
-  has_many :items
-  has_many :middle_categories
-  enum upper_categories: {
+class Category < ApplicationRecord
+
+  enum categories: {
     normal: 0,
     ladies: 1,
     mens: 2,

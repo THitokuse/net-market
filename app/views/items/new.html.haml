@@ -6,80 +6,83 @@
         .sell-container-inner
           %h2.l-single-head
             商品の情報を入力
-          = form_with model: @item, url: items_path, local: true, class: "sell-form" do |f|
+          = form_for (@item), class: "sell-form" do |f|
             .sell-upload-box
               %h3.sell-upload-head
                 出店画像
                 %span.form-require 必須
               %p 最大10枚までアップロードできます
               .sell-dropbox-container.clearfix.state-image-number-10
-                .sell-upload-items-container
-                  .sell-upload-items.have-item-0
-                - if current_page?(new_item_path)
-                  = f.fields_for :item_images, ItemImage.new do |image|
-                    = image.label :image, class: "sell-upload-drop-box have-item-0" do
-                      = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
-                      %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                      = fa_icon "camera"
+                = f.fields_for :item_images do |image|
+                  .sell-upload-items-container
+                    .sell-upload-items.have-item-0
+                      %ul
+                  %label.sell-upload-drop-box.have-item-0
+                    = image.file_field :image, class: "sell-upload-drop-file", multiple: "true", style: "display:none;"
+                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                    = fa_icon "camera"
             .sell-content
               .form-group
-                = f.label :name do
+                %label
                   商品名
                   %span.form-require 必須
                 %div
                   = f.text_field :name, placeholder: "商品名 (必須 40文字まで)", class: "input-default"
               .form-group
-                = f.label :content do
+                %label
                   商品の説明
                   %span.form-require 必須
                 = f.text_area :content, placeholder: "商品の説明 (必須1000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: "textarea-default"
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
               .sell-form-box
-                .form-group.category
-                  = f.label :upper_category_id do
-                    カテゴリー
-                    %span.form-require 必須
-                  %div
-                    .select-wrap.upper
-                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
-                      = fa_icon "arrow-bottom"
                 .form-group
-                  = f.label :status do
+                  = fields_for :categories do |category|
+                    %label
+                      カテゴリー
+                      %span.form-require 必須
+                    %div
+                      .select-wrap
+                        = category.select :status, Category.categories_i18n.keys.map {|k| [Category.categories_i18n[k], k]}, class: "select-default"
+                        = fa_icon "arrow-bottom"
+                .form-group
+                  %label
                     商品の状態
                     %span.form-require 必須
                   %div
                     .select-wrap
-                      = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default"
+                      = f.select :status, Item.item_statuses_i18n.keys.map {|k| [Item.item_statuses_i18n[k], k]}, class: "select-default"
                       = fa_icon "arrow-bottom"
             .sell-content.clearfix
               %h3.sell-sub-head 配送について
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
               .sell-form-box
-                .form-group.burden
-                  = f.label :delivery_burden_id do
-                    配送料の負担
-                    %span.form-require 必須
-                  %div
-                    .select-wrap
-                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
-                      = fa_icon "arrow-bottom"
+                .form-group
+                  = fields_for :deliveryburden do |burden|
+                    %label
+                      配送料の負担
+                      %span.form-require 必須
+                    %div
+                      .select-wrap
+                        = burden.select :name, DeliveryBurden.burdens_i18n.keys.map {|k| [DeliveryBurden.burdens_i18n[k], k]}, class: "select-default"
+                        = fa_icon "arrow-bottom"
                 .form-group
                   %label
                     発送元の地域
                     %span.form-require 必須
                   %div
                     .select-wrap
-                      = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default"
+                      = f.select :prefecture_code, Item.prefectures_i18n.keys.map {|k| [Item.prefectures_i18n[k], k]}, class: "select-default"
                       = fa_icon "arrow-bottom"
                 .form-group
-                  = f.label :delivery_date_id do
-                    発送までの日数
-                    %span.form-require 必須
-                  %div
-                    .select-wrap
-                      = f.select :delivery_date_id, options_from_collection_for_select(DeliveryDate.all, :id, :name), {prompt: "---"}, class: "select-default"
-                      = fa_icon "arrow-bottom"
+                  = fields_for :deliverydate do |date|
+                    %label
+                      発送までの日数
+                      %span.form-require 必須
+                    %div
+                      .select-wrap
+                        = date.select :name, DeliveryDate.dates_i18n.keys.map {|k| [DeliveryDate.dates_i18n[k], k]}, class: "select-default"
+                        = fa_icon "arrow-bottom"
             .sell-content.clearfix
               %h3.sell-sub-head 販売価格(300~9,999,999)
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
@@ -92,13 +95,13 @@
                         %span.form-require 必須
                       .l-right.sell-price-input
                         %div
-                          = f.text_field :price, placeholder: "例)300", class: "input-default price"
+                          = f.text_field :price, placeholder: "例)300", class: "input-default"
                   %li.clearfix
                     .l-left 販売手数料(10%)
-                    .l-right.comercial_cost -
+                    .l-right -
                   %li.clearfix.bold
                     .l-left 販売利益
-                    .l-right.profit -
+                    .l-right -
             .modal{role: "dialog", tabindex: "-1"}
               .modal-inner
             .sell-content.sell-btn-box
@@ -116,7 +119,7 @@
                   また、出品にもちまして
                   = link_to "加盟店規約", "https:/www.mercari.com/jp/seller_terms/"
                   に同意したことになります。
-              = f.button "出品する", type: "submit", class: "btn-default btn-red"
+              = button_tag "出品する", type: "submit", class: "btn-default btn-red"
               = link_to "もどる", root_path, class: "btn-default btn-gray"
             .overlay
   = render "shared/new-footer"

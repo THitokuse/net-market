@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      delivery_burden: アイテム情報
+    attributes:
+      delivery_burden:
+        burdens: 商品の状態
+  enums:
+    delivery_burden:
+      burdens:
+        default: ---
+        seller_burden: 送料込み(出品者負担)
+        buyer_burden: 着払い(購入者負担)
