@@ -2,11 +2,15 @@ class Item < ApplicationRecord
   has_many :item_images
   belongs_to :delivery_date
   belongs_to :delivery_burden
+  belongs_to :delivery_method
   has_many :comments
+  belongs_to :upper_category, optional: true
+  belongs_to :middle_category, optional: true
+  belongs_to :lower_category, optional: true
 
   accepts_nested_attributes_for :item_images
 
-  enum item_status: {
+  enum status: {
     default: 0,
     new_item: 1,
     nearly_new: 2,
@@ -16,7 +20,7 @@ class Item < ApplicationRecord
     bad_condition: 6
   }
 
-  enum prefectures: {
+  enum prefecture_code: {
     common: 0,
     Hokkaido: 1,
     Aomori: 2,
@@ -67,4 +71,20 @@ class Item < ApplicationRecord
     Okinawa: 47,
     Unknown: 99
   }
+
+
+  # with_options presence: true do
+  #   validates :name
+  #   validates :price
+  #   validates :prefecture_code
+  #   validates :content
+  #   validates :status
+  #   validates :upper_category_id
+  #   validates :middle_category_id
+  #   validates :lower_category_id
+  #   validates :size_id
+  #   validates :delivery_burden_id
+  #   validates :delivery_date_id
+  #   validates :delivery_method_id
+  # end
 end

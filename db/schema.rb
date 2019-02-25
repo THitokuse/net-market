@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_092957) do
+ActiveRecord::Schema.define(version: 2019_02_17_170804) do
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
@@ -24,17 +30,17 @@ ActiveRecord::Schema.define(version: 2019_02_15_092957) do
 
   create_table "delivery_burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-  
-    create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "delivery_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+    create_table "delivery_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_092957) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
-    t.string "image", null: false
+    t.string "image", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
@@ -53,18 +59,18 @@ ActiveRecord::Schema.define(version: 2019_02_15_092957) do
     t.integer "price", null: false
     t.integer "prefecture_code", null: false
     t.text "content", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
-    t.bigint "size_id"
+    t.bigint "size_id", null: false
     t.bigint "upper_category_id", null: false
     t.bigint "middle_category_id"
     t.bigint "lower_category_id"
-    t.bigint "brand_id"
+    t.bigint "brand_id", null: false
     t.bigint "delivery_burden_id", null: false
     t.bigint "delivery_date_id", null: false
     t.bigint "delivery_method_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["delivery_burden_id"], name: "index_items_on_delivery_burden_id"
     t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
@@ -146,4 +152,5 @@ ActiveRecord::Schema.define(version: 2019_02_15_092957) do
   end
 
   add_foreign_key "item_images", "items"
+  add_foreign_key "middle_categories", "upper_categories"
 end
