@@ -23,4 +23,7 @@ Rails.application.routes.draw do
       get "identify"
     end
   end
+
+  resources :brands, only: [:index]
 end
+

@@ -15,12 +15,21 @@
               .sell-dropbox-container.clearfix.state-image-number-10
                 .sell-upload-items-container
                   .sell-upload-items.have-item-0
+<<<<<<< HEAD
                     %ul
                 = f.fields_for :item_images, ItemImage.new do |image|
                   = image.label :image, class: "sell-upload-drop-box have-item-0" do
                     = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
                     %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
                     = fa_icon "camera"
+=======
+                - if current_page?(new_item_path)
+                  = f.fields_for :item_images, ItemImage.new do |image|
+                    = image.label :image, class: "sell-upload-drop-box have-item-0" do
+                      = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
+                      %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                      = fa_icon "camera"
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
             .sell-content
               .form-group
                 = f.label :name do
@@ -36,7 +45,16 @@
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
               .sell-form-box
+                .form-group.category
+                  = f.label :upper_category_id do
+                    カテゴリー
+                    %span.form-require 必須
+                  %div
+                    .select-wrap.upper
+                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
+                      = fa_icon "arrow-bottom"
                 .form-group
+<<<<<<< HEAD
                   = f.label :upper_category_id do
                     カテゴリー
                     %span.form-require 必須
@@ -67,6 +85,8 @@
                       = f.text_field :brand_id, placeholder: "例) シャネル", default: "0", class: "input-default"
                       = fa_icon "arrow-bottom"
                 .form-group
+=======
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
                   = f.label :status do
                     商品の状態
                     %span.form-require 必須
@@ -78,13 +98,18 @@
               %h3.sell-sub-head 配送について
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
               .sell-form-box
+<<<<<<< HEAD
                 .form-group
                   %label
+=======
+                .form-group.burden
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
                   = f.label :delivery_burden_id do
                     配送料の負担
                     %span.form-require 必須
                   %div
                     .select-wrap
+<<<<<<< HEAD
                       = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default"
                       = fa_icon "arrow-bottom"
                 .form-group
@@ -95,6 +120,9 @@
                   %div
                     .select-wrap
                       = f.select :delivery_method_id, options_from_collection_for_select(DeliveryMethod.all, :id, :name), {prompt: "---"}, class: "select-default"
+=======
+                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
                       = fa_icon "arrow-bottom"
                 .form-group
                   %label
@@ -124,13 +152,13 @@
                         %span.form-require 必須
                       .l-right.sell-price-input
                         %div
-                          = f.text_field :price, placeholder: "例)300", class: "input-default"
+                          = f.text_field :price, placeholder: "例)300", class: "input-default price"
                   %li.clearfix
                     .l-left 販売手数料(10%)
-                    .l-right -
+                    .l-right.comercial_cost -
                   %li.clearfix.bold
                     .l-left 販売利益
-                    .l-right -
+                    .l-right.profit -
             .modal{role: "dialog", tabindex: "-1"}
               .modal-inner
             .sell-content.sell-btn-box

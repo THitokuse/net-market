@@ -30,8 +30,7 @@ https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
 jp_prefecture導入
 
 ### Association
-- has_many salers
-- has_many buyers
+- has_many items
 - has_many likes
 - has_many evalutes
 - has_many todos
@@ -53,6 +52,11 @@ jp_prefecture導入
 |deliveryburden|reference|null: false, foreign_key: true|
 |deliverydate|reference|null: false, foreign_key: true|
 |brand|reference|null: false, foreign_key: true|
+|upper_category|reference|null: false, foreign_key: true|
+|middle_category|reference|null: false, foreign_key: true|
+|lower_category|reference|null: false, foreign_key: true|
+|size|reference|null: false, foreign_key: true|
+|seller|reference|null: false, foreign_key: true|
 
 - prefecture_code
 jp_prefecture導入
@@ -64,20 +68,21 @@ jp_prefecture導入
 
 ### Association
 - has_many salers
-- has_many buyers
 - has_many likes
 - has_many comments
 - has_many status
-- has_many item_categories
-- has_many categories through item_categories
-- has_many itemimages
+- has_many item_images
 - belongs_to brand
-- belongs_to deliverydate
-- belongs_to deliverymethod
-- belongs_to deliveryburden
+- belongs_to delivery_date
+- belongs_to delivery_method
+- belongs_to delivery_burden
+- belongs_to upper_category
+- belongs_to middle_category
+- belongs_to lower_category
+- belongs_to size
+- belongs_to user
 
-
-## Itemimagesテーブル
+## Item_imagesテーブル
 - 商品画像テーブル
 
 |Column|Type|Options|
@@ -103,21 +108,6 @@ jp_prefecture導入
 ### Association
 - belongs_to user
 - belongs_to item
-
-
-## Buyersテーブル
-- 出品者中間テーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|id|integer(11)|AI, PRIMARY_KEY|
-|user|reference|null: false, foreign_key: true|
-|item|reference|null: false, foreign_key: true|
-
-### Association
-- belongs_to user
-- belongs_to item
-
 
 ## Commentsテーブル
 - 出品中の商品に対するコメント用テーブル
@@ -188,32 +178,71 @@ jp_prefecture導入
 - has_many items
 
 
-## Categoriesテーブル
+## Upper_categoriesテーブル
 - カテゴリーテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
 |name|varchar(255)|null: false|
-|parent_id|integer(16)|null: false|
 
 ### Association
-- has_many item_categories
-- has_many items through item_categories
+- has_many items
+- has_many middle_categories
 
-
-## Item_categoriesテーブル
-- 商品カテゴリー中間テーブル
+## Middle_categoriesテーブル
+- カテゴリーテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |id|integer(11)|AI, PRIMARY_KEY|
-|category|reference|null: false, foreign_key: true|
-|item|reference|null: false, foreign_key: true|
+|name|varchar(255)|null: false|
+|upper_category|reference|null: false, foreign_key: true|
+|size_type|reference|null: false, foreign_key: true|
 
 ### Association
-- belongs_to item
-- belongs_to category
+- has_many items
+- has_many lower_categories
+- belongs_to upper_category
+- belongs_to size_type
+
+## Lower_categoriesテーブル
+- カテゴリーテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|null: false|
+|middle_category|reference|null: false, foreign_key: true|
+
+### Association
+- has_many items
+- belongs_to middle_category
+
+## Size_typeテーブル
+- サイズの種類テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|size_type|varchar(255)|null: false|
+
+### Association
+- has_many sizes
+- has_many middle_categories
+
+## Sizeテーブル
+- サイズ(単位)テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer(11)|AI, PRIMARY_KEY|
+|name|varchar(255)|null: false|
+|size_type|reference|null: false, foreign_key: true|
+
+### Association
+- has_many items
+- belongs_to size_type
 
 
 ## Likeテーブル
@@ -230,7 +259,7 @@ jp_prefecture導入
 - belongs_to user
 
 
-## Deliverymethodテーブル
+## Delivery_methodテーブル
 - 配送方法マスターテーブル
 
 |Column|Type|Options|
@@ -242,7 +271,7 @@ jp_prefecture導入
 - has_many items
 
 
-## Deliveryburdenテーブル
+## Delivery_burdenテーブル
 - 配送料の負担マスターテーブル
 
 |Column|Type|Options|
@@ -254,7 +283,7 @@ jp_prefecture導入
 - has_many items
 
 
-## Deliverydateテーブル
+## Delivery_dateテーブル
 -　発送日の目安マスターテーブル
 
 |Column|Type|Options|

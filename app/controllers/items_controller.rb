@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_locale
+<<<<<<< HEAD
   before_action :move_to_index, except: [:index, :show] ## テストでリダイレクトが呼ばれないようにしている
+=======
+  before_action :move_to_index, except: [:index, :show]
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
 
   def index
     @items = Item.all
@@ -9,9 +13,21 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
+<<<<<<< HEAD
     @middle_categories = MiddleCategory.all.where(upper_category_params)
     @lower_categories = LowerCategory.all.where(middle_category_params)
     @size = Size.all
+=======
+    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
+    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
+    @sizes = Size.all.where(size_type_id: params[:size_type_id])
+    @delivery_methods = DeliveryMethod.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
   end
 
   def create
