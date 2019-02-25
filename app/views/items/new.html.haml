@@ -15,12 +15,27 @@
               .sell-dropbox-container.clearfix.state-image-number-10
                 .sell-upload-items-container
                   .sell-upload-items.have-item-0
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    %ul
+                = f.fields_for :item_images, ItemImage.new do |image|
+                  = image.label :image, class: "sell-upload-drop-box have-item-0" do
+                    = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
+                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                    = fa_icon "camera"
+=======
+>>>>>>> master
                 - if current_page?(new_item_path)
                   = f.fields_for :item_images, ItemImage.new do |image|
                     = image.label :image, class: "sell-upload-drop-box have-item-0" do
                       = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
                       %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
                       = fa_icon "camera"
+<<<<<<< HEAD
+=======
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
+>>>>>>> master
             .sell-content
               .form-group
                 = f.label :name do
@@ -44,7 +59,44 @@
                     .select-wrap.upper
                       = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
                       = fa_icon "arrow-bottom"
+<<<<<<< HEAD
                 .form-group
+=======
+                .form-group
+<<<<<<< HEAD
+                  = f.label :upper_category_id do
+                    カテゴリー
+                    %span.form-require 必須
+                  %div
+                    .select-wrap
+                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default"
+                      = fa_icon "arrow-bottom"
+                    .select-wrap
+                      = f.select :middle_category_id, options_from_collection_for_select(@middle_categories, :id, :name), {prompt: "---"}, class: "select-default"
+                      = fa_icon "arrow-bottom"
+                    .select-wrap
+                      = f.select :lower_category_id, options_from_collection_for_select(@lower_categories, :id, :name), {prompt: "---"}, class: "select-default"
+                      = fa_icon "arrow-bottom"
+                .form-group
+                  = f.label :size_id do
+                    サイズ
+                    %span.form-require 必須
+                  %div
+                    .select-wrap
+                      = f.select :size_id, options_from_collection_for_select(@size, :id, :name), {prompt: "---"}, class: "select-default"
+                      = fa_icon "arrow-bottom"
+                .form-group
+                  = f.label :brand_id do
+                    ブランド
+                    %span.form-arbitrary 任意
+                  %div
+                    .select-wrap
+                      = f.text_field :brand_id, placeholder: "例) シャネル", default: "0", class: "input-default"
+                      = fa_icon "arrow-bottom"
+                .form-group
+=======
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
+>>>>>>> master
                   = f.label :status do
                     商品の状態
                     %span.form-require 必須
@@ -56,13 +108,39 @@
               %h3.sell-sub-head 配送について
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
               .sell-form-box
+<<<<<<< HEAD
                 .form-group.burden
+=======
+<<<<<<< HEAD
+                .form-group
+                  %label
+=======
+                .form-group.burden
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
+>>>>>>> master
                   = f.label :delivery_burden_id do
                     配送料の負担
                     %span.form-require 必須
                   %div
                     .select-wrap
+<<<<<<< HEAD
                       = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
+=======
+<<<<<<< HEAD
+                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default"
+                      = fa_icon "arrow-bottom"
+                .form-group
+                  %label
+                  = f.label :delivery_method_id do
+                    配送の方法
+                    %span.form-require 必須
+                  %div
+                    .select-wrap
+                      = f.select :delivery_method_id, options_from_collection_for_select(DeliveryMethod.all, :id, :name), {prompt: "---"}, class: "select-default"
+=======
+                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
+>>>>>>> master
                       = fa_icon "arrow-bottom"
                 .form-group
                   %label

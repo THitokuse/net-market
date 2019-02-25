@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2019_02_17_170804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_buyers_on_item_id"
+    t.index ["user_id"], name: "index_buyers_on_user_id"
+  end
+
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
     t.bigint "item_id", null: false
@@ -136,6 +145,69 @@ ActiveRecord::Schema.define(version: 2019_02_17_170804) do
     t.string "name", default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    t.integer "status", default: 0, null: false
+    t.bigint "size_id"
+    t.bigint "upper_category_id", null: false
+    t.bigint "middle_category_id"
+    t.bigint "lower_category_id"
+    t.bigint "brand_id"
+    t.bigint "delivery_burden_id", null: false
+    t.bigint "delivery_date_id", null: false
+    t.bigint "delivery_method_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["delivery_burden_id"], name: "index_items_on_delivery_burden_id"
+    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
+    t.index ["delivery_method_id"], name: "index_items_on_delivery_method_id"
+    t.index ["lower_category_id"], name: "index_items_on_lower_category_id"
+    t.index ["middle_category_id"], name: "index_items_on_middle_category_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
+    t.index ["upper_category_id"], name: "index_items_on_upper_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "lower_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "middle_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["middle_category_id"], name: "index_lower_categories_on_middle_category_id"
+  end
+
+  create_table "middle_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "upper_category_id"
+    t.bigint "size_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["size_type_id"], name: "index_middle_categories_on_size_type_id"
+    t.index ["upper_category_id"], name: "index_middle_categories_on_upper_category_id"
+  end
+
+  create_table "size_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "size_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "size_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["size_type_id"], name: "index_sizes_on_size_type_id"
+  end
+
+  create_table "upper_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+=======
+>>>>>>> c04843a3fab49d8e4546a44217ca8e62556a14fe
+>>>>>>> master
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -169,6 +241,8 @@ ActiveRecord::Schema.define(version: 2019_02_17_170804) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buyers", "items"
+  add_foreign_key "buyers", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "middle_categories", "upper_categories"
 end
