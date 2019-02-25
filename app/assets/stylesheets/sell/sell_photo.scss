@@ -1,46 +1,37 @@
 @media screen and (min-width: 768px) {
-  .sell-dropbox-container {
-    .state-image-number-10 {
-      .sell-upload-items-container {
-        .sell-upload-item {
-          width: 116px;
-          margin: 0 0 10px 10px;
-        }
-        .sell-upload-figure {
-          width: auto;
-          padding: 0;
-          height: 116px;
-          &.portrait {
-            text-align: center;
-          }
-        }
+  .sell {
+    &-upload {
+      &-item {
+        width: 116px;
+        margin: 0 0 10px 10px;
+      }
+      &-figure {
+        width: auto;
+        padding: 0;
+        height: 116px;
       }
     }
   }
+  .portrait {
+    text-align: center;
+  }
 }
 
-
-
-
-
-
-.sell-dropbox-container {
-  .state-image-number-10 {
-    .sell-upload-items-container {
-      .sell-upload-item{
-        position: relative;
-        display: inline-block;
-        border: 1px solid #eee;
-        vertical-align: top;
-        &:first-child {
-          margin-left: 0;
-        }
+.sell {
+  &-upload {
+    &-item {
+      position: relative;
+      display: inline-block;
+      border: 1px solid $gray;
+      vertical-align: top;
+      &:first-child {
+        margin-left: 0;
       }
-      .sell-upload-figure {
-        position: relative;
-        overflow: hidden;
-        background-color: #f5f5f5;
-      }
+    }
+    &-figure {
+      position: relative;
+      overflow: hidden;
+      background-color: #f5f5f5;
     }
   }
 }
