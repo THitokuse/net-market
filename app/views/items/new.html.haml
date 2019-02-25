@@ -13,14 +13,14 @@
                 %span.form-require 必須
               %p 最大10枚までアップロードできます
               .sell-dropbox-container.clearfix.state-image-number-10
-                = f.fields_for :item_images do |image|
-                  .sell-upload-items-container
-                    .sell-upload-items.have-item-0
-                      %ul
-                  %label.sell-upload-drop-box.have-item-0
-                    = image.file_field :image, class: "sell-upload-drop-file", multiple: "true", style: "display:none;"
-                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                    = fa_icon "camera"
+                .sell-upload-items-container
+                  .sell-upload-items.have-item-0
+                - if current_page?(new_item_path)
+                  = f.fields_for :item_images, ItemImage.new do |image|
+                    = image.label :image, class: "sell-upload-drop-box have-item-0" do
+                      = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
+                      %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                      = fa_icon "camera"
             .sell-content
               .form-group
                 %label
@@ -36,17 +36,16 @@
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
               .sell-form-box
+                .form-group.category
+                  = f.label :upper_category_id do
+                    カテゴリー
+                    %span.form-require 必須
+                  %div
+                    .select-wrap.upper
+                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
+                      = fa_icon "arrow-bottom"
                 .form-group
-                  = fields_for :categories do |category|
-                    %label
-                      カテゴリー
-                      %span.form-require 必須
-                    %div
-                      .select-wrap
-                        = category.select :status, Category.categories_i18n.keys.map {|k| [Category.categories_i18n[k], k]}, class: "select-default"
-                        = fa_icon "arrow-bottom"
-                .form-group
-                  %label
+                  = f.label :status do
                     商品の状態
                     %span.form-require 必須
                   %div
@@ -57,15 +56,14 @@
               %h3.sell-sub-head 配送について
               = link_to "?", "https:/www.mercari.com/jp/help_center/article/68", target: "_blank", class: "form-question"
               .sell-form-box
-                .form-group
-                  = fields_for :deliveryburden do |burden|
-                    %label
-                      配送料の負担
-                      %span.form-require 必須
-                    %div
-                      .select-wrap
-                        = burden.select :name, DeliveryBurden.burdens_i18n.keys.map {|k| [DeliveryBurden.burdens_i18n[k], k]}, class: "select-default"
-                        = fa_icon "arrow-bottom"
+                .form-group.burden
+                  = f.label :delivery_burden_id do
+                    配送料の負担
+                    %span.form-require 必須
+                  %div
+                    .select-wrap
+                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
+                      = fa_icon "arrow-bottom"
                 .form-group
                   %label
                     発送元の地域

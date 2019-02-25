@@ -3,7 +3,7 @@
 @import "./mixin/clearfix";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "login";
+@import "reset";
 @import "bread-crumb";
 @import "./top/*";
 @import "./sell/*";
@@ -11,3 +11,4 @@
 @import "./detail/*";
 @import "./purchase_concern/*";
 @import "./mypage/*";
+@import "login";
