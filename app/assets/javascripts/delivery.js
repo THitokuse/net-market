@@ -20,7 +20,6 @@ $(document).on('turbolinks:load', function(){
   $(".delivery_burden").on("change", function(){
     $("#delivery_method").children().prop('style', "display:none;")
     var delivery_burden = $(this).val()
-    console.log(delivery_burden)
     $.ajax({
       type: 'GET',
       url: '/items/new',

@@ -31,9 +31,7 @@ $(document).on('turbolinks:load', function(){
   $(".sell-form-box").on("change", "#lower_category", function(){
     // $("#item_size").children().prop('style', "display:none;")
     var middle_choice = $(".middle").find(".append_choice")
-    console.log(middle_choice)
     var size_type_id = middle_choice.data("size-id")
-    console.log(size_type_id)
     $.ajax({
       type: 'GET',
       url: '/items/new',
@@ -41,7 +39,6 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json'
     })
     .done(function(sizies){
-      console.log(sizies)
       if($(".size").length == 0) {
         var size_form = append_size_form()
         $(".category").after(size_form)

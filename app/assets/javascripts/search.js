@@ -9,7 +9,6 @@ $(document).on('turbolinks:load', function(){
   }
   $(".sell-form-box").on("keyup", ".brand", function(){
     var input = $(this).val()
-    console.log(input)
     $.ajax({
       type: 'GET',
       url: '/brands',
@@ -34,6 +33,5 @@ $(document).on('turbolinks:load', function(){
     $(".brand_hidden").prop('value', id)
     $(".brand").prop('value', name)
     $(".sell-brand").remove()
-    console.log(name)
   })
 })

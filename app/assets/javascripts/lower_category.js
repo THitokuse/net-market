@@ -11,7 +11,6 @@ $(document).on('turbolinks:load', function(){
   $(".sell-form-box").on("change", "#middle_category", function(){
     $("#lower_category").children().prop('style', "display:none;")
     var middle_category = $(this).val()
-    console.log(middle_category)
     $.ajax({
       type: 'GET',
       url: '/items/new',
@@ -19,7 +18,6 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json'
     })
     .done(function(categories) {
-      console.log(categories)
       if($(".middle").length == 1 && $(".lower").length == 0) {
         var lower_category_html = append_lowercategory()
         $(".select-wrap.middle").after(lower_category_html)

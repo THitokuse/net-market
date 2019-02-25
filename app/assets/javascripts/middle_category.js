@@ -18,13 +18,10 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json'
     })
     .done(function(categories) {
-      console.log(categories)
       var count = $(".select-wrap.upper").length
-      console.log(count)
       if($(".upper").length == 1) {
         var middle_category_html = append_middlecategory()
        $(".select-wrap.upper").after(middle_category_html)
-       console.log($(".upper").length)
       }
       categories.forEach(function(category) {
         if(category.size_type_id != undefined) {

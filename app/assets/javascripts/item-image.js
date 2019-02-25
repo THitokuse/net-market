@@ -70,7 +70,6 @@ $(document).on('turbolinks:load', function(){
     change_class_to_increment()
 
     if(box_count == 5){
-      console.log(box_count)
       var insert_box = append_uploadbox()
       var append_box = $(".sell-upload-box").append(insert_box)
       box_count = 0
@@ -81,7 +80,6 @@ $(document).on('turbolinks:load', function(){
     var insert_image = "";
     var reader = new FileReader();
     var image = e.target.files[0];
-    console.log(e)
 
     reader.addEventListener("load", function(){
       insert_image = append_itemimages(reader.result);
