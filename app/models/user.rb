@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google, :facebook]
 
   include JpPrefecture
   jp_prefecture :prefecture_code
@@ -15,11 +15,11 @@ class User < ApplicationRecord
   #   self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   # end
 
-  with_options presence: true do
-    validates :nickname
-    validates :first_name
-    validates :last_name
-    validates :first_name_kana
-    validates :last_name_kana
+  protected
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 end
