@@ -15,8 +15,8 @@ CarrierWave.configure do |config|
     aws_secret_access_key: Rails.application.credentials.aws_secret_access_key,
       region: 'ap-northeast-1'
     }
-
-  config.fog_directory  = 'mentor-mercari'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mentor-mercari'
+    config.fog_directory  = 'mentor-mercari'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mentor-mercari'
+  end
 
 end
