@@ -22,7 +22,7 @@
               %i.fab.fa-google-plus-g
               = link_to 'Googleでログイン'
           .login-form-inner
-            = form_for(resource, as: resource_name, url: 'login') do |f|
+            = form_for(resource, as: resource_name, url: '/jp/login') do |f|
               .form-group.first
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'login-input-text input-default', placeholder: 'メールアドレス'
               .form-group
