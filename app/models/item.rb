@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   belongs_to :upper_category, optional: true
   belongs_to :middle_category, optional: true
   belongs_to :lower_category, optional: true
+  belongs_to :user
+  belongs_to :brand
 
   accepts_nested_attributes_for :item_images
 
