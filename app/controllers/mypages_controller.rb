@@ -11,4 +11,7 @@ class MypagesController < ApplicationController
 
   def edit
   end
+
+  def card
+  end
 end
