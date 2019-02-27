@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     collection do
       get "identify"
     end
+    member do
+      get "card_registration"
+    end
   end
 
   resources :brands, only: [:index]
