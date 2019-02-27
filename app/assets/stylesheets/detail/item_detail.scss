@@ -308,13 +308,10 @@
   &--dot {
 
     position: relative;
-    // overflow: hidden;
     display: inline-block;
     width: 60px;
     height: 60px;
     float: left;
-    // width: 25%;
-    // max-height: 90px;
     opacity: .4;
     cursor: pointer;
     &__inner {
