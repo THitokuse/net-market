@@ -1,7 +1,7 @@
 = render "shared/top-header"
 %nav.bread-crumbs__list
   %ul
-    - breadcrumb :card
+    - breadcrumb :card_registration
     = render "shared/breadcrumbs"
 %main
   .l-container.cleafix
@@ -19,7 +19,7 @@
                 = fa_icon "cc-visa"
                 クレジットカードを追加する
           .settings-not-regist
-            %a{:href => "/jp/help_center/category/6/", :target => "_blank"}
+            = link_to items_path do
               %span 支払い方法について
               = fa_icon "chevron-right", class: "chevron-right"
 
