@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get "identify"
     end
     member do
-      get "card"
+      get "card_registration"
     end
   end
 
