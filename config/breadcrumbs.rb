@@ -27,7 +27,7 @@ crumb :profile do
   parent :mypage
 end
 
-crumb :card do
- link '支払い方法', card_mypage_path
+crumb :card_registration do
+ link '支払い方法', card_registration_mypage_path
  parent :mypage
 end
