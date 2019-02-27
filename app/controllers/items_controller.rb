@@ -31,9 +31,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(1)
+    @item = Item.find(params[:id])
     @comment = Comment.new
-    @items = Item.all
+    @items = Item.all.where(user_id: @item.user.id).where.not(id: @item.id)
+    @brand_items = Item.all.where(brand_id: @item.brand.id).where.not(id: @item.id)
   end
 
   def purchase_concern
@@ -51,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price, :prefecture_code, :content, :status, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, item_images_attributes: [{image: []}]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :prefecture_code, :content, :status, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
 
   def move_to_index

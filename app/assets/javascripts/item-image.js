@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
 
-  function change_class_to_increment() {
+  function change_class_to_increment(file_box) {
     if($(".sell-upload-items").children(".sell-upload-item") && box_count < 6){
       box_count += 1
       var add_box = $("have-item-" + box_count.toString(10));
@@ -50,10 +50,13 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
 
-  $(".sell-upload-drop-file").on("change", function(e){
+
+  $(".sell-upload-drop-box").on("change", function(e){
     var insert_image = "";
     var reader = new FileReader();
     var image = e.target.files[0];
+
+
 
     reader.addEventListener("load", function(){
       insert_image = append_itemimages(reader.result);
@@ -67,7 +70,10 @@ $(document).on('turbolinks:load', function(){
     if(image){
       reader.readAsDataURL(image)
     }
+
+
     change_class_to_increment()
+    $(this).prop('style', "display:none;")
 
     if(box_count == 5){
       var insert_box = append_uploadbox()
@@ -93,7 +99,9 @@ $(document).on('turbolinks:load', function(){
     if(image){
       reader.readAsDataURL(image)
     }
+
     change_class_to_increment()
+
    })
 
   $(".sell-dropbox-container").on("click", "#upload_item_delete", function(){

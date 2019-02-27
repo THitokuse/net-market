@@ -16,11 +16,17 @@
                 .sell-upload-items-container
                   .sell-upload-items.have-item-0
                 - if current_page?(new_item_path)
-                  = f.fields_for :item_images, ItemImage.new do |image|
-                    = image.label :image, class: "sell-upload-drop-box have-item-0" do
-                      = image.file_field :image, class: "sell-upload-drop-file", multiple: true, style: "display:none;"
-                      %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                      = fa_icon "camera"
+                  - 5.times do
+                    %label.sell-upload-drop-box.have-item-0
+                      = f.fields_for :item_images, ItemImage.new do |image|
+                        = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                        %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                        = fa_icon "camera"
+                - else
+                  = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                    = image.file_field :image
+                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                    = fa_icon "camera"
             .sell-content
               .form-group
                 = f.label :name do

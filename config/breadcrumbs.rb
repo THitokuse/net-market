@@ -7,8 +7,8 @@ crumb :mypage do
   parent :root
 end
 
-crumb :show do
-  link 'ViVinne Westwood キーケース', item_path(1)
+crumb :show do |item|
+  link "#{item.name}", item_path(item)
   parent :root
 end
 
