@@ -73,7 +73,6 @@ $(document).on('turbolinks:load', function(){
 
 
     change_class_to_increment()
-    console.log(this)
     $(this).prop('style', "display:none;")
 
     if(box_count == 5){
