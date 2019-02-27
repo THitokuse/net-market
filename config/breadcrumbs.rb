@@ -26,3 +26,8 @@ crumb :profile do
   link 'プロフィール', edit_mypage_path
   parent :mypage
 end
+
+crumb :card do
+ link '支払い方法', card_mypage_path
+ parent :mypage
+end
