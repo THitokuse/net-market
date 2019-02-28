@@ -11,7 +11,7 @@
         会員情報入力
       .l-single-inner
         .l-single-content
-          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = form_for(resource, as: resource_name, url: '/jp/signup/registration') do |f|
             = devise_error_messages!
             .form-group.first
               = f.label :ニックネーム
@@ -54,13 +54,13 @@
               = f.label :生年月日
               %span.form-repuire 必須
               %br
-              = f.select(:birth_year, User::years, {prompt: "--"}, {class: "input-default__birth"})
+              = f.select :birth_year, 1930..2010, {prompt: "--"}, {class: "input-default__birth"}
               &nbsp;年
               %br
-              = f.select(:birth_month, User::months, {prompt: "--"}, {class: "input-default__birth"})
+              = f.select :birth_month, 1..12, {prompt: "--"}, {class: "input-default__birth month"}
               &nbsp;月
               %br
-              = f.select(:birth_day, [], {prompt: "--"}, {class: "input-default__birth"})
+              = f.select :birth_day, 1..31, {prompt: "--"}, {class: "input-default__birth day"}
               &nbsp;日
             %br
             = recaptcha_tags
