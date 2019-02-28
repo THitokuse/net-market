@@ -1,0 +1,32 @@
+.l-chapter-sub-head {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px){
+  .l-chapter-sub-head {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.settings-add-card {
+    padding: 24px 0;
+    border-bottom: 1px solid #eee;
+  &-content {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.settings-not-regist{
+  .chevron-right{
+    float: none;
+  }
+}
+
+.settings-not-regist a {
+    display: block;
+    margin: 40px 0 0;
+    text-align: right;
+}

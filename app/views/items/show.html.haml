@@ -1,11 +1,12 @@
 = render  "shared/top-header"
 %nav.bread-crumbs__list
   %ul
-    - breadcrumb :show
+    - breadcrumb :show, @item
     = render "shared/breadcrumbs"
 .single-container
-  %section.item--box__container.l-single-container.item-photo-expended
-    %h1.item--name ViVinne Westwood キーケース
+  %section.item--box__container.l-single-container.item--photo__expanded
+    %h1.item--name
+      = @item.name
     .item--main__content.clearfix
       .item--photo
         .owl--carousel.owl-loaded.owl-drag
@@ -13,21 +14,23 @@
             .owl--stage{style: "left: 0px; width: 3600px;"}
               .owl--item.active{style: "width: 300px;"}
                 .owl--item__inner
-                  = image_tag "https://static-mercari-jp-imgtr2.akamaized.net/item/detail/orig/photos/m85355037099_1.jpg?1548499392", alt: "Vivienne Westwood キーケース", style: "opacity: 1;"
+                  = image_tag (@item.item_images.first.image.url), alt: @item.name, style: "opacity: 1;"
           .owl--nav.disabled
             .owl-prev prev
             .owl-next next
           .owl--dots
-            .owl--dot.active
-              %span
-              .owl-dot-inner
-                = image_tag "https://static-mercari-jp-imgtr2.akamaized.net/item/detail/orig/photos/m85355037099_1.jpg?1548499392"
+            - @item.item_images.each do |img|
+              .owl--dot
+                %span
+                .owl-dot-inner
+                  = image_tag (img.image.url)
       %table.item--detail__table
         %tbody
           %tr
             %th 出品者
             %td
-              = link_to "でぶねこ (2/8~9出張中)", "https://www.mercari.com/jp/u/940679673/"
+              = link_to mypages_path do
+                = @item.user.nickname
               %div
                 .item--user__ratings
                   = fa_icon "smile"
@@ -41,31 +44,41 @@
           %tr
             %th カテゴリー
             %td
-              = link_to "レディース", "https://www.mercari.com/jp/category/1/"
-              = link_to "小物", "https://www.mercari.com/jp/category/23/"
-              = link_to "キーケース", "https://www.mercari.com/jp/category/245/"
+              = link_to items_path do
+                = @item.upper_category.name
+              = link_to items_path do
+                = @item.middle_category.name
+              = link_to items_path do
+                = @item.lower_category.name
           %tr
             %th ブランド
             %td
-              = link_to "ヴィヴィアン ウエストウッド", "https://www.mercari.com/jp/brand/266/"
+              = link_to item_path do
+                = @item.brand.name
           %tr
             %th 商品の状態
-            %td やや傷や汚れあり
+            %td
+              = @item.status
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td
+              = @item.delivery_burden.name
           %tr
             %th 配送の方法
-            %td らくらくメルカリ便
+            %td
+              = @item.delivery_method.name
           %tr
             %th 配送元地域
             %td
-              = link_to "神奈川県", "https://www.mercari.com/jp/area/14/"
+              = link_to items_path do
+                = @item.prefecture_code
           %tr
             %th 発送日の目安
-            %td 4~7日で発送
+            %td
+              = @item.delivery_date.name
     .item--price__box.text__center
-      %span.item--price.bold ¥4,000
+      %span.item--price.bold
+        = number_to_currency(@item.price, unit: "¥ ", precision:0, format: "%u%n")
       %span.item--tax (税込)
       %span.item--shipping__fee 送料込み
     .text__center
@@ -73,16 +86,7 @@
     = link_to "購入画面に進む", purchase_concern_item_path(@item), class: "item--buy__btn f18-24"
     .item--description.f14
       %p.item--description__inner
-        viviennewestwood
-        ヴィヴィアンウエストウッド  キーケース 6連
-        ■ 中古品 (箱なし)
-        ■コンディション
-        表面に細かな傷
-        折目の部分(外側)に擦り傷
-        内側のキーフック接地面(レザー)に傷・汚れが
-        ございます。
-        その他は状態良です。
-        ■ デリケートで完璧を求める方はご遠慮下さいませ。
+        = @item.content
     .item--button__container.clearfix
       .item--button__container__left
         = button_tag type: "button", name: "like!", class: "item--button item--button__like" do
@@ -99,7 +103,7 @@
   .item--detail__message
     .message__container
       .message__content
-        = form_with models: [@item, @comment], local: true, class: "message__form" do |f|
+        = form_with models: [@item, @comment], url: item_comments_path(@item), local: true, class: "message__form" do |f|
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
           = f.text_area :comment, class: "textarea--default"
           = f.button type: "submit", class: "message__submit btn-default btn-gray" do
@@ -141,14 +145,20 @@
   .items--in--user__profile
     %section.items--box__container.clearfix.items--box__overflow
       %h2.items--box__head
-        = link_to "でぶねこ (2/8~9出張中)さんのその他の出品", "https://www.mercari.com/jp/u/940679673/"
+        = link_to @items_path do
+          = @item.user.nickname
+          さんのその他の出品
       .items--box__content.clearfix
         = render partial: "shared/one_items", collection: @items, as: "item"
     %section.items--box__container.clearfix.items--box__overflow
       %h2.items--box__head
-        = link_to "ヴィヴィアン ウエストウッドのキーケース その他の商品", "https://www.mercari.com/jp/brand/266/245/"
+        = link_to items_path do
+          = @item.brand.name
+          の
+          = @item.name
+          その他の商品
       .items--box__content.clearfix
-        = render partial: "shared/one_items", collection: @items, as: "item"
+        = render partial: "shared/one_items", collection: @brand_items, as: "item"
   %aside.modal{"data-modal": "report-item", "data-close": "modal"}
     .modal-inner.modal-banner
       .modal-body

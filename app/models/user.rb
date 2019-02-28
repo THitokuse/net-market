@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google, :facebook]
 
+  has_many :items
+
   include JpPrefecture
   jp_prefecture :prefecture_code
 

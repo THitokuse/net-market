@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameter, if: :devise_controller?
+  before_action :set_categories
+
+
+  protected
 
   def configure_permitted_parameter
 
@@ -15,5 +19,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_in) do |user_params|
       user_params.permit(:email, :password)
     end
+  end
+
+  def set_categories
+    @upper_categories = UpperCategory.eager_load(middle_categories: [:lower_categories])
+  end
+
+  def set_locale
+    I18n.locale = :ja
   end
 end
