@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-
   resources :items, only: [:index, :new, :create, :show] do
     resources :comments, only: [:create]
       member do
