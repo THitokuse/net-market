@@ -31,3 +31,8 @@ crumb :card_registration do
  link '支払い方法', card_registration_mypage_path
  parent :mypage
 end
+
+crumb :selling do
+  link '出品した商品 - 出品中', item_listing_mypages_path
+  parent :mypage
+end

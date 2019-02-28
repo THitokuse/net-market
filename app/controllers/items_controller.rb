@@ -37,6 +37,17 @@ class ItemsController < ApplicationController
     @brand_items = Item.all.where(brand_id: @item.brand.id).where.not(id: @item.id)
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.user_id == current_user.id
+      @item.update(item_params)
+    end
+  end
+
   def purchase_concern
     @item = Item.find(1)
   end
@@ -54,6 +65,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :price, :prefecture_code, :content, :status, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
+
 
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?

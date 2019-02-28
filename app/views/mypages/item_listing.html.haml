@@ -1,0 +1,34 @@
+= render "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :selling
+    = render "shared/breadcrumbs"
+%main
+  .l-container.cleafix
+    .l-content
+      %section.mypage-tab-container-notification-todo
+        %h2.mypage-tab-head 出品した商品
+        %ul.mypage-tabs
+          %li#mypage-top_left._triple.active
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                出品中
+          %li#mypage-top_center._triple
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                取引中
+          %li#mypage-top_right._triple
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                売却済み
+        .tab-content
+          %ul.mypage-tab-notification_top.mypage-top_left
+            %li.mypage-item-not-found.bold 出品中の商品はありません
+          %ul.mypage-tab-notification_top.mypage-top_center
+            %li.mypage-item-not-found.bold 取引中の商品はありません
+          %ul.mypage-tab-notification_top.mypage-top_right
+            %li.mypage-item-not-found.bold 売却済みの商品はありません
+    = render "shared/side-bar"
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"
