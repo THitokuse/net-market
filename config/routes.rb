@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :items, only: [:index, :new, :show] do
+  resources :items, only: [:index, :new, :create, :show] do
     resources :comments, only: [:create]
       member do
         get "purchase_concern"
@@ -32,5 +32,10 @@ Rails.application.routes.draw do
     collection do
       get "identify"
     end
+    member do
+      get "card_registration"
+    end
   end
+
+  resources :brands, only: [:index]
 end
