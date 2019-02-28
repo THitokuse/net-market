@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def sms_confirmation_create
     current_user.assign_attributes(account_update_params)
     if current_user.save
-    redirect_to jp_signup_address_path
+      redirect_to jp_signup_address_path
     else
       render "sms_confirmation"
     end
@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address_create
     current_user.assign_attributes(account_update_params)
     if current_user.save
-    redirect_to root_path
+      redirect_to root_path
     else
       render "address"
     end
