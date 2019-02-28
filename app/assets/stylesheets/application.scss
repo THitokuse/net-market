@@ -3,11 +3,12 @@
 @import "./mixin/clearfix";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "reset";
 @import "bread-crumb";
-@import "./login/*";
 @import "./top/*";
 @import "./sell/*";
 @import "./logout/*";
 @import "./detail/*";
 @import "./purchase_concern/*";
 @import "./mypage/*";
+@import "login";
