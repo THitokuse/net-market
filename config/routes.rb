@@ -28,5 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :brands, only: [:index]
+  resources :upper_categories, only: [:index]
+  resources :middle_categories, only: [:index]
+  resources :lower_categories, only: [:index]
+  resources :sizes, only: [:index]
 end
 

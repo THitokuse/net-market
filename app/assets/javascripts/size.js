@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function(){
     var size_type_id = middle_choice.data("size-id")
     $.ajax({
       type: 'GET',
-      url: '/items/new',
+      url: '/sizes',
       data: {size_type_id: size_type_id},
       dataType: 'json'
     })

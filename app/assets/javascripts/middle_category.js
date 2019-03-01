@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function(){
     var upper_category = $(this).val()
     $.ajax({
       type: 'GET',
-      url: '/items/new',
+      url: '/middle_categories',
       data: {upper_category_id: upper_category},
       dataType: 'json'
     })
