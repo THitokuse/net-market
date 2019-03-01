@@ -216,8 +216,42 @@ $breakpoints: (
               color: #0099e8;
             }
           }
+          .pc-header-nav-parent-wrap {
+            position: absolute;
+            top: 38px;
+            z-index: 1000;
+            background-color: $white;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
+          }
         }
       }
     }
   }
 }
+
+.pc-header-nav-parent-wrap {
+  position: absolute;
+  top: 38px;
+  z-index: 1000;
+  background-color: $white;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
+  a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+}
+
+.pc-header-nav-parent {
+  width: 224px;
+  h3 {
+    padding: 0 16px;
+    line-height: 44px;
+  }
+  a {
+    padding: 0 16px;
+    line-height: 44px;
+  }
+}
+
+

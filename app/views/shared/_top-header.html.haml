@@ -11,11 +11,11 @@
       .pc-header__inner__bottom.clearfix
         %nav.pc-header__inner__bottom__l-left
           %ul.search-menu
-            %li.search-menu__list.category
+            %li.search-menu__list.category_list
               %h2
                 = link_to "カテゴリーを探す", items_path, class: "search-menu__list__text"
-              #search-menu__list__category-list
-            %li.search-menu__list.brand
+              %ul#search-menu__list__category-list.pc-header-nav-child-wrap
+            %li.search-menu__list.brand_list
               %h2
                 = link_to "ブランドを探す", items_path, class: "search-menu__list__text"
                 #search-menu__list__brand-list
