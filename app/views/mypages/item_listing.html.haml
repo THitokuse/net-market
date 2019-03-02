@@ -11,15 +11,15 @@
         %ul.mypage-tabs
           %li#mypage-top_left._triple.active
             %h3.mypage-tab
-              %a{"data-toggle": "tab"}
+              = link_to "", "data-toggle": "tab" do
                 出品中
           %li#mypage-top_center._triple
             %h3.mypage-tab
-              %a{"data-toggle": "tab"}
+              = link_to "", "data-toggle": "tab" do
                 取引中
           %li#mypage-top_right._triple
             %h3.mypage-tab
-              %a{"data-toggle": "tab"}
+              = link_to "", "data-toggle": "tab" do
                 売却済み
         .tab-content
           - if @items
