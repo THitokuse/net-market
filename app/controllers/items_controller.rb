@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
     @item = Item.find(1)
   end
 
+  def search
+    @keyword = params[:keyword]
+    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20)
+  end
+
   private
 
   def upper_category_params
