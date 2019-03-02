@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
-  has_many :item_images
+  has_many :item_images, dependent: :destroy
   belongs_to :delivery_date
   belongs_to :delivery_burden
   belongs_to :delivery_method
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :upper_category, optional: true
   belongs_to :middle_category, optional: true
   belongs_to :lower_category, optional: true

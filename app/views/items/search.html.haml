@@ -1,0 +1,14 @@
+.pc-header.visible-pc
+  = render  "shared/top-header"
+%section.search-container
+  %h2.pickup-head #{@keyword} での検索結果
+  %section.items-box-container.clearfix
+    %h3.text-center
+      #{@items.length}件
+
+    .items-box-content.clearfix
+      = render partial: "shared/one_items", collection: @items, as: "item"
+
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"

@@ -100,7 +100,8 @@
       商品の編集
     %p.text-center or
     = button_tag "出品を停止する", class: "btn-default btn-gray"
-    = button_tag "この商品を削除する", class: "btn-default btn-gray"
+    = link_to item_path(@item),  method: :delete, class: "btn-default btn-gray" do
+      この商品を削除する
 .item--detail__message
   .message__container
     .message__content
@@ -145,22 +146,24 @@
         = link_to "http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm85355037099%2F&media=https%3A%2F%2Fstatic-mercari-jp-imgtr2.akamaized.net%2Fitem%2Fdetail%2Forig%2Fphotos%2Fm85355037099_1.jpg%3F1548499392&description=%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E5%95%86%E5%93%81%3A%20Vivienne%20Westwood%20%20%E3%82%AD%E3%83%BC%E3%82%B1%E3%83%BC%E3%82%B9%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA", class: "share-btn" do
           = fa_icon "pinterest"
   .items--in--user__profile
-    %section.items--box__container.clearfix.items--box__overflow
-      %h2.items--box__head
-        = link_to @items_path do
-          = @item.user.nickname
-          さんのその他の出品
-      .items--box__content.clearfix
-        = render partial: "shared/one_items", collection: @items, as: "item"
-    %section.items--box__container.clearfix.items--box__overflow
-      %h2.items--box__head
-        = link_to items_path do
-          = @item.brand.name
-          の
-          = @item.name
-          その他の商品
-      .items--box__content.clearfix
-        = render partial: "shared/one_items", collection: @brand_items, as: "item"
+    - if @items
+      %section.items--box__container.clearfix.items--box__overflow
+        %h2.items--box__head
+          = link_to @items_path do
+            = @item.user.nickname
+            さんのその他の出品
+        .items--box__content.clearfix
+          = render partial: "shared/one_items", collection: @items, as: "item"
+    - if @brand_items
+      %section.items--box__container.clearfix.items--box__overflow
+        %h2.items--box__head
+          = link_to items_path do
+            = @item.brand.name
+            の
+            = @item.name
+            その他の商品
+        .items--box__content.clearfix
+          = render partial: "shared/one_items", collection: @brand_items, as: "item"
   %aside.modal{"data-modal": "report-item", "data-close": "modal"}
     .modal-inner.modal-banner
       .modal-body

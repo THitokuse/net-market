@@ -1,0 +1,36 @@
+.search-container {
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    padding: 40px 0;
+    background: #f5f5f5;
+    &:after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+    .pickup-head {
+      font-size: 28px;
+      text-align: center;
+      line-height: 1.4;
+      font-weight: bold;
+    }
+    .items-box-container {
+      width: 940px;
+      margin: 0 auto;
+      .text-center {
+        font-size: 22px;
+        margin: 22px 11px;
+        text-align: center;
+        a{
+          text-decoration: none;
+          color: #0099e8;
+          font-weight: bold;
+        }
+      }
+      .items-box-content.clearfix{
+        width: auto;
+        margin: 0 auto;
+        height: 330px;
+      }
+    }
+  }
+  
