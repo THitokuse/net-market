@@ -1,0 +1,53 @@
+= render "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :selling
+    = render "shared/breadcrumbs"
+%main
+  .l-container.cleafix
+    .l-content
+      %section.mypage-tab-container-notification-todo
+        %h2.mypage-tab-head 出品した商品
+        %ul.mypage-tabs
+          %li#mypage-top_left._triple.active
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                出品中
+          %li#mypage-top_center._triple
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                取引中
+          %li#mypage-top_right._triple
+            %h3.mypage-tab
+              %a{"data-toggle": "tab"}
+                売却済み
+        .tab-content
+          - if @items
+            - @items.each do |item|
+              %ul.mypage-item-list.tab-pane.active
+                %li
+                  = link_to sell_item_item_path(item), class: "mypage-item-link" do
+                    %figure
+                      = image_tag (item.item_images.first.image.url), class: "lazyloaded is-higher-width"
+                    .mypage-item-body.show-stock-item
+                      .mypage-item-text
+                        = item.name
+                      %div
+                        %span.listing-item-count
+                          = fa_icon "heart"
+                          %span 0
+                        %span.listing-item-count
+                          = fa_icon "comment-alt"
+                          %span 0
+                          .mypage-item-status.bold.awaiting 出品中
+          - else
+            %ul.mypage-tab-notification_top.mypage-top_left
+              %li.mypage-item-not-found.bold 出品中の商品はありません
+            %ul.mypage-tab-notification_top.mypage-top_center
+              %li.mypage-item-not-found.bold 取引中の商品はありません
+            %ul.mypage-tab-notification_top.mypage-top_right
+              %li.mypage-item-not-found.bold 売却済みの商品はありません
+    = render "shared/side-bar"
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"
