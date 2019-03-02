@@ -21,15 +21,17 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
     resources :comments, only: [:create]
       member do
         get "purchase_concern"
+        get "sell_item"
       end
   end
   resources :mypages, only: [:index, :destroy, :edit] do
     collection do
       get "identify"
+      get "item_listing"
     end
     member do
       get "card_registration"
