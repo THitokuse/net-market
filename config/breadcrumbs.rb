@@ -36,3 +36,8 @@ crumb :selling do
   link '出品した商品 - 出品中', item_listing_mypages_path
   parent :mypage
 end
+
+crumb :selling_item do |item|
+  link '商品出品画面', sell_item_item_path(item)
+  parent :selling
+end

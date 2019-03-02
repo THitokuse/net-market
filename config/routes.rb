@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
       member do
         get "purchase_concern"
+        get "sell_item"
       end
   end
   resources :mypages, only: [:index, :destroy, :edit] do
