@@ -96,4 +96,4 @@ gem 'jquery-turbolinks'
 gem 'webpacker'
 gem 'react-rails'
 gem 'fog-aws'
-
+gem 'payjp'
