@@ -14,4 +14,8 @@ class MypagesController < ApplicationController
 
   def card_registration
   end
+
+  def item_listing
+    @items = current_user.items
+  end
 end
