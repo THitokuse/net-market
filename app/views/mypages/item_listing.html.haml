@@ -4,6 +4,11 @@
     - breadcrumb :selling
     = render "shared/breadcrumbs"
 %main
+  - if controller.controller_name == "items" && controller.action_name == "destroy"
+    .notification.notification-success
+      - flash.each do |key, value|
+        = content_tag :div, value, class: key
+      = fa_icon "close", class: "close_icon"
   .l-container.cleafix
     .l-content
       %section.mypage-tab-container-notification-todo
@@ -22,7 +27,7 @@
               = link_to "", "data-toggle": "tab" do
                 売却済み
         .tab-content
-          - if @items
+          - if @items.present?
             - @items.each do |item|
               %ul.mypage-item-list.tab-pane.active
                 %li
@@ -43,10 +48,10 @@
           - else
             %ul.mypage-tab-notification_top.mypage-top_left
               %li.mypage-item-not-found.bold 出品中の商品はありません
-            %ul.mypage-tab-notification_top.mypage-top_center
-              %li.mypage-item-not-found.bold 取引中の商品はありません
-            %ul.mypage-tab-notification_top.mypage-top_right
-              %li.mypage-item-not-found.bold 売却済みの商品はありません
+          %ul.mypage-tab-notification_top.mypage-top_center
+            %li.mypage-item-not-found.bold 取引中の商品はありません
+          %ul.mypage-tab-notification_top.mypage-top_right
+            %li.mypage-item-not-found.bold 売却済みの商品はありません
     = render "shared/side-bar"
 = render "shared/app-banner"
 = render "shared/top-footer"
