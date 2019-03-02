@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search
+    @keyword = params[:keyword]
+    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20)
+  end
+
   def update
     @item = Item.find(params[:id])
     if @item.user_id == current_user.id

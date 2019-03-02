@@ -37,7 +37,9 @@ Rails.application.routes.draw do
       get "card_registration"
     end
   end
-
+  
+  get "search" => "items#search"
+  
   resources :brands, only: [:index]
 end
 
