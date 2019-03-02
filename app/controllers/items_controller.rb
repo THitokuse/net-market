@@ -56,8 +56,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to item_listing_mypages_path, notice: '商品を削除しました'
+    end
+  end
+
   def purchase_concern
-    @item = Item.find(1)
+    @item = Item.find(params[:id])
   end
 
   def sell_item
