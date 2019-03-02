@@ -13,36 +13,24 @@
             .sell-dropbox-container.clearfix.state-image-number-10
               .sell-upload-items-container
                 .sell-upload-items.have-item-0
-              - if current_page?(new_item_path)
-                - 5.times do
+              - 5.times do
+                = f.fields_for :item_images, ItemImage.new do |image|
                   %label.sell-upload-drop-box.have-item-0
-                    = f.fields_for :item_images, ItemImage.new do |image|
-                      = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
-                      %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                      = fa_icon "camera"
-              - else
-                = f.fields_for :item_images, @item.item_images, multiple: true do |image|
-                  = image.file_field :image
-                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                  = fa_icon "camera"
+                    = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                    = fa_icon "camera"
           .sell-content
             .form-group
               = f.label :name do
                 商品名
                 %span.form-require 必須
               %div
-                - if current_page?(new_item_path)
-                  = f.text_field :name, placeholder: "商品名 (必須 40文字まで)", class: "input-default"
-                - else
-                  = f.text_field :name, placeholder: "商品名 (必須 40文字まで)", class: "input-default", value: @item.name
+                = f.text_field :name, placeholder: "商品名 (必須 40文字まで)", class: "input-default"
             .form-group
               = f.label :content do
                 商品の説明
                 %span.form-require 必須
-              - if current_page?(new_item_path)
-                = f.text_area :content, placeholder: "商品の説明 (必須1000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: "textarea-default"
-              - else
-                = f.text_area :content, placeholder: "商品の説明 (必須1000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: "textarea-default", value: @item.content
+              = f.text_area :content, placeholder: "商品の説明 (必須1000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5", class: "textarea-default"
           .sell-content.clearfix
             %h3.sell-sub-head 商品の詳細
             .sell-form-box
@@ -52,10 +40,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap.upper
-                    - if current_page?(new_item_path)
-                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
-                    - else
-                      = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category", value: @item.upper_category.name
+                    = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
                     = fa_icon "arrow-bottom"
               .form-group
                 = f.label :status do
@@ -63,10 +48,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    - if current_page?(new_item_path)
-                      = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default"
-                    - else
-                      = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default", value: @item.status
+                    = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default"
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 配送について
@@ -78,10 +60,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    - if current_page?(new_item_path)
-                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
-                    - else
-                      = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden", value: @item.delivery_burden.name
+                    = f.select :delivery_burden_id, options_from_collection_for_select(DeliveryBurden.all, :id, :name), {prompt: "---"}, class: "select-default delivery_burden"
                     = fa_icon "arrow-bottom"
               .form-group
                 %label
@@ -89,10 +68,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    - if current_page?(new_item_path)
-                      = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default"
-                    - else
-                      = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default", value: @item.prefecture_code
+                    = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default"
                     = fa_icon "arrow-bottom"
               .form-group
                 = f.label :delivery_date_id do
@@ -100,10 +76,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    - if current_page?(new_item_path)
-                      = f.select :delivery_date_id, options_from_collection_for_select(DeliveryDate.all, :id, :name), {prompt: "---"}, class: "select-default"
-                    - else
-                      = f.select :delivery_date_id, options_from_collection_for_select(DeliveryDate.all, :id, :name), {prompt: "---"}, class: "select-default", value: @item.delivery_date.name
+                    = f.select :delivery_date_id, options_from_collection_for_select(DeliveryDate.all, :id, :name), {prompt: "---"}, class: "select-default"
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 販売価格(300~9,999,999)
@@ -117,10 +90,7 @@
                       %span.form-require 必須
                     .l-right.sell-price-input
                       %div
-                        - if current_page?(new_item_path)
-                          = f.text_field :price, placeholder: "例)300", class: "input-default price"
-                        - else
-                          = f.text_field :price, placeholder: "例)300", class: "input-default price", value: @item.price
+                        = f.text_field :price, placeholder: "例)300", class: "input-default price"
                 %li.clearfix
                   .l-left 販売手数料(10%)
                   .l-right.comercial_cost -
