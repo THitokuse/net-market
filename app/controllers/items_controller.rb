@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search
+    @keyword = params[:keyword]
+    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20)
+  end
+
   def update
     @item = Item.find(params[:id])
     if @item.user_id == current_user.id
@@ -51,8 +56,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to item_listing_mypages_path, notice: '商品を削除しました'
+    end
+  end
+
   def purchase_concern
-    @item = Item.find(1)
+    @item = Item.find(params[:id])
   end
 
   def sell_item

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
+  resources :items do
     resources :comments, only: [:create]
       member do
         get "purchase_concern"
@@ -35,7 +35,9 @@ Rails.application.routes.draw do
       get "item_listing"
     end
   end
-
+  
+  get "search" => "items#search"
+  
   resources :brands, only: [:index]
 
   #クレジットカード登録

@@ -96,3 +96,41 @@
     color: #888;
   }
 }
+
+.notification {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+  padding: 24px 56px;
+  text-align: center;
+  line-height: 1.5;
+  animation: fade-out ease-out 4.5s;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  .fa-close {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    color: inherit;
+  }
+  &-success {
+    background-color: #dff0d8;
+    color: #468847;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .notification {
+    // top: 100%;
+    .fa-close {
+      top: 50%;
+      right: 8px;
+      transform: translate(0, -50%);
+    }
+  }
+}
