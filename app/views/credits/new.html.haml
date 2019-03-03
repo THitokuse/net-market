@@ -1,0 +1,65 @@
+= render "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :credits_new
+    = render "shared/breadcrumbs"
+%main
+  .l-container.cleafix
+    .l-content
+      %h2.c-profile-head 支払い方法
+      = form_for @credit do |f|
+        .l-single_content
+          .c-form_group
+            = label :credit_number, 'カード番号'
+            %span.c-form_require 必須
+            = f.text_field :credit_number, placeholder: '半角数字のみ', class: 'c-input-default'
+            %ul.c-has-error-text
+              /%li 必須項目です
+          .c-form_group.signup-form-expire
+            = label :payment_card_expire, '有効期限'
+            %span.c-form_require 必須
+            %br
+            .c-select-wrap
+              = f.select :limit_month, options_for_select([['', '--'], ['01', '01'], ['02', '02'], ['03', '03'], ['04', '04'], ['05', '05'], ['06', '06'], ['07', '07'], ['08', '08'], ['09', '09'], ['10', '10'], ['11', '11'], ['12', '12', selected: 'selected']], params[:limit_month]), {}, { class: 'c-select-default' }
+              %i.c-icon-arrow-bottom
+            %span 月
+            %ul.c-has-error-text
+              /%li 必須項目です
+            .c-select-wrap
+              = f.select :limit_year, options_for_select([['', '--'], ['19', '19'], ['20', '20'], ['21', '21'], ['22', '22'], ['23', '23'], ['24', '24'], ['25', '25'], ['26', '26'],['27', '27'],['28', '28'],['29', '29', selected: 'selected']], params[:limit_year]), {}, { class: 'c-select-default' }
+              %i.c-icon-arrow-bottom
+            %span 年
+            %ul.c-has-error-text
+              /%li 必須項目です
+          .c-form_group
+            = label :security_code, 'セキュリティコード'
+            %span.c-form_require 必須
+            = f.number_field :security_code, placeholder: 'カード背面4桁もしくは3桁の番号', class: 'c-input-default'
+            %ul.c-has-error-text
+              /%li 必須項目です
+            .signup-seqcode
+              .signup-seqcode-text.js-tip_btn
+                %span.c-form_question ?
+                カード裏面の番号とは？
+              .signup-seqcode-info.js-tip_box
+                カードの裏面をご参照ください。
+          %p#primary-error.c-has-error-text
+          = f.submit '次へ進む', class: 'c-btn-default is-red'
+
+
+
+    = render "shared/side-bar"
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"
+%form#charge-form{:action => "/credits", :method => "POST"}
+  %span.charge-errors
+  %h4 支払い
+  %label カード番号
+  %input.number{:maxlength => "16", :name => "number", :placeholder => "カード番号", :type => "text"}/
+  %label CVC
+  %input.cvc{:maxlength => "3", :name => "cvc", :placeholder => "CVC", :type => "text"}/
+  %label 有効期限
+  %input.exp_month{:maxlength => "2", :name => "exp_month", :placeholder => "月", :type => "text"}/
+  %input.exp_year{:maxlength => "4", :name => "exp_year", :placeholder => "年", :type => "text"}/
+  %button{:type => "submit"} 送信

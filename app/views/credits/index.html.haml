@@ -1,4 +1,6 @@
 = render "shared/top-header"
+テストテスト
+テストテスト
 %nav.bread-crumbs__list
   %ul
     - breadcrumb :card_registration
@@ -15,7 +17,7 @@
             %ul.settings-payment-list
           %section.settings-add-card
             .settings-add-card-content
-              = link_to items_path, class: "btn-default btn-red submit_button" do
+              = link_to new_credit_path, class: "btn-default btn-red submit_button" do
                 = fa_icon "cc-visa"
                 クレジットカードを追加する
           .settings-not-regist

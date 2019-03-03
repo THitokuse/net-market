@@ -36,8 +36,16 @@ Rails.application.routes.draw do
     member do
       get "card_registration"
     end
+    member do
+      get "card_new"
+    end
+    collection do
+      post "card_completion"
+    end
   end
 
   resources :brands, only: [:index]
+  resources :credits, only: [:new, :create, :destroy, :index]
+
 end
 

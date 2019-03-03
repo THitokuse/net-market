@@ -93,12 +93,12 @@
           住所変更
           = fa_icon "chevron-right", class: "chevron-right"
       %li
-        - if current_page?(card_registration_mypage_path(current_user.id))
-          = link_to card_registration_mypage_path(current_user.id), class: "mypage-nav-list-item active" do
+        - if current_page?(new_credit_path) || current_page?(credits_path)
+          = link_to new_credit_path, class: "mypage-nav-list-item active" do
             支払い方法
             = fa_icon "chevron-right", class: "chevron-right"
         - else
-          = link_to card_registration_mypage_path(current_user.id), class: "mypage-nav-list-item" do
+          = link_to credits_path, class: "mypage-nav-list-item" do
             支払い方法
             = fa_icon "chevron-right", class: "chevron-right"
       %li
