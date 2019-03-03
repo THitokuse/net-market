@@ -28,7 +28,7 @@ crumb :profile do
 end
 
 crumb :card_registration do
- link '支払い方法', card_registration_mypage_path
+ link '支払い方法', credits_path
  parent :mypage
 end
 
@@ -40,4 +40,9 @@ end
 crumb :selling_item do |item|
   link '商品出品画面', sell_item_item_path(item)
   parent :selling
+end
+
+crumb :credits_new do
+  link 'クレジットカード情報入力', new_credit_path
+  parent :card_registration
 end
