@@ -1,29 +1,31 @@
 = render "shared/top-header"
-テストテスト
-テストテスト
 %nav.bread-crumbs__list
   %ul
     - breadcrumb :card_registration
     = render "shared/breadcrumbs"
 %main
-  .l-container.cleafix
-    .l-content
-      .l-chapter-container
-        %h2.l-chapter-head 支払い方法
-        .l-single-inner
-          %section
-            .l-single-content
-              %h3.l-chapter-sub-head クレジットカード一覧
-            %ul.settings-payment-list
-          %section.settings-add-card
-            .settings-add-card-content
-              = link_to new_credit_path, class: "btn-default btn-red submit_button" do
-                = fa_icon "cc-visa"
-                クレジットカードを追加する
-          .settings-not-regist
-            = link_to items_path do
-              %span 支払い方法について
-              = fa_icon "chevron-right", class: "chevron-right"
+  -# メインコンテンツ
+  .mypage__content
+    .credit
+      %h2.credit__head 支払い方法
+      .credit__content
+        %h3.credit__content__head クレジットカード一覧
+        - if @credit_card.present?
+          = form_for @credit_card, url: credit_path(@credit_card), method: :delete, html: { class: 'credit__content__card' } do |f|
+            .credit__content__card__group
+              -#= image_tag "common/#{@credit_card.get_type}.svg", alt: "#{@credit_card.get_type}" if @credit_card.get_type.present?
+              -#.credit__content__card__group__info= @credit_card.hide_numbers
+              -#.credit__content__card__group__info= "#{@credit_card.month} / #{@credit_card.year}"
+              = f.submit "削除する", class: 'credit__content__card__group__submit'
+
+        - else
+          .credit__content__card
+            = link_to new_credit_path, class: 'credit__content__card__link' do
+              %i.far.fa-credit-card
+              %span クレジットカードを追加する
+        = link_to '#', class: 'credit__content__another-link' do
+          %span 支払い方法について
+          %i.fas.fa-chevron-right
 
     = render "shared/side-bar"
 = render "shared/app-banner"
