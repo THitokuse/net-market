@@ -1,65 +1,71 @@
 = render "shared/top-header"
 %nav.bread-crumbs__list
   %ul
-    - breadcrumb :credits_new
+    - breadcrumb :card_registration
     = render "shared/breadcrumbs"
-%main
-  .l-container.cleafix
-    .l-content
-      %h2.c-profile-head 支払い方法
-      = form_for @credit do |f|
-        .l-single_content
-          .c-form_group
-            = label :credit_number, 'カード番号'
-            %span.c-form_require 必須
-            = f.text_field :credit_number, placeholder: '半角数字のみ', class: 'c-input-default'
-            %ul.c-has-error-text
-              /%li 必須項目です
-          .c-form_group.signup-form-expire
-            = label :payment_card_expire, '有効期限'
-            %span.c-form_require 必須
-            %br
-            .c-select-wrap
-              = f.select :limit_month, options_for_select([['', '--'], ['01', '01'], ['02', '02'], ['03', '03'], ['04', '04'], ['05', '05'], ['06', '06'], ['07', '07'], ['08', '08'], ['09', '09'], ['10', '10'], ['11', '11'], ['12', '12', selected: 'selected']], params[:limit_month]), {}, { class: 'c-select-default' }
-              %i.c-icon-arrow-bottom
-            %span 月
-            %ul.c-has-error-text
-              /%li 必須項目です
-            .c-select-wrap
-              = f.select :limit_year, options_for_select([['', '--'], ['19', '19'], ['20', '20'], ['21', '21'], ['22', '22'], ['23', '23'], ['24', '24'], ['25', '25'], ['26', '26'],['27', '27'],['28', '28'],['29', '29', selected: 'selected']], params[:limit_year]), {}, { class: 'c-select-default' }
-              %i.c-icon-arrow-bottom
-            %span 年
-            %ul.c-has-error-text
-              /%li 必須項目です
-          .c-form_group
-            = label :security_code, 'セキュリティコード'
-            %span.c-form_require 必須
-            = f.number_field :security_code, placeholder: 'カード背面4桁もしくは3桁の番号', class: 'c-input-default'
-            %ul.c-has-error-text
-              /%li 必須項目です
-            .signup-seqcode
-              .signup-seqcode-text.js-tip_btn
-                %span.c-form_question ?
-                カード裏面の番号とは？
-              .signup-seqcode-info.js-tip_box
-                カードの裏面をご参照ください。
-          %p#primary-error.c-has-error-text
-          = f.submit '次へ進む', class: 'c-btn-default is-red'
 
+.mypage
+  -# メインコンテンツ
+  .mypage__content
+    .credit
+      %h2.credit__head クレジットカード情報入力
+      .credit__content
+        = form_for @credit_card, url: credits_path, method: :post, html: { class: 'credit__content__form' } do |f|
+          -# カード番号
+          .credit__content__form__group
+            %span.credit__content__form__group__label カード番号
+            %span.credit__content__form__group__necessary 必須
+            = f.text_field :authorization_code, autofocus: true, placeholder: "半角数字のみ", class: 'credit__content__form__group__field'
+            - if @credit_card.errors.messages[:authorization_code].present?
+              - @credit_card.errors.messages[:authorization_code].each do |message|
+                %p.error= message
+            -#%ul.credit__content__form__group__card
+            -#  %li
+            -#    = image_tag 'common/visa.svg', alt: 'visa'
+            -#  %li
+            -#    = image_tag 'common/master-card.svg', alt: 'master-card'
+            -#  %li
+            -#    = image_tag 'common/saison-card.svg', alt: 'saison-card'
+            -#  %li
+            -#    = image_tag 'common/jcb.svg', alt: 'jcb'
+            -#  %li
+            -#    = image_tag 'common/american_express.svg', alt: 'american_express'
+            -#  %li
+            -#    = image_tag 'common/dinersclub.svg', alt: 'dinersclub'
+            -#  %li
+            -#    = image_tag 'common/discover.svg', alt: 'discover'
 
+          -# 有効期限
+          .credit__content__form__group
+            %span.credit__content__form__group__label 有効期限
+            %span.credit__content__form__group__necessary 必須
+            .credit__content__form__group__select
+              = f.select :month, @months, { class: "credit__content__form__group__select" }
+            - if @credit_card.errors.messages[:month].present?
+              - @credit_card.errors.messages[:month].each do |message|
+                %p.error= message
+            .credit__content__form__group__select
+              = f.select :year, @years, { class: "credit__content__form__group__select" }
+            - if @credit_card.errors.messages[:year].present?
+              - @credit_card.errors.messages[:year].each do |message|
+                %p.error= message
+
+          -# セキュリティコード
+          .credit__content__form__group
+            %span.credit__content__form__group__label セキュリティコード
+            %span.credit__content__form__group__necessary 必須
+            = f.text_field :security_code, autofocus: true, placeholder: "カード背面4桁もしくは3桁の番号", class: 'credit__content__form__group__field'
+            .credit__content__form__group__help
+              %span.credit__content__form__group__help__icon ?
+              %span カード裏面の番号とは？
+            - if @credit_card.errors.messages[:security_code].present?
+              - @credit_card.errors.messages[:security_code].each do |message|
+                %p.error= message
+
+          .credit__content__form__group
+            = f.submit "追加する", class: 'credit__content__form__group__submit'
 
     = render "shared/side-bar"
 = render "shared/app-banner"
 = render "shared/top-footer"
 = render "shared/sell-btn"
-%form#charge-form{:action => "/credits", :method => "POST"}
-  %span.charge-errors
-  %h4 支払い
-  %label カード番号
-  %input.number{:maxlength => "16", :name => "number", :placeholder => "カード番号", :type => "text"}/
-  %label CVC
-  %input.cvc{:maxlength => "3", :name => "cvc", :placeholder => "CVC", :type => "text"}/
-  %label 有効期限
-  %input.exp_month{:maxlength => "2", :name => "exp_month", :placeholder => "月", :type => "text"}/
-  %input.exp_year{:maxlength => "4", :name => "exp_year", :placeholder => "年", :type => "text"}/
-  %button{:type => "submit"} 送信
