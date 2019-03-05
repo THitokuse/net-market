@@ -41,3 +41,12 @@ crumb :selling_item do |item|
   link '商品出品画面', sell_item_item_path(item)
   parent :selling
 end
+
+crumb :simple_search do |keyword|
+  link "#{keyword}", simple_search_items_path(keyword)
+  parent :root
+end
+
+crumb :multi_search do |search|
+  link "#{search}", multi_search_items_path(search)
+end

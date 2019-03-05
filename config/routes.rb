@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items do
     resources :comments, only: [:create]
+      collection do
+        get "simple_search"
+        get "multi_search"
+      end
       member do
         get "purchase_concern"
         get "sell_item"
@@ -37,9 +41,6 @@ Rails.application.routes.draw do
       get "card_registration"
     end
   end
-  
-  get "search" => "items#search"
-  
   resources :brands, only: [:index]
 end
 

@@ -1,0 +1,35 @@
+= render  "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :multi_search, @search
+    = render "shared/breadcrumbs"
+%main
+  .l-container.clearfix
+    .l-content
+      - if @items.present?
+        %section.search-container
+          %section.items-box-container.clearfix
+            %h2.search-result-head
+              検索結果 1- #{@items.length}件
+        .items-box-content.clearfix
+          = render partial: "shared/one_items", collection: @items, as: "item"
+          = paginate(@items)
+      - else
+        %section.search-container
+          %section.items-box-container.clearfix
+            %h2.search-result-head
+              検索結果 0件
+            %p.search-result-description
+              該当する商品が見つかりません。商品は毎日増えていますので、これからの出品に期待してください。
+            %h3.items-box-head 新着商品
+            .items-box-content.clearfix
+              - @new_items.each do |item|
+                = render partial: "shared/one_items", collection: @new_items, as: "item"
+    = render "shared/detail_search"
+
+
+
+
+= render "shared/app-banner"
+= render "shared/top-footer"
+= render "shared/sell-btn"

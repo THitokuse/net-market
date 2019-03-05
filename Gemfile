@@ -96,4 +96,6 @@ gem 'jquery-turbolinks'
 gem 'webpacker'
 gem 'react-rails'
 gem 'fog-aws'
+gem 'kaminari'
+gem 'ransack'
 

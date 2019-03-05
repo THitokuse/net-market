@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_162252) do
+ActiveRecord::Schema.define(version: 2019_03_03_105107) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_comments_on_item_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delivery_burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -71,13 +77,17 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.bigint "delivery_date_id", null: false
     t.bigint "delivery_method_id", null: false
     t.bigint "user_id"
+    t.bigint "condition_id", null: false
+    t.bigint "status_id", null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["delivery_burden_id"], name: "index_items_on_delivery_burden_id"
     t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
     t.index ["delivery_method_id"], name: "index_items_on_delivery_method_id"
     t.index ["lower_category_id"], name: "index_items_on_lower_category_id"
     t.index ["middle_category_id"], name: "index_items_on_middle_category_id"
     t.index ["size_id"], name: "index_items_on_size_id"
+    t.index ["status_id"], name: "index_items_on_status_id"
     t.index ["upper_category_id"], name: "index_items_on_upper_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -112,6 +122,12 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["size_type_id"], name: "index_sizes_on_size_type_id"
+  end
+
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "upper_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

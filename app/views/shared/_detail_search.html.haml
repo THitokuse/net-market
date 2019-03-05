@@ -1,0 +1,151 @@
+.l-side.long-height
+  = search_form_for(@search, url: multi_search_items_path, class: "search-extend-container search-extend-form") do |f|
+    .search-sort
+      .form-group
+        .select-wrap
+          %select.select-default{name: "sort_order"}
+            %option 並び替え
+            %option{value: "price_asc"} 価格の安い順
+            %option{value: "price_desc"} 価格の高い順
+            %option{value: "created_asc"} 出品の古い順
+            %option{value: "created_desc"} 出品の新しい順
+            %option{value: "like_desc"} いいね!の多い順
+          = fa_icon "arrow-bottom", class: "visible-large"
+    .search-dropdown-content.search-extend
+      %h3.visible-large 詳細検索
+      .form-group
+        %label
+          = fa_icon "plus"
+          %span キーワードを追加する
+        = f.text_field :name_cont, placeholder: "例)値下げ", class: "input-default"
+      .form-group
+        %label
+          = fa_icon "list"
+          %span カテゴリーを選択する
+        .select-wrap{"data-search": "parent"}
+          = f.select :upper_category_id_eq, options_from_collection_for_select(@upper_categories, :id, :name, params[:upper_category_id].to_i), {prompt: "---"}, class: "select-default"
+          = fa_icon "arrow-bottom"
+        %div{"data-search": "child"}
+        %div{"data-search": "grand-child"}
+      .form-group.search-extend-brand
+        %label
+          = fa_icon "tag"
+          %span ブランド名から探す
+        = f.text_field :brand_id_cont, placeholder: "例)シャネル", class: "input-default brand"
+        = f.hidden_field :brand_id_eq
+        %ul{"data-search": "brand-dom"}
+      .form-group
+        %label
+          = fa_icon "size"
+          %span サイズを指定する
+        .select-wrap{"data-search": "parent"}
+          / %select.select-default{name: "size_group"}
+          = f.select :size_id_cont, options_from_collection_for_select(@sizes, :id, :name), {prompt: "---"}, class: "select-default"
+          = fa_icon "arrow-bottom"
+        %div{"data-search": "child"}
+      .form-group.search-price
+        %label
+          %i.fas.fa-coins
+          %span 価格
+        .select-wrap
+          / 未実装
+          / = f.select :price_in, [["300 ~ 1000", "300 - 1000"], ["1000 ~ 5000", "1000-5000"], ["5000 ~ 10000", "5000-10000"], ["10000 ~ 30000", "10000-30000"], ["30000 ~ 50000", "30000-50000"], ["50000 ~", "50000"]], {prompt: "選択してください"}, {class: "select-default"}
+          = fa_icon "arrow-bottom"
+        = f.number_field :price_gteq, placeholder: "¥ Min", class: "input-default price"
+        %span ~
+        = f.number_field :price_lteq, placeholder: "¥ Max", class: "input-default price"
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 商品の状態
+        %div
+          = f.collection_check_boxes :status_id_in, @statuses, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label do
+                = b.check_box
+                = b.text
+            / .checkbox-default
+            /   %i.fas.fa-check
+            /   %label{for: "condition_all"}
+          /   / %input#condition_all{type: "checkbox", name: "status_all", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_all, {multiple: true}, 7, ''
+
+          / .checkbox-default
+          /   = f.check_box :status_eq_any, {multiple: true}, 1, ''
+          /   /%input{type: "checkbox", name: "new_item", value: 1, "data-search": "all"}
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 新品、未使用
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "nearly_new", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_any, {multiple: true}, 2, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 未使用に近い
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "no_injure_clearly", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_any, {multiple: true}, 3, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 目立った傷や汚れなし
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "have_injure_clearly", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_any, {multiple: true}, 4, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} やや傷や汚れあり
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "have_injure", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_any, {multiple: true}, 5, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 傷や汚れあり
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "bad_condition", value: 1, "data-search": "all"}
+          /   = f.check_box :status_eq_any, {multiple: true}, 6, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 全体的に状態が悪い
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 配送料の負担
+        %div
+          = f.collection_check_boxes :delivery_burden_id_in, @delivery_burdens, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label do
+                = b.check_box
+                = b.text
+          / .checkbox-default
+          /   / %input#condition_all{type: "checkbox", name: "burden_condition_all", value: 1, "data-search": "all"}
+          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 1, ''
+          /   %i.fas.fa-check
+
+          /   %label{for: "condition_all"} すべて
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "buyer_burden", value: 1, "data-search": "all"}
+          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 2, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 着払い(購入者負担)
+
+          / .checkbox-default
+          /   / %input{type: "checkbox", name: "seller_burden", value: 1, "data-search": "all"}
+          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 3, ''
+          /   %i.fas.fa-check
+          /   %label{for: "item_condition_id[1]"} 送料込み(出品者負担)
+
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 販売状況
+        %div
+          = f.collection_check_boxes :condition_id_in, @conditions, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label do
+                = b.check_box
+                = b.text
+      .search-extend-btn.clearfix
+        .btn-default.btn-gray クリア
+        %button.btn-default.btn-red{type: "submit"} 完了
