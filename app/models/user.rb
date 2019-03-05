@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google, :facebook]
 
   has_many :items
+  has_many :credits
 
   include JpPrefecture
   jp_prefecture :prefecture_code

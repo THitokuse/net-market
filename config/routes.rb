@@ -32,15 +32,16 @@ Rails.application.routes.draw do
         get "sell_item"
       end
   end
+
   resources :mypages, only: [:index, :destroy, :edit] do
     collection do
       get "identify"
       get "item_listing"
     end
-    member do
-      get "card_registration"
-    end
   end
   resources :brands, only: [:index]
+
+  #クレジットカード登録
+  resources :credits, only: [:new, :create, :destroy, :index]
 end
 

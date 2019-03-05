@@ -98,4 +98,4 @@ gem 'react-rails'
 gem 'fog-aws'
 gem 'kaminari'
 gem 'ransack'
-
+gem 'payjp'

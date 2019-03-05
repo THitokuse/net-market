@@ -28,7 +28,7 @@ crumb :profile do
 end
 
 crumb :card_registration do
- link '支払い方法', card_registration_mypage_path
+ link '支払い方法', credits_path
  parent :mypage
 end
 
@@ -49,4 +49,10 @@ end
 
 crumb :multi_search do |search|
   link "#{search}", multi_search_items_path(search)
+end
+
+crumb :credits_new do
+  link 'クレジットカード情報入力', new_credit_path
+  parent :card_registration
+end
 end
