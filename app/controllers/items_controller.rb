@@ -1,19 +1,16 @@
 class ItemsController < ApplicationController
 
   before_action :set_locale
-  before_action :move_to_index, except: [:index, :show]
+  before_action :item_setting, only: [:new, :simple_search, :multi_search]
+  before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
-    @items = Item.all
+    @ladies_items = Item.where(upper_category_id: 1).order("created_at DESC").limit(4)
+    @mens_items = Item.where(upper_category_id: 2).order("created_at DESC").limit(4)
   end
 
   def new
     @item = Item.new
-    @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
-    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
-    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
-    @sizes = Size.all.where(size_type_id: params[:size_type_id])
-    @delivery_methods = DeliveryMethod.all
 
     respond_to do |format|
       format.html
@@ -23,6 +20,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -41,9 +39,20 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def search
+  def simple_search
     @keyword = params[:keyword]
-    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20)
+    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").page(params[:page]).per(20)
+    @search = Item.ransack(params[:q])
+    @new_items = Item.order("created_at DESC").limit(20)
+  end
+
+  def multi_search
+    # @keyword = params[:keyword]
+    # binding.pry
+    @new_items = Item.order("created_at DESC").limit(20)
+    @search = Item.ransack(params[:q])
+    @items = @search.result.includes(:upper_category).page(params[:page]).per(20)
+
   end
 
   def update
@@ -75,7 +84,20 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :prefecture_code, :content, :status, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :prefecture_code, :content, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, :status_id, :condition_id, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
+  end
+
+
+
+  def item_setting
+    @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
+    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
+    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
+    @sizes = Size.all.where(size_type_id: params[:size_type_id])
+    @delivery_methods = DeliveryMethod.all
+    @delivery_burdens = DeliveryBurden.all
+    @conditions = Condition.all
+    @statuses = Status.all
   end
 
 
