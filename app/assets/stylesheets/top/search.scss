@@ -127,7 +127,7 @@
     display: block;
   }
   .form-group {
-    font-size: 0;
+    // font-size: 0;
   }
   i {
     position: relative;
@@ -178,7 +178,7 @@
       font-size: 10px;
       line-height: 17px;
       text-align: center;
-      // color: $white;
+      color: $white;
       vertical-align: middle;
       transition: all ease-out .3s;
       transform: translate(0, -50%);
@@ -218,6 +218,10 @@
   select {
     width: 100%;
   }
+}
+
+.search-price {
+  font-size: 0;
 }
 
 

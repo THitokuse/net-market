@@ -5,8 +5,8 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
-    @ladies_items = Item.where(upper_category_id: 1).order("created_at DESC").limit(4)
-    @mens_items = Item.where(upper_category_id: 2).order("created_at DESC").limit(4)
+    @ladies_items = Item.where(upper_category_id: 1).where(condition_id: 1).order("created_at DESC").limit(4)
+    @mens_items = Item.where(upper_category_id: 2).where(condition_id: 1).order("created_at DESC").limit(4)
   end
 
   def new
@@ -93,13 +93,12 @@ class ItemsController < ApplicationController
     @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
     @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
     @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
-    @sizes = Size.all.where(size_type_id: params[:size_type_id])
+    @sizes = Size.all.where(size_type_id: 1)
     @delivery_methods = DeliveryMethod.all
     @delivery_burdens = DeliveryBurden.all
     @conditions = Condition.all
     @statuses = Status.all
   end
-
 
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?
