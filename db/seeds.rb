@@ -348,6 +348,22 @@ LowerCategory.create!(
       name: 'ノーカラージャケット',
       middle_category_id: 2,
     },
+    {
+      name: 'Tシャツ/カットソー(半袖/袖なし)',
+      middle_category_id: 4,
+    },
+    {
+      name: 'Tシャツ/カットソー(７分/長袖)',
+      middle_category_id: 4,
+    },
+    {
+      name: 'テーラードジャケット',
+      middle_category_id: 5,
+    },
+    {
+      name: 'ノーカラージャケット',
+      middle_category_id: 5,
+    },
   ]
 )
 
