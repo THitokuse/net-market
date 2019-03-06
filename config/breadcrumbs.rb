@@ -48,7 +48,7 @@ crumb :simple_search do |keyword|
 end
 
 crumb :multi_search do |search|
-  link "#{search}", multi_search_items_path(search)
+  link "#{params[:q][:sort_order_eq]} #{params[:q][:name_cont]} #{params[:q][:upper_category_id_eq]} #{params[:q][:middle_category_id_eq]} #{params[:q][:lower_category_id_eq]} #{params[:q][:brand_id_eq]} #{params[:q][:size_id_cont]} #{params[:q][:price_gteq]} ~ #{params[:q][:price_lteq]}", multi_search_items_path(search)
 end
 
 crumb :credits_new do
