@@ -34,29 +34,11 @@ $(document).on('turbolinks:load', function(){
     // $("#sell-dropbox-field").removeClass("have-item-" + box_count.toString(10))
   }
 
-  function append_uploadbox() {
-    var html = `
-    <div class="sell-dropbox-container clearfix state-image-number-10 sell-dropbox-field" id="dropbox">
-      <div class="sell-upload-items-container">
-        <div class="sell-upload-items have-item-0" id="upload-items">
-        </div>
-      </div>
-      <label class="sell-upload-drop-box have-item-0" for="item_item_images_atrributes_0_image" id="append_uploadbox">
-        <input class="sell-upload-drop-file" multiple="multiple" style="display:none;" type="file" name="item[item_images_attributes][0][image][]" id="item_item_images_atrributes_0_image">
-        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
-        <i class="fa fa-camera"></i>
-      </label>
-    </div>`
-    return html;
-  }
-
 
   $(".sell-upload-drop-box").on("change", function(e){
     var insert_image = "";
     var reader = new FileReader();
     var image = e.target.files[0];
-
-
 
     reader.addEventListener("load", function(){
       insert_image = append_itemimages(reader.result);
@@ -71,9 +53,9 @@ $(document).on('turbolinks:load', function(){
       reader.readAsDataURL(image)
     }
 
-
     change_class_to_increment()
     $(this).prop('style', "display:none;")
+    $(this).next("label").prop('style', "display:block;")
 
     if(box_count == 5){
       var insert_box = append_uploadbox()
@@ -82,7 +64,44 @@ $(document).on('turbolinks:load', function(){
     }
   })
 
-   $(".sell-upload-box").on("change", "#dropbox", function(e){
+
+  function append_uploadbox() {
+    var html = `
+    <div class="sell-dropbox-container clearfix state-image-number-10 sell-dropbox-field" id="dropbox">
+      <div class="sell-upload-items-container">
+        <div class="sell-upload-items have-item-0" id="upload-items">
+        </div>
+      </div>
+      <label class="sell-upload-drop-box avex have-item-0">
+        <input class="sell-upload-drop-file" style="display:none;" type="file" name="item[item_images_attributes][5][image]" id="item_item_images_atrributes_5_image">
+        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
+        <i class="fa fa-camera"></i>
+      </label>
+       <label class="sell-upload-drop-box avex">
+        <input class="sell-upload-drop-file" style="display:none;" type="file" name="item[item_images_attributes][6][image]" id="item_item_images_atrributes_6_image">
+        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
+        <i class="fa fa-camera"></i>
+      </label>
+       <label class="sell-upload-drop-box avex">
+        <input class="sell-upload-drop-file" style="display:none;" type="file" name="item[item_images_attributes][7][image]" id="item_item_images_atrributes_7_image">
+        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
+        <i class="fa fa-camera"></i>
+      </label>
+       <label class="sell-upload-drop-box avex">
+        <input class="sell-upload-drop-file" style="display:none;" type="file" name="item[item_images_attributes][8][image]" id="item_item_images_atrributes_8_image">
+        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
+        <i class="fa fa-camera"></i>
+      </label>
+       <label class="sell-upload-drop-box avex">
+        <input class="sell-upload-drop-file" style="display:none;" type="file" name="item[item_images_attributes][9][image]" id="item_item_images_atrributes_9_image">
+        <pre class="visible-pc">ドラッグアンドドロップまたはクリックしてファイルをアップロード</pre>
+        <i class="fa fa-camera"></i>
+      </label>
+    </div>`
+    return html;
+  }
+
+   $(".sell-upload-box").on("change", ".avex", function(e){
     var insert_image = "";
     var reader = new FileReader();
     var image = e.target.files[0];
@@ -101,12 +120,13 @@ $(document).on('turbolinks:load', function(){
     }
 
     change_class_to_increment()
+    $(this).prop('style', "display:none;")
+    $(this).next("label").prop('style', "display:block;")
 
    })
 
   $(".sell-dropbox-container").on("click", "#upload_item_delete", function(){
     var delete_target = $(this).parents(".sell-upload-item")
-    $(".sell-dropbox-field").prop('style', "display:none;")
     change_class_to_decrement(delete_target)
     delete_target.remove();
   })
@@ -117,5 +137,11 @@ $(document).on('turbolinks:load', function(){
     var modal = append_modal_window(target_image)
     $(".sell-upload-box").after(modal);
     console.log(target_image)
+  })
+
+  $(".sell-upload-box").on("click", "#upload_item_delete", function(){
+    var delete_target = $(this).parents(".sell-upload-item")
+    change_class_to_decrement(delete_target)
+    delete_target.remove();
   })
 })

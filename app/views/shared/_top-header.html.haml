@@ -5,9 +5,10 @@
         %h1.pc-header__inner__upper__logo
           = link_to root_path do
             =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "43", width: "134", class: "mercari_logo_horizontal"
-        = form_tag(search_path, method: :get,class: "pc-header__inner__upper__form",enforce_utf8: false ) do
+        = form_tag(simple_searches_path, method: :get, class: "pc-header__inner__upper__form", enforce_utf8: false ) do
           %input.pc-header__inner__upper__form__input.input-default{name: "keyword", placeholder: "キーワードから探す", type: "search", value: ""}/
-          %i.fas.fa-search
+          = button_tag type: "submit", class: "search-button" do
+            %i.fas.fa-search
       .pc-header__inner__bottom.clearfix
         %nav.pc-header__inner__bottom__l-left
           %ul.search-menu

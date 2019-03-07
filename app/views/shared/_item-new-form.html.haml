@@ -13,12 +13,31 @@
             .sell-dropbox-container.clearfix.state-image-number-10
               .sell-upload-items-container
                 .sell-upload-items.have-item-0
-              - 5.times do
-                = f.fields_for :item_images, ItemImage.new do |image|
-                  %label.sell-upload-drop-box.have-item-0
-                    = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
-                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                    = fa_icon "camera"
+              = f.fields_for :item_images, ItemImage.new do |image|
+                %label.sell-upload-drop-box.have-item-0
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, ItemImage.new do |image|
+                %label.sell-upload-drop-box.have-item-1
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, ItemImage.new do |image|
+                %label.sell-upload-drop-box.have-item-2
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, ItemImage.new do |image|
+                %label.sell-upload-drop-box.have-item-3
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, ItemImage.new do |image|
+                %label.sell-upload-drop-box.have-item-4
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
           .sell-content
             .form-group
               = f.label :name do
@@ -43,12 +62,13 @@
                     = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category"
                     = fa_icon "arrow-bottom"
               .form-group
-                = f.label :status do
+                = f.label :status_id do
                   商品の状態
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default"
+                    = f.select :status_id, options_from_collection_for_select(Status.all, :id, :name), {prompt: "---"}, class: "select-default"
+                    = f.hidden_field :condition_id, value: 1
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 配送について
@@ -68,7 +88,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default"
+                    = f.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "---"}, {class: "select-default"})
                     = fa_icon "arrow-bottom"
               .form-group
                 = f.label :delivery_date_id do

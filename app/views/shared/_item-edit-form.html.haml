@@ -68,7 +68,7 @@
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    = f.select :prefecture_code, Item.prefecture_codes_i18n.keys.map {|k| [Item.prefecture_codes_i18n[k], k]}, class: "select-default", value: @item.prefecture_code
+                    = f.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "---"}, {class: "select-default"})
                     = fa_icon "arrow-bottom"
               .form-group
                 = f.label :delivery_date_id do

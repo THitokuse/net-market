@@ -35,11 +35,9 @@ Rails.application.routes.draw do
       get "item_listing"
     end
   end
-  
-  get "search" => "items#search"
-  
   resources :brands, only: [:index]
-
+  resources :simple_searches, only: :index
+  resources :multi_searches, only: :index
   #クレジットカード登録
   resources :credits, only: [:new, :create, :destroy, :index]
 end
