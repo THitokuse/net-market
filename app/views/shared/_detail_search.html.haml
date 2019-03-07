@@ -42,7 +42,6 @@
           = fa_icon "size"
           %span サイズを指定する
         .select-wrap{"data-search": "parent"}
-          / %select.select-default{name: "size_group"}
           = f.select :size_id_cont, options_from_collection_for_select(@sizes, :id, :name), {prompt: "---"}, class: "select-default size_list"
           = fa_icon "arrow-bottom"
         %div{"data-search": "child"}
@@ -51,7 +50,6 @@
           %i.fas.fa-coins
           %span 価格
         .select-wrap
-          / 未実装
           = f.select :price, options_for_select({"300 ~ 1000": 300, "1000 ~ 5000": 1000, "5000 ~ 10000": 5000, "10000 ~ 30000": 10000, "30000 ~ 50000": 30000, "50000 ~": 50000}), {prompt: "選択してください"}, {class: "select-default price_list"}
         = f.number_field :price_gteq, placeholder: "¥ Min", class: "input-default price min"
         %span ~
@@ -67,47 +65,6 @@
               = b.label class: "checkbox_label" do
                 = b.check_box
                 = b.text
-            / .checkbox-default
-            /   %i.fas.fa-check
-            /   %label{for: "condition_all"}
-          /   / %input#condition_all{type: "checkbox", name: "status_all", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_all, {multiple: true}, 7, ''
-
-          / .checkbox-default
-          /   = f.check_box :status_eq_any, {multiple: true}, 1, ''
-          /   /%input{type: "checkbox", name: "new_item", value: 1, "data-search": "all"}
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 新品、未使用
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "nearly_new", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_any, {multiple: true}, 2, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 未使用に近い
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "no_injure_clearly", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_any, {multiple: true}, 3, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 目立った傷や汚れなし
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "have_injure_clearly", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_any, {multiple: true}, 4, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} やや傷や汚れあり
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "have_injure", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_any, {multiple: true}, 5, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 傷や汚れあり
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "bad_condition", value: 1, "data-search": "all"}
-          /   = f.check_box :status_eq_any, {multiple: true}, 6, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 全体的に状態が悪い
       .form-group.clearfix
         %label
           = fa_icon "star"
@@ -119,24 +76,6 @@
               = b.label class: "checkbox_label" do
                 = b.check_box
                 = b.text
-          / .checkbox-default
-          /   / %input#condition_all{type: "checkbox", name: "burden_condition_all", value: 1, "data-search": "all"}
-          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 1, ''
-          /   %i.fas.fa-check
-
-          /   %label{for: "condition_all"} すべて
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "buyer_burden", value: 1, "data-search": "all"}
-          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 2, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 着払い(購入者負担)
-
-          / .checkbox-default
-          /   / %input{type: "checkbox", name: "seller_burden", value: 1, "data-search": "all"}
-          /   = f.check_box :delivery_burden_id_eq_any, {multiple: true}, 3, ''
-          /   %i.fas.fa-check
-          /   %label{for: "item_condition_id[1]"} 送料込み(出品者負担)
-
       .form-group.clearfix
         %label
           = fa_icon "star"

@@ -6,7 +6,6 @@ $(document).on('turbolinks:load', function(){
   })
   $(".checked").on('click', function(){
     var check = $(this).parent().children(".fa-check")
-    console.log(check)
     check.prop('style', 'color:white;')
     $(this).removeClass("checked")
   })

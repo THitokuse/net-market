@@ -23,8 +23,7 @@
               該当する商品が見つかりません。商品は毎日増えていますので、これからの出品に期待してください。
             %h3.items-box-head 新着商品
             .items-box-content.clearfix
-              - @new_items.each do |item|
-                = render partial: "shared/one_items", collection: @new_items, as: "item"
+              = render partial: "shared/one_items", collection: @new_items, as: "item"
     = render "shared/detail_search"
 
 

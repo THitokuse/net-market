@@ -50,23 +50,4 @@ $(document).on('turbolinks:load', function(){
       })
     })
   })
-
-  // $(".size_list").on("change", function(){
-  //   var middle_choice = $(".middle").find(".append_choice")
-  //   var size_type_id = middle_choice.data("size-id")
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: '/items/new',
-  //     data: {size_type_id: size_type_id},
-  //     dataType: 'json'
-  //   })
-  // })
-  // .done(function(sizies){
-  //   console.log(sizies)
-  //   sizies.forEach(function(size){
-  //     if(size.size_type_id != undefined) {
-  //       var size = $(".size_list").append(`<option value=${size.id}>${size.name}</option>`)
-  //     }
-  //   })
-  // })
 })

@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -47,8 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def multi_search
-    # @keyword = params[:keyword]
-    # binding.pry
     @new_items = Item.order("created_at DESC").limit(20)
     @search = Item.ransack(params[:q])
     @items = @search.result.includes(:upper_category).page(params[:page]).per(20)
