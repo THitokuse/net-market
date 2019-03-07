@@ -5,8 +5,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
-    @ladies_items = Item.where(upper_category_id: 1).where(condition_id: 1).order("created_at DESC").limit(4)
-    @mens_items = Item.where(upper_category_id: 2).where(condition_id: 1).order("created_at DESC").limit(4)
+    @items = Item.includes(:item_images).order("created_at DESC").limit(4)
   end
 
   def new

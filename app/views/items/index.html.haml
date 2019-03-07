@@ -24,14 +24,14 @@
     %h3.text-center
       =link_to "レディース 新着アイテム", "#"
     .items-box-content.clearfix
-      = render partial: "shared/one_items", collection: @ladies_items, as: "item"
+      = render partial: "shared/one_items", collection: @items, as: "item"
     .view-all
       = link_to "すべての商品を見る","#"
   %section.items-box-container.clearfix
     %h3.text-center
       = link_to "メンズ 新着アイテム", "#"
     .items-box-content.clearfix
-      = render partial: "shared/one_items", collection: @mens_items, as: "item"
+      = render partial: "shared/one_items", collection: @items, as: "item"
     .view-all
       =link_to "すべての商品を見る", "#"
 
