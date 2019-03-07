@@ -43,12 +43,12 @@ crumb :selling_item do |item|
 end
 
 crumb :simple_search do |keyword|
-  link "#{keyword}", simple_search_items_path(keyword)
+  link "#{keyword}", simple_searches_path(keyword)
   parent :root
 end
 
 crumb :multi_search do |search|
-  link "#{params[:q][:sort_order_eq]} #{params[:q][:name_cont]} #{params[:q][:upper_category_id_eq]} #{params[:q][:middle_category_id_eq]} #{params[:q][:lower_category_id_eq]} #{params[:q][:brand_id_eq]} #{params[:q][:size_id_cont]} #{params[:q][:price_gteq]} ~ #{params[:q][:price_lteq]}", multi_search_items_path(search)
+  link "#{params[:q][:sort_order_eq]} #{params[:q][:name_cont]} #{params[:q][:upper_category_id_eq]} #{params[:q][:middle_category_id_eq]} #{params[:q][:lower_category_id_eq]} #{params[:q][:brand_id_eq]} #{params[:q][:size_id_cont]} #{params[:q][:price_gteq]} ~ #{params[:q][:price_lteq]}", multi_searches_path(search)
 end
 
 crumb :credits_new do

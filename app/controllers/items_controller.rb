@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :set_locale
-  before_action :item_setting, only: [:new, :simple_search, :multi_search]
+  before_action :item_setting, only: :new
   before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
@@ -35,20 +35,6 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-  end
-
-  def simple_search
-    @keyword = params[:keyword]
-    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").page(params[:page]).per(20)
-    @search = Item.ransack(params[:q])
-    @new_items = Item.order("created_at DESC").limit(20)
-  end
-
-  def multi_search
-    @new_items = Item.order("created_at DESC").limit(20)
-    @search = Item.ransack(params[:q])
-    @items = @search.result.includes(:upper_category).page(params[:page]).per(20)
-
   end
 
   def update
