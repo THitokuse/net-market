@@ -55,4 +55,3 @@ crumb :credits_new do
   link 'クレジットカード情報入力', new_credit_path
   parent :card_registration
 end
-end

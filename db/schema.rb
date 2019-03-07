@@ -18,12 +18,6 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
     t.bigint "item_id", null: false
@@ -39,40 +33,17 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
-  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "credit_number", null: false
-    t.string "limit_month", null: false
-    t.string "limit_year", null: false
-    t.string "security_code", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_credits_on_user_id"
-  end
 
   create_table "delivery_burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delivery_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "deliveryburdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
-    t.string "image", null: false
+    t.string "image", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
@@ -94,20 +65,20 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.integer "price", null: false
     t.integer "prefecture_code", null: false
     t.text "content", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.bigint "size_id", null: false
     t.bigint "upper_category_id", null: false
-    t.bigint "middle_category_id", null: false
-    t.bigint "lower_category_id", null: false
+    t.bigint "middle_category_id"
+    t.bigint "lower_category_id"
     t.bigint "brand_id", null: false
     t.bigint "delivery_burden_id", null: false
     t.bigint "delivery_date_id", null: false
     t.bigint "delivery_method_id", null: false
+    t.bigint "user_id"
     t.bigint "condition_id", null: false
     t.bigint "status_id", null: false
-    t.bigint "user_id", null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["delivery_burden_id"], name: "index_items_on_delivery_burden_id"
@@ -123,18 +94,18 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
 
   create_table "lower_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "middle_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "middle_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["middle_category_id"], name: "index_lower_categories_on_middle_category_id"
   end
 
   create_table "middle_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "upper_category_id"
-    t.bigint "size_type_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "size_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["size_type_id"], name: "index_middle_categories_on_size_type_id"
     t.index ["upper_category_id"], name: "index_middle_categories_on_upper_category_id"
   end
@@ -147,9 +118,9 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "size_type_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "size_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["size_type_id"], name: "index_sizes_on_size_type_id"
   end
 
@@ -160,9 +131,9 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
   end
 
   create_table "upper_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -178,20 +149,20 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "last_name_kana", null: false
-    t.string "tel", null: false
-    t.integer "prefecture_code", null: false
-    t.string "zip", null: false
-    t.string "city_name", null: false
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.string "first_name_kana", default: ""
+    t.string "last_name_kana", default: ""
+    t.string "tel", default: ""
+    t.integer "prefecture_code", default: 0
+    t.string "zip", default: ""
+    t.string "city_name", default: ""
     t.string "street"
-    t.integer "birth_day", null: false
-    t.integer "birth_month", null: false
-    t.integer "birth_year", null: false
+    t.integer "birth_day"
+    t.integer "birth_month"
+    t.integer "birth_year"
     t.text "self_introduce"
-    t.string "nickname", null: false
+    t.string "nickname", default: ""
     t.string "provider"
     t.string "uid"
     t.string "token"
@@ -200,7 +171,6 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "credits", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "middle_categories", "upper_categories"
 end
