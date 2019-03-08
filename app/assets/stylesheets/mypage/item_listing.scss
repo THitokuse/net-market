@@ -1,0 +1,136 @@
+.tab-content {
+  .tab-pane {
+    &.active {
+      display: block;
+    }
+    display: none;
+  }
+}
+
+.mypage {
+  &-item {
+    li {
+      position: relative;
+      &:first-child {
+        border-bottom: 1px solid $gray;
+      }
+      &:last-child {
+        border: 0;
+      }
+    }
+    &-link {
+      display: block;
+      min-height: 80px;
+      padding: 16px;
+      color: $black;
+      figure {
+        position: relative;
+        overflow: hidden;
+        float: left;
+        width: 48px;
+        height: 48px;
+      }
+      .icon-arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translate(0, -50%);
+
+      }
+    }
+    &-list {
+      background-color: $white;
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        &.is-higher-width {
+          width: auto;
+          left: 50%;
+          right: auto;
+          height: 100%;
+          transform: translate(-50%, 0);
+        }
+      }
+    }
+    &-body {
+      margin: 0 40px 0 68px;
+      .show-stock-item {
+        margin-right: 100px;
+      }
+    }
+    &-text {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      line-height: 1.5;
+    }
+    &-status {
+      display: inline-block;
+      margin: 8px 0 0 0;
+      padding: 5px 6px;
+      border-radius: 2px;
+      font-size: 12px;
+      color: $white;
+      &.awaiting {
+        background-color: #0099e8;
+      }
+    }
+  }
+}
+
+.listing-item-count {
+  vertical-align: 2px;
+  margin: 0 6px 0 0;
+  i {
+    vertical-align: middle;
+    color: #ccc;
+  }
+  span {
+    vertical-align: middle;
+    margin: 0 0 0 2px;
+    font-size: 16px;
+    color: #888;
+  }
+}
+
+.notification {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+  padding: 24px 56px;
+  text-align: center;
+  line-height: 1.5;
+  animation: fade-out ease-out 4.5s;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  .fa-close {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    color: inherit;
+  }
+  &-success {
+    background-color: #dff0d8;
+    color: #468847;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .notification {
+    // top: 100%;
+    .fa-close {
+      top: 50%;
+      right: 8px;
+      transform: translate(0, -50%);
+    }
+  }
+}

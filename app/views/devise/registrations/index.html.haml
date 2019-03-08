@@ -16,9 +16,9 @@
             = link_to 'メールアドレスで登録', jp_signup_registration_path
           %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
             %i.fab.fa-facebook-square
-            %a Facebookで登録
+            = link_to 'Facebookで登録', user_facebook_omniauth_authorize_path
           %button#google-login.btn-default.btn-sns.btn-sns-google
             %i.fab.fa-google-plus-g
-            %a  Googleで登録
+            = link_to 'Googleで登録', user_google_omniauth_authorize_path
 
 = render partial: "devise/shared/users_footer"

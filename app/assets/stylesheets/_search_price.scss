@@ -1,0 +1,11 @@
+.search-price {
+  &>span {
+    display: inline-block;
+    width: 10%;
+    font-size: 14px;
+    text-align: center;
+  }
+  .price {
+    width: 45%;
+  }
+}

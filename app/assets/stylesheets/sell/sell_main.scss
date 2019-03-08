@@ -101,6 +101,7 @@ form {
     &.have-item-0 {
       width: 100%;
       height: 100%;
+      display: block;
     }
     &.have-item-1 {
       width: 80%;
@@ -130,6 +131,7 @@ form {
     transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
     cursor: pointer;
     float: right;
+    display: none;
 
     .sell-upload-drop-file {
       width: 100%;

@@ -4,10 +4,11 @@
       .pc-header__inner__upper.clearfix
         %h1.pc-header__inner__upper__logo
           = link_to root_path do
-            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "36", width: "134", class: "mercari_logo_horizontal"
-        %form.pc-header__inner__upper__form{action: "https://www.mercari.com/jp/search/"}
+            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1016580576", alt: "mercari", height: "43", width: "134", class: "mercari_logo_horizontal"
+        = form_tag(simple_searches_path, method: :get, class: "pc-header__inner__upper__form", enforce_utf8: false ) do
           %input.pc-header__inner__upper__form__input.input-default{name: "keyword", placeholder: "キーワードから探す", type: "search", value: ""}/
-          %i.fas.fa-search.icon-search
+          = button_tag type: "submit", class: "search-button" do
+            %i.fas.fa-search
       .pc-header__inner__bottom.clearfix
         %nav.pc-header__inner__bottom__l-left
           %ul.search-menu
@@ -36,12 +37,12 @@
                 #personal-menu__list__notification-field
               %li.personal-menu__list.todo
                 %a.personal-menu__list__todo-link
-                  %i.fa.fa-check.icon-check
+                  %i.fa.fa-check
                   %span やることリスト
                 #personal-menu__list__todo-field
           - else
             %ul.pc-header__login__nav
               %li
-                = link_to "ログイン", new_user_session_path, class: "sp-header__btn btn--red"
+                = link_to "ログイン", jp_login_path, class: "sp-header__btn btn--red"
               %li
-                = link_to "新規会員登録", new_user_registration_path, class: "sp-header__btn header-signup"
+                = link_to "新規会員登録", jp_signup_path, class: "sp-header__btn header-signup"

@@ -67,6 +67,9 @@ ul, ol {
     text-align: center;
     vertical-align: top;
     width: 50%;
+    &._triple {
+      width: 33%;
+    }
     a {
       position: relative;
       display: block;
@@ -105,6 +108,10 @@ ul, ol {
 }
 
 .mypage-top_right, .mypage-bottom_right{
+  display: none;
+}
+
+.mypage-top_center, .mypage-bottom_center {
   display: none;
 }
 
