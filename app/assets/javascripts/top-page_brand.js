@@ -6,8 +6,8 @@ $(document).on('turbolinks:load', function(){
 
   function append_brands(brand){
     var html = `<li class="pc-header-nav-parent" id="category-${brand.id}" data-upper-id="${brand.id}">
-                    <h3 class="upper_category">
-                    <a href="https://www.mercari.com/jp/category/${brand.id}/">
+                    <h3 class="upper_category__text">
+                    <a href="https://www.mercari.com/jp/category/${brand.id}/" class="brand_link" style="color:black;">
                         ${brand.name}
                     </a>
                   </h3>
@@ -29,8 +29,25 @@ $(document).on('turbolinks:load', function(){
           brand_list.append(brand_toggle)
         }
       })
+      brand_list.append(`<li class="pc-header-nav-parent">
+                    <h3 class="upper_category__text">
+                    <a href="https://www.mercari.com/jp/brand/" class="brand_link" style="color:black;">
+                        ブランド一覧
+                    </a>
+                  </h3>
+                </li>`)
       append_brand_count += 1
     })
+  })
+
+  brand_tag.on("mouseenter", ".pc-header-nav-parent", function(){
+    $(this).prop('style', "background-color:red;")
+    $(this).find(".brand_link").prop('style', "color:white;")
+  })
+
+  brand_tag.on("mouseleave", ".pc-header-nav-parent", function(){
+    $(this).prop('style', "background-color:none;")
+    $(this).find(".brand_link").prop('style', "color:black;")
   })
 
   brand_tag.on("mouseleave", function(){
