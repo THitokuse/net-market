@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function(){
     var middle_category = $(this).val()
     $.ajax({
       type: 'GET',
-      url: '/items/new',
+      url: '/lower_categories',
       data: {middle_category_id: middle_category},
       dataType: 'json'
     })

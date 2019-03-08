@@ -35,17 +35,14 @@ Rails.application.routes.draw do
       get "item_listing"
     end
   end
-  resources :brands, only: [:index]
-<<<<<<< HEAD
-  resources :upper_categories, only: [:index]
-  resources :middle_categories, only: [:index]
-  resources :lower_categories, only: [:index]
-  resources :sizes, only: [:index]
-=======
+  resources :brands, only: :index
+  resources :upper_categories, only: :index
+  resources :middle_categories, only: :index
+  resources :lower_categories, only: :index
+  resources :sizes, only: :index
   resources :simple_searches, only: :index
   resources :multi_searches, only: :index
   #クレジットカード登録
   resources :credits, only: [:new, :create, :destroy, :index]
->>>>>>> master
 end
 
