@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function(){
   function append_brands(brand){
     var html = `<li class="pc-header-nav-parent" id="category-${brand.id}" data-upper-id="${brand.id}">
                     <h3 class="upper_category__text">
-                    <a href="https://www.mercari.com/jp/category/${brand.id}/" class="brand_link" style="color:black;">
+                    <a href="/brands/${brand.id}/" class="brand_link" style="color:black;">
                         ${brand.name}
                     </a>
                   </h3>
@@ -22,7 +22,6 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json'
     })
     .done(function(brands){
-      console.log(brands)
       brands.forEach(function(brand){
         if(append_brand_count == 0){
           var brand_toggle = append_brands(brand)
@@ -31,7 +30,7 @@ $(document).on('turbolinks:load', function(){
       })
       brand_list.append(`<li class="pc-header-nav-parent">
                     <h3 class="upper_category__text">
-                    <a href="https://www.mercari.com/jp/brand/" class="brand_link" style="color:black;">
+                    <a href="/brands/" class="brand_link" style="color:black;">
                         ブランド一覧
                     </a>
                   </h3>
