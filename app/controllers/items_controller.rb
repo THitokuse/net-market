@@ -35,6 +35,10 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+
+    @item.item_images.each do |img|
+      @image = img.image
+    end
   end
 
   def update
