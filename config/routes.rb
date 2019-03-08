@@ -35,7 +35,12 @@ Rails.application.routes.draw do
       get "item_listing"
     end
   end
-  resources :brands, only: [:index]
+  resources :brands, only: [:index, :show]
+  resources :categories, only: :index
+  resources :upper_categories, only: [:index, :show]
+  resources :middle_categories, only: [:index, :show]
+  resources :lower_categories, only: [:index, :show]
+  resources :sizes, only: :index
   resources :simple_searches, only: :index
   resources :multi_searches, only: :index
   #クレジットカード登録

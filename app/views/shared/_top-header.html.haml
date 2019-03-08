@@ -12,14 +12,30 @@
       .pc-header__inner__bottom.clearfix
         %nav.pc-header__inner__bottom__l-left
           %ul.search-menu
-            %li.search-menu__list.category
+            %li.search-menu__list.category_list
               %h2
                 = link_to "カテゴリーを探す", items_path, class: "search-menu__list__text"
-              #search-menu__list__category-list
-            %li.search-menu__list.brand
+              %ul#search-menu__list__category-list.pc-header-nav-parent-wrap.category
+                - @upper_categories.each do |upper_category|
+                  %li.pc-header-nav-parent{"data-upper-id": upper_category.id}
+                    %h3.upper_category__text
+                      = link_to upper_category_path(upper_category), class: "category_link" do
+                        = upper_category.name
+                    %ul.pc-header-nav-child-wrap
+                      - if upper_category.middle_categories.present?
+                        - upper_category.middle_categories.each do |middle_category|
+                          %li.pc-header-nav-child{"data-middle-id": middle_category.id}
+                            = link_to middle_category_path(middle_category), class: "middle_category_link" do
+                              = middle_category.name
+                            %ul.pc-header-nav-grand-child-wrap
+                              - middle_category.lower_categories.each do |lower_category|
+                                %li.pc-header-nav-grand-child{"data-lower-id": lower_category.id}
+                                  = link_to lower_category_path(lower_category) do
+                                    = lower_category.name
+            %li.search-menu__list.brand_list
               %h2
                 = link_to "ブランドを探す", items_path, class: "search-menu__list__text"
-                #search-menu__list__brand-list
+                #search-menu__list__brand-list.pc-header-nav-parent-wrap
         .pc-header__inner__bottom__l-right
           - if user_signed_in?
             %ul.personal-menu

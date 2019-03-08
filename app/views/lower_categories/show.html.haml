@@ -1,0 +1,12 @@
+= render  "shared/top-header"
+%nav.bread-crumbs__list
+  %ul
+    - breadcrumb :lower_category, @category
+    = render "shared/breadcrumbs"
+.single-container
+  = render partial: "shared/one_items", collection: @items, as: "item"
+
+= render "shared/app-banner"
+= render "shared/top-footer"
+
+

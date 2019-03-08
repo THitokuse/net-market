@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :set_locale
-  before_action :item_setting, only: :new
+  before_action :item_setting, only: [:new, :edit]
   before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
@@ -35,6 +35,10 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+
+    @item.item_images.each do |img|
+      @image = img.image
+    end
   end
 
   def update
@@ -72,10 +76,6 @@ class ItemsController < ApplicationController
 
 
   def item_setting
-    @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
-    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
-    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
-    @sizes = Size.all.where(size_type_id: 1)
     @delivery_methods = DeliveryMethod.all
     @delivery_burdens = DeliveryBurden.all
     @conditions = Condition.all

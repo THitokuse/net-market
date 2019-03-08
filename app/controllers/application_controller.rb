@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_categories
-    @upper_categories = UpperCategory.eager_load(middle_categories: [:lower_categories])
+    @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
+    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
+    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
   end
 
   def set_locale
