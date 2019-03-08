@@ -13,12 +13,31 @@
             .sell-dropbox-container.clearfix.state-image-number-10
               .sell-upload-items-container
                 .sell-upload-items.have-item-0
-              - 5.times do
-                = f.fields_for :item_images, @item.item_images, multiple: true do |image|
-                  %label.sell-upload-drop-box.have-item-0
-                    = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
-                    %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
-                    = fa_icon "camera"
+              = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                %label.sell-upload-drop-box.have-item-0
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                %label.sell-upload-drop-box.have-item-1
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                %label.sell-upload-drop-box.have-item-2
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                %label.sell-upload-drop-box.have-item-3
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
+              = f.fields_for :item_images, @item.item_images, multiple: true do |image|
+                %label.sell-upload-drop-box.have-item-4
+                  = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
+                  %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
+                  = fa_icon "camera"
           .sell-content
             .form-group
               = f.label :name do
@@ -43,12 +62,13 @@
                     = f.select :upper_category_id, options_from_collection_for_select(@upper_categories, :id, :name), {prompt: "---"}, class: "select-default", id: "upper_category", value: @item.upper_category.name
                     = fa_icon "arrow-bottom"
               .form-group
-                = f.label :status do
+                = f.label :status_id do
                   商品の状態
                   %span.form-require 必須
                 %div
                   .select-wrap
-                    = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default", value: @item.status
+                    = f.select :status_id, options_from_collection_for_select(Status.all, :id, :name), {prompt: "---"}, class: "select-default", value: @item.status.name
+                    = f.hidden_field :condition_id, value: 1
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 配送について
@@ -93,10 +113,14 @@
                         = f.text_field :price, placeholder: "例)300", class: "input-default price", value: @item.price
                 %li.clearfix
                   .l-left 販売手数料(10%)
-                  .l-right.comercial_cost -
+                  .l-right.comercial_cost
+                    - sell_comission = (@item.price * 0.1).floor
+                    = sell_comission
                 %li.clearfix.bold
                   .l-left 販売利益
-                  .l-right.profit -
+                  .l-right.profit
+                    - sell_profit = (@item.price - sell_comission).floor
+                    = sell_profit
           .modal{role: "dialog", tabindex: "-1"}
             .modal-inner
           .sell-content.sell-btn-box
