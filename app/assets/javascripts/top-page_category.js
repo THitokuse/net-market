@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function(){
     if(append_count == 0) {
       $(".category").append(`<li class="pc-header-nav-parent">
                               <h3 class="upper_category__text">
-                                <a href="https://www.mercari.com/jp/category/" class="category_link">
+                                <a href="/categories/" class="category_link">
                                   カテゴリー一覧
                                 </a>
                               </h3>

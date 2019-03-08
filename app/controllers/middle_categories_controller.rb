@@ -6,4 +6,9 @@ class MiddleCategoriesController < ApplicationController
       format.json
     end
   end
+
+  def show
+    @category = MiddleCategory.find(params[:id])
+    @items = @category.items.page(params[:page]).per(20)
+  end
 end

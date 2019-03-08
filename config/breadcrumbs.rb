@@ -51,7 +51,37 @@ crumb :multi_search do |search|
   link "#{params[:q][:sort_order_eq]} #{params[:q][:name_cont]} #{params[:q][:upper_category_id_eq]} #{params[:q][:middle_category_id_eq]} #{params[:q][:lower_category_id_eq]} #{params[:q][:brand_id_eq]} #{params[:q][:size_id_cont]} #{params[:q][:price_gteq]} ~ #{params[:q][:price_lteq]}", multi_searches_path(search)
 end
 
+crumb :categories do
+  link 'カテゴリー一覧', categories_path
+  parent :root
+end
+
+crumb :upper_category do |upper|
+  link "#{upper.name}", upper_category_path(upper)
+  parent :categories
+end
+
+crumb :middle_category do |middle|
+  link "#{middle.name}", middle_category_path(middle)
+  parent :upper_category, middle.upper_category
+end
+
+crumb :lower_category do |lower|
+  link "#{lower.name}", lower_category_path(lower)
+  parent :middle_category, lower.middle_category
+end
+
 crumb :credits_new do
   link 'クレジットカード情報入力', new_credit_path
   parent :card_registration
+end
+
+crumb :brands do
+  link 'ブランド一覧', brands_path
+  parent :root
+end
+
+crumb :brand do |brand|
+  link "#{brand.name}", brand_path(brand)
+  parent :brands
 end

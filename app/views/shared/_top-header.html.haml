@@ -19,18 +19,18 @@
                 - @upper_categories.each do |upper_category|
                   %li.pc-header-nav-parent{"data-upper-id": upper_category.id}
                     %h3.upper_category__text
-                      %a.category_link{href: "https://www.mercari.com/jp/category/${category.id}/"}
+                      = link_to upper_category_path(upper_category), class: "category_link" do
                         = upper_category.name
                     %ul.pc-header-nav-child-wrap
                       - if upper_category.middle_categories.present?
                         - upper_category.middle_categories.each do |middle_category|
                           %li.pc-header-nav-child{"data-middle-id": middle_category.id}
-                            %a.middle_category_link
+                            = link_to middle_category_path(middle_category), class: "middle_category_link" do
                               = middle_category.name
                             %ul.pc-header-nav-grand-child-wrap
                               - middle_category.lower_categories.each do |lower_category|
                                 %li.pc-header-nav-grand-child{"data-lower-id": lower_category.id}
-                                  %a.lower_category_link
+                                  = link_to lower_category_path(lower_category) do
                                     = lower_category.name
             %li.search-menu__list.brand_list
               %h2
