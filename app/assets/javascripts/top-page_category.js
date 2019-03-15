@@ -27,11 +27,13 @@ $(document).on('turbolinks:load', function(){
   category_tag.on("mouseover", ".pc-header-nav-parent", function(){
     $(this).prop('style', "background-color:red;")
     $(this).find(link).prop('style', "color:white;")
+    $(this).find(child_wrap).addClass("z-index_true")
   })
 
   category_tag.on("mouseout", ".pc-header-nav-parent", function(){
     $(this).prop('style', "background-color:none;")
     $(this).find(link).prop('style', "color:black;")
+    $(this).find(child_wrap).removeClass("z-index_true")
   })
 
   category_parent.on("mouseover", function(){
@@ -48,11 +50,13 @@ $(document).on('turbolinks:load', function(){
   category_child.on("mouseover", function(){
     $(this).prop('style', "background-color:#eee;")
     $(this).find(grand_child_wrap).prop('style', "display:block;")
+    $(this).find(grand_child_wrap).addClass("z-index_true")
   })
 
   category_child.on("mouseout", function(){
     $(this).prop('style', "background-color:white;")
     $(this).parent(child_wrap).prop('style', "display:none;");
+    $(this).find(grand_child_wrap).removeClass("z-index_true")
   })
 
   category_grand_child.on("mouseover", function(){
