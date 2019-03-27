@@ -1,6 +1,13 @@
-# メルカリDB設計
+# mercari
 
-## ER図
+## Development
+
+## Premise
+
+
+## メルカリDB設計
+
+### ER図
 https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
 
 ## Usersテーブル
