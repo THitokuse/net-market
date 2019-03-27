@@ -2,7 +2,8 @@
 
 ## Development
 
-## Premise
+### Premise
+- Installed Docker for Mac(The state where the Docker-daemon is activated) https://docs.docker.com/docker-for-mac/install/
 
 
 ## メルカリDB設計
