@@ -4,7 +4,8 @@
 
 ### 前提条件
 - githubアカウントの取得
-- Docker for Mac(https://docs.docker.com/docker-for-mac/install/) or Docker for Windows(https://www.docker.com/docker-windows)　のインストール
+- Docker for Mac(https://docs.docker.com/docker-for-mac/install/) or Docker for Windows(https://www.docker.com/docker-windows)　
+のインストール
 
 ### Clone repository
 
