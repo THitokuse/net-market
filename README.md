@@ -1,10 +1,37 @@
 # mercari
 
-## Development
+## 開発環境(Environment)
 
-### Premise
-- Installed Docker for Mac(The state where the Docker-daemon is activated) https://docs.docker.com/docker-for-mac/install/
+### 前提条件
+- githubアカウントの取得
+- Docker for Mac(https://docs.docker.com/docker-for-mac/install/) or Docker for Windows(https://www.docker.com/docker-windows)のインストール
 
+### Clone repository
+
+```console
+$ cd
+$ mkdir projects
+$ cd projects
+$ git clone https://github.com/THitokuse/mercari.git
+```
+
+### databaseを作成
+```console
+// build docker image
+$ docker-compose build
+
+// create and migrate db
+$ docker-compose run web bundle exec rake db:create
+$ docker-compose run web bundle exec rake db:migrate
+```
+
+### local serverを立ち上げる
+```console
+$ docker-compose up -d
+```
+アクセス　http://localhost:3000
+
+### 開発
 
 ## メルカリDB設計
 
