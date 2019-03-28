@@ -42,6 +42,8 @@ $ docker-compose down
 ### ER図
 https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
 
+![メルカリER図](https://user-images.githubusercontent.com/45042275/55183070-5f939400-51d2-11e9-9950-6fe0605e4792.png)
+
 ## Usersテーブル
 - メルカリユーザ用テーブル
 
