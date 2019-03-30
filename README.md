@@ -24,6 +24,7 @@ $ docker-compose build
 // create and migrate db
 $ docker-compose run web bundle exec rake db:create
 $ docker-compose run web bundle exec rake db:migrate
+$ docker-compose run web bundle exec rake db:seed
 ```
 
 ### reCAPTCHAを導入
