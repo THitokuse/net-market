@@ -37,7 +37,7 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
-### bundle installのみ行う
+### bundle install
 ```console
 $ docker-compose run web bundle install
 ```
