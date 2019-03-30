@@ -50,7 +50,29 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 d47e7254918d        mysql:5.6           "docker-entrypoint.s…"   43 hours ago        Up 24 seconds       0.0.0.0:3306->3306/tcp   mercari_db_1
 $ docker exec -it mercari_web_1 /bin/bash
 ```
-ここでmercariの操作を行うことができる。
+ここでデバックなどのmercariの操作を行うことができる。
+
+### mercari dbにログインする
+```console
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4e5622b8f25f        mercari_web         "bundle exec rails s…"   43 hours ago        Up 23 seconds       0.0.0.0:3000->3000/tcp   mercari_web_1
+d47e7254918d        mysql:5.6           "docker-entrypoint.s…"   43 hours ago        Up 24 seconds       0.0.0.0:3306->3306/tcp   mercari_db_1
+$ docker exec -it mercari_db_1 /bin/bash
+$ mysql -u root -p
+Enter password: mercari_umeda
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mercari_development |
+| mercari_test        |
+| mysql               |
+| performance_schema  |
++---------------------+
+```
+ここでmercariのDBの操作を行うことが可能。
 
 ## メルカリDB設計
 
