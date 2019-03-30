@@ -37,6 +37,21 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
+### bundle installのみ行う
+```console
+$ docker-compose run web bundle install
+```
+
+### docker bashにログインする
+```console
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4e5622b8f25f        mercari_web         "bundle exec rails s…"   43 hours ago        Up 23 seconds       0.0.0.0:3000->3000/tcp   mercari_web_1
+d47e7254918d        mysql:5.6           "docker-entrypoint.s…"   43 hours ago        Up 24 seconds       0.0.0.0:3306->3306/tcp   mercari_db_1
+$ docker exec -it mercari_web_1 /bin/bash
+```
+ここでmercariの操作を行うことができる。
+
 ## メルカリDB設計
 
 ### ER図
