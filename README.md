@@ -28,7 +28,7 @@ $ docker-compose run web bundle exec rake db:migrate
 
 ### local serverを立ち上げる
 ```console
-$ docker-compose up -d
+$ docker-compose up
 ```
 アクセス　http://localhost:3000
 
