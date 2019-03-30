@@ -26,6 +26,18 @@ $ docker-compose run web bundle exec rake db:create
 $ docker-compose run web bundle exec rake db:migrate
 ```
 
+### reCAPTCHAを導入
+
+開発環境でユーザー新規登録、ログイン機能で使用するため、reCAPTCHAをそれぞれの環境で導入が必要
+https://www.google.com/recaptcha/intro/v3.html
+
+- 上記でreCAPTCHAを作成
+- shelに作成時、生成されたSITE_KEYとPRIVATE_KEYの追加(ex: ~ /.bash_profile)
+```
+export RECAPTCHA_SITE_KEY="xxxxxxxxx"
+export RECAPTCHA_PRIVATE_KEY="xxxxxxxx"
+```
+
 ### local serverを立ち上げる
 ```console
 $ docker-compose up
