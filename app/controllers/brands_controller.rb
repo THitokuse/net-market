@@ -6,4 +6,9 @@ class BrandsController < ApplicationController
       format.json
     end
   end
+
+  def show
+    @brand = Brand.find(params[:id])
+    @items = @brand.items.page(params[:page]).per(20)
+  end
 end

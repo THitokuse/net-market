@@ -1,7 +1,98 @@
-# メルカリDB設計
+# mercari
 
-## ER図
+## 開発環境(Environment)
+
+### 前提条件
+- githubアカウントの取得
+- Docker for Mac(https://docs.docker.com/docker-for-mac/install/) or Docker for Windows(https://www.docker.com/docker-windows)　
+のインストール
+
+### Clone repository
+
+```console
+$ cd
+$ mkdir projects
+$ cd projects
+$ git clone https://github.com/THitokuse/mercari.git
+```
+
+### databaseを作成
+```console
+// build docker image
+$ docker-compose build
+
+// create and migrate db
+$ docker-compose run web bundle exec rake db:create
+$ docker-compose run web bundle exec rake db:migrate
+$ docker-compose run web bundle exec rake db:seed
+```
+
+### reCAPTCHAを導入
+
+開発環境でユーザー新規登録、ログイン機能で使用するため、reCAPTCHAをそれぞれの環境で導入が必要
+https://www.google.com/recaptcha/intro/v3.html
+
+- 上記でreCAPTCHAを作成
+- shelに作成時、生成されたSITE_KEYとPRIVATE_KEYの追加(ex: ~ /.bash_profile)
+```
+export RECAPTCHA_SITE_KEY="xxxxxxxxx"
+export RECAPTCHA_PRIVATE_KEY="xxxxxxxx"
+```
+
+### local serverを立ち上げる
+```console
+$ docker-compose up
+```
+アクセス　http://localhost:3000
+
+### 開発サーバーを止める
+```console
+$ docker-compose down
+```
+
+### bundle install
+```console
+$ docker-compose run web bundle install
+```
+
+### docker bashにログインする
+```console
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4e5622b8f25f        mercari_web         "bundle exec rails s…"   43 hours ago        Up 23 seconds       0.0.0.0:3000->3000/tcp   mercari_web_1
+d47e7254918d        mysql:5.6           "docker-entrypoint.s…"   43 hours ago        Up 24 seconds       0.0.0.0:3306->3306/tcp   mercari_db_1
+$ docker exec -it mercari_web_1 /bin/bash
+```
+ここでデバックなどのmercariの操作を行うことができる。
+
+### mercari dbにログインする
+```console
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4e5622b8f25f        mercari_web         "bundle exec rails s…"   43 hours ago        Up 23 seconds       0.0.0.0:3000->3000/tcp   mercari_web_1
+d47e7254918d        mysql:5.6           "docker-entrypoint.s…"   43 hours ago        Up 24 seconds       0.0.0.0:3306->3306/tcp   mercari_db_1
+$ docker exec -it mercari_db_1 /bin/bash
+$ mysql -u root -p
+Enter password: mercari_umeda
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mercari_development |
+| mercari_test        |
+| mysql               |
+| performance_schema  |
++---------------------+
+```
+ここでmercariのDBの操作を行うことが可能。
+
+## メルカリDB設計
+
+### ER図
 https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
+
+![メルカリER図](https://user-images.githubusercontent.com/45042275/55183070-5f939400-51d2-11e9-9950-6fe0605e4792.png)
 
 ## Usersテーブル
 - メルカリユーザ用テーブル

@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: mercari_umeda
+    ports:
+      - "3306:3306" # ホストからゲストへポートフォワード
+    volumes:
+      - mysql_data:/var/lib/mysql # MysqlDBの永続化
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY}
+      RECAPTCHA_PRIVATE_KEY: ${RECAPTCHA_PRIVATE_KEY}
+      GOOGLE_APP_ID: ${GOOGLE_APP_ID}
+      GOOGLE_APP_SECRET: ${GOOGLE_APP_SECRET}
+      FACEBOOK_KEY: ${FACEBOOK_KEY}
+      FACEBOOK_SECRET: ${FACEBOOK_SECRET}
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db # DB側のコンテナが出来上がってからwebを実行する
+    ports:
+      - "3000:3000" # ホストからゲストへポートフォワード
+    volumes:
+      - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+volumes:
+  mysql_data:
+    driver: local

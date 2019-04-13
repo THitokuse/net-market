@@ -3,18 +3,15 @@ class ItemsController < ApplicationController
   before_action :set_locale
   before_action :move_to_index, except: [:index, :show]
   protect_from_forgery except: :update
+  before_action :item_setting, only: [:new, :edit]
+  before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
   def index
-    @items = Item.all
+    @items = Item.includes(:item_images).order("created_at DESC").limit(4)
   end
 
   def new
     @item = Item.new
-    @upper_categories = UpperCategory.all.includes([middle_categories: :lower_categories])
-    @middle_categories = MiddleCategory.all.where(upper_category_id: params[:upper_category_id])
-    @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
-    @sizes = Size.all.where(size_type_id: params[:size_type_id])
-    @delivery_methods = DeliveryMethod.all
 
     respond_to do |format|
       format.html
@@ -40,11 +37,10 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-  end
 
-  def search
-    @keyword = params[:keyword]
-    @items = Item.where('name LIKE(?) OR content  LIKE(?)',"%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20)
+    @item.item_images.each do |img|
+      @image = img.image
+    end
   end
 
   def update
@@ -77,9 +73,17 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :prefecture_code, :content, :status, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, :purchase_status, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :prefecture_code, :content, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, :status_id, :condition_id, :purchase_status, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
 
+
+
+  def item_setting
+    @delivery_methods = DeliveryMethod.all
+    @delivery_burdens = DeliveryBurden.all
+    @conditions = Condition.all
+    @statuses = Status.all
+  end
 
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?

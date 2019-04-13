@@ -30,10 +30,10 @@
                 = fa_icon "smile"
                 %span 302
               .item--user__ratings
-                = fa_icon "grin"
+                %i.fas.fa-grin
                 %span 4
               .item--user__ratings
-                = fa_icon "angry"
+                %i.fas.fa-angry
                 %span 0
         %tr
           %th カテゴリー
@@ -52,7 +52,7 @@
         %tr
           %th 商品の状態
           %td
-            = @item.status
+            = @item.status.name
         %tr
           %th 配送料の負担
           %td

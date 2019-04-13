@@ -1,0 +1,92 @@
+.l-side.long-height
+  = search_form_for(@search, url: multi_searches_path, class: "search-extend-container search-extend-form") do |f|
+    .search-sort
+      .form-group
+        .select-wrap
+          %select.select-default{name: "q[sort_order_eq]"}
+            %option 並び替え
+            %option
+              = sort_link(@search, :price, '価格の安い順', defalut_order: :asc)
+            %option
+              = sort_link(@search, :price, '価格の高い順', defalut_order: :desc)
+            %option
+              = sort_link(@search, :created_at, '出品の古い順', defalut_order: :asc)
+            %option
+              = sort_link(@search, :created_at, '出品の新しい順', defalut_order: :desc)
+          = fa_icon "arrow-bottom", class: "visible-large"
+    .search-dropdown-content.search-extend
+      %h3.visible-large 詳細検索
+      .form-group
+        %label
+          = fa_icon "plus"
+          %span キーワードを追加する
+        = f.text_field :name_cont, placeholder: "例)値下げ", class: "input-default"
+      .form-group.category_list
+        %label
+          = fa_icon "list"
+          %span カテゴリーを選択する
+        .select-wrap.upper{"data-search": "parent"}
+          = f.select :upper_category_id_eq, options_from_collection_for_select(@upper_categories, :id, :name, params[:upper_category_id].to_i), {prompt: "---"}, class: "select-default upper_search"
+          = fa_icon "arrow-bottom"
+        %div{"data-search": "child"}
+        %div{"data-search": "grand-child"}
+      .form-group.search-extend-brand
+        %label
+          = fa_icon "tag"
+          %span ブランド名から探す
+        = f.text_field :brand_id_cont, placeholder: "例)シャネル", class: "input-default brand_list"
+        = f.hidden_field :brand_id_eq, class: "brand_hidden"
+        %ul{"data-search": "brand-dom"}
+      .form-group
+        %label
+          = fa_icon "size"
+          %span サイズを指定する
+        .select-wrap{"data-search": "parent"}
+          = f.select :size_id_cont, options_from_collection_for_select(@sizes, :id, :name), {prompt: "---"}, class: "select-default size_list"
+          = fa_icon "arrow-bottom"
+        %div{"data-search": "child"}
+      .form-group.search-price
+        %label
+          %i.fas.fa-coins
+          %span 価格
+        .select-wrap
+          = f.select :price, options_for_select({"300 ~ 1000": 300, "1000 ~ 5000": 1000, "5000 ~ 10000": 5000, "10000 ~ 30000": 10000, "30000 ~ 50000": 30000, "50000 ~": 50000}), {prompt: "選択してください"}, {class: "select-default price_list"}
+        = f.number_field :price_gteq, placeholder: "¥ Min", class: "input-default price min"
+        %span ~
+        = f.number_field :price_lteq, placeholder: "¥ Max", class: "input-default price max"
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 商品の状態
+        %div
+          = f.collection_check_boxes :status_id_in, @statuses, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label class: "checkbox_label" do
+                = b.check_box
+                = b.text
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 配送料の負担
+        %div
+          = f.collection_check_boxes :delivery_burden_id_in, @delivery_burdens, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label class: "checkbox_label" do
+                = b.check_box
+                = b.text
+      .form-group.clearfix
+        %label
+          = fa_icon "star"
+          %span 販売状況
+        %div
+          = f.collection_check_boxes :condition_id_in, @conditions, :id, :name do |b|
+            .checkbox-default
+              %i.fas.fa-check
+              = b.label class: "checkbox_label" do
+                = b.check_box
+                = b.text
+      .search-extend-btn.clearfix
+        .btn-default.btn-gray クリア
+        %button.btn-default.btn-red{type: "submit"} 完了
