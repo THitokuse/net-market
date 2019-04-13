@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :credits
+  has_many :trading_partners
 
   include JpPrefecture
   jp_prefecture :prefecture_code

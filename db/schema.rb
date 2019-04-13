@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_162252) do
+ActiveRecord::Schema.define(version: 2019_03_05_100953) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -35,13 +35,12 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
   end
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "credit_number", null: false
-    t.string "limit_month", null: false
-    t.string "limit_year", null: false
+    t.string "authorization_code", null: false
     t.string "security_code", null: false
+    t.string "month", null: false
+    t.string "year", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "payjp_token"
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
@@ -69,10 +68,16 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "deliverydates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliverymethods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -100,6 +105,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.bigint "delivery_date_id", null: false
     t.bigint "delivery_method_id", null: false
     t.bigint "user_id", null: false
+    t.integer "purchase_status"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["delivery_burden_id"], name: "index_items_on_delivery_burden_id"
     t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
@@ -129,6 +135,15 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.index ["upper_category_id"], name: "index_middle_categories_on_upper_category_id"
   end
 
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "trading_partner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["trading_partner_id"], name: "index_orders_on_trading_partner_id"
+  end
+
   create_table "size_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "size_type", null: false
     t.datetime "created_at", null: false
@@ -141,6 +156,15 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["size_type_id"], name: "index_sizes_on_size_type_id"
+  end
+
+  create_table "trading_partners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "buyer_id", null: false
+    t.bigint "seller_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_trading_partners_on_buyer_id"
+    t.index ["seller_id"], name: "index_trading_partners_on_seller_id"
   end
 
   create_table "upper_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -187,4 +211,8 @@ ActiveRecord::Schema.define(version: 2019_02_25_162252) do
   add_foreign_key "credits", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "middle_categories", "upper_categories"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "trading_partners"
+  add_foreign_key "trading_partners", "users", column: "buyer_id"
+  add_foreign_key "trading_partners", "users", column: "seller_id"
 end

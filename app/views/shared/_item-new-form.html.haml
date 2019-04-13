@@ -49,6 +49,7 @@
                 %div
                   .select-wrap
                     = f.select :status, Item.statuses_i18n.keys.map {|k| [Item.statuses_i18n[k], k]}, class: "select-default"
+                    = f.hidden_field :purchase_status, value: 1
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 配送について

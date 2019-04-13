@@ -42,5 +42,8 @@ Rails.application.routes.draw do
 
   #クレジットカード登録
   resources :credits, only: [:new, :create, :destroy, :index]
+
+  #購入機能
+  resources :purchase, only: [:show, :create]
 end
 

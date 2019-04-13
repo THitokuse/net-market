@@ -156,5 +156,8 @@
   font-size: 18px;
 }
 
-
-
+.btn-none{
+  pointer-events : none;
+  background-color: gray;
+  color: #fff;
+}

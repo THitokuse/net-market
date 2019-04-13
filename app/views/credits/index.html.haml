@@ -4,30 +4,36 @@
     - breadcrumb :card_registration
     = render "shared/breadcrumbs"
 %main
-  -# メインコンテンツ
-  .mypage__content
-    .credit
-      %h2.credit__head 支払い方法
-      .credit__content
-        %h3.credit__content__head クレジットカード一覧
-        - if @credit_card.present?
-          = form_for @credit_card, url: credit_path(@credit_card), method: :delete, html: { class: 'credit__content__card' } do |f|
-            .credit__content__card__group
-              -#= image_tag "common/#{@credit_card.get_type}.svg", alt: "#{@credit_card.get_type}" if @credit_card.get_type.present?
-              -#.credit__content__card__group__info= @credit_card.hide_numbers
-              -#.credit__content__card__group__info= "#{@credit_card.month} / #{@credit_card.year}"
-              = f.submit "削除する", class: 'credit__content__card__group__submit'
+  .l-container.cleafix
+    .l-content
+      .l-chapter-container
+        %h2.credit__head 支払い方法
+        .credit__content
+          %section
+            .l-single-content
+              %h3.l-chapter-sub-head クレジットカード一覧
+          - if @credit_card.present?
+            %ul.settings-payment-list
+              %li
+                = form_for @credit_card, url: credit_path(@credit_card), method: :delete, html: { class: 'credit__content__card' } do |f|
+                  %figure
+                    %img{:alt => "visa", :height => "15", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3378701779", :width => "49"}/
+                  .settings-payment-num ************
+                  .settings-payment-num 12 / 20
+                  .credit__content__card__group
+                    = f.submit "削除する", class: 'credit__content__card__group__submit'
 
-        - else
-          .credit__content__card
-            = link_to new_credit_path, class: 'credit__content__card__link' do
-              %i.far.fa-credit-card
-              %span クレジットカードを追加する
-        = link_to '#', class: 'credit__content__another-link' do
-          %span 支払い方法について
-          %i.fas.fa-chevron-right
+          - else
+            .credit__content__card
+              = link_to new_credit_path, class: 'credit__content__card__link' do
+                %i.far.fa-credit-card
+                %span クレジットカードを追加する
+          = link_to '#', class: 'settings-not-regist' do
+            %span 支払い方法について
+            %i.fas.fa-chevron-right
 
     = render "shared/side-bar"
 = render "shared/app-banner"
 = render "shared/top-footer"
 = render "shared/sell-btn"
+
