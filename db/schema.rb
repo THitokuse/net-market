@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "authorization_code", null: false
+    t.string "security_code", null: false
+    t.string "month", null: false
+    t.string "year", null: false
+    t.bigint "user_id", null: false
+    t.string "payjp_token"
+    t.index ["user_id"], name: "index_credits_on_user_id"
   create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
@@ -46,10 +54,16 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.datetime "updated_at"
   end
 
-  create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "deliverydates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliverymethods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -110,6 +124,15 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.index ["upper_category_id"], name: "index_middle_categories_on_upper_category_id"
   end
 
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "trading_partner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["trading_partner_id"], name: "index_orders_on_trading_partner_id"
+  end
+
   create_table "size_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "size_type", null: false
     t.datetime "created_at", null: false
@@ -122,6 +145,15 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["size_type_id"], name: "index_sizes_on_size_type_id"
+  end
+
+  create_table "trading_partners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "buyer_id", null: false
+    t.bigint "seller_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_trading_partners_on_buyer_id"
+    t.index ["seller_id"], name: "index_trading_partners_on_seller_id"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -173,4 +205,8 @@ ActiveRecord::Schema.define(version: 2019_03_03_105107) do
 
   add_foreign_key "item_images", "items"
   add_foreign_key "middle_categories", "upper_categories"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "trading_partners"
+  add_foreign_key "trading_partners", "users", column: "buyer_id"
+  add_foreign_key "trading_partners", "users", column: "seller_id"
 end

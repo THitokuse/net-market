@@ -69,6 +69,7 @@
                   .select-wrap
                     = f.select :status_id, options_from_collection_for_select(Status.all, :id, :name), {prompt: "---"}, class: "select-default"
                     = f.hidden_field :condition_id, value: 1
+                    = f.hidden_field :purchase_status, value: 1
                     = fa_icon "arrow-bottom"
           .sell-content.clearfix
             %h3.sell-sub-head 配送について

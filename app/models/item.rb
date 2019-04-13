@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :lower_category, optional: true
   belongs_to :user
   belongs_to :brand
+  has_one :order
   belongs_to :condition
   belongs_to :status
 

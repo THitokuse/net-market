@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
 
   before_action :set_locale
+  before_action :move_to_index, except: [:index, :show]
+  protect_from_forgery except: :update
   before_action :item_setting, only: [:new, :edit]
   before_action :move_to_index, except: [:index, :show, :purchase_concern]
 
@@ -61,6 +63,7 @@ class ItemsController < ApplicationController
 
   def purchase_concern
     @item = Item.find(params[:id])
+    @credit_card = Credit.find_by(user_id: current_user.id)
   end
 
   def sell_item
@@ -70,7 +73,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :prefecture_code, :content, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, :status_id, :condition_id, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :prefecture_code, :content, :upper_category_id, :middle_category_id, :lower_category_id, :size_id, :brand_id, :delivery_burden_id, :delivery_date_id, :delivery_method_id, :status_id, :condition_id, :purchase_status, item_images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
 
 
