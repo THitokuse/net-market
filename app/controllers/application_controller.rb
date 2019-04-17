@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     @lower_categories = LowerCategory.all.where(middle_category_id: params[:middle_category_id])
   end
 
+  def set_items
+    @selling_items = Item.where('purchase_status = ?', 1).includes(:item_images).order("created_at DESC")
+  end
+
   def set_locale
     I18n.locale = :ja
   end
