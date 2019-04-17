@@ -66,39 +66,3 @@
               %i.icon-arrow-right
               = fa_icon "arrow-right"
   = render "shared/new-footer"
-
-  %script{ type: 'text/javascript', src: 'https://js.pay.jp' }
-  :javascript
-    var payjp_form = $(".payjp-form");
-    var payjp_key = payjp_form.find('input[name="pay_key"]').val();
-    console.log(payjp_key)
-    Payjp.setPublicKey(payjp_key);
-
-    payjp_form.submit(function(e) {
-      e.preventDefault();
-      payjp_form.find("input[type=submit]").prop("disabled", true);
-
-      var card = {
-        number: payjp_form.find('.number').val(),
-        cvc: payjp_form.find('.cvc').val(),
-        exp_month: payjp_form.find('.exp_month').val(),
-        exp_year: payjp_form.find('.exp_year').val()
-      };
-
-      Payjp.createToken(card, function (s, response) {
-      console.log(card)
-        if (response.error) {
-          alert("error")
-          payjp_form.find('button').prop('disabled', false);
-        } else {
-          $('.number').removeAttr('name');
-          $('.cvc').removeAttr('name');
-          $('.exp_month').removeAttr('name');
-          $('.exp_year').removeAttr('name');
-
-          var token = response.id;
-          payjp_form.append($('<input type="hidden" name="payjp_token" class="payjp-token" />').val(token));
-          payjp_form.get(0).submit();
-        }
-      });
-    });

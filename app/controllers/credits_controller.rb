@@ -10,7 +10,21 @@ class CreditsController < ApplicationController
   end
 
   def create
-    @credit_card = Credit.new(credit_params)
+    Payjp::api_key = Rails.application.credentials.payjp_secret_key
+      payjp_token = Payjp::Token.create({
+        card: {
+          number:    credit_params[:authorization_code],
+          cvc:       credit_params[:security_code],
+          exp_month: credit_params[:month],
+          exp_year:  credit_params[:year],
+      }},
+      {
+        'X-Payjp-Direct-Token-Generate': 'true'
+      }
+      )
+    customer_token = Payjp::Customer.create(card: payjp_token)
+    @credit_card = Credit.new(authorization_code: credit_params[:authorization_code], security_code: credit_params[:security_code],
+      month: credit_params[:month], year: credit_params[:year], user_id: current_user.id, payjp_token: customer_token.id)
     if @credit_card.save
       render :index
     else
@@ -37,5 +51,17 @@ class CreditsController < ApplicationController
     @credit_card = Credit.new
     @months = Credit.get_months
     @years = Credit.get_years
+  end
+
+  def crate_token(number, cvc, exp_month, exp_year)
+    token = Payjp::Token.create(
+      card: {
+        number: number,
+        cvc:    cvc,
+        exp_month: exp_month,
+        exp_year: exp_year,
+      }
+    )
+    return token.id
   end
 end
