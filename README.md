@@ -87,6 +87,15 @@ mysql> show databases;
 ```
 ここでmercariのDBの操作を行うことが可能。
 
+### docker環境でRSpecを実行する
+```
+1.  docker-compose run web bundle exec rake db:migrate RAILS_ENV=test
+→テスト環境でmigrateしてあげる
+2. docker-compose run web bundle exec rspec spec/controllers/●●●●_controller_spec.rb
+→指定したテストファイルを実行する
+```
+
+
 ## メルカリDB設計
 
 ### ER図
