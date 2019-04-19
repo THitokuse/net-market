@@ -86,7 +86,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 #都道府県コード
 gem 'jp_prefecture'
-gem 'recaptcha'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'gretel'

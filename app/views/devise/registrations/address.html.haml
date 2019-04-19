@@ -28,11 +28,6 @@
               = f.label :番地
               %span.form-repuire 必須
               = f.text_field :street, autocomplete: "street", placeholder: "例) 青山1-1-1", class: "input-default", autofocus: true
-            .form-group
-              = f.label :建物名
-              %span.form-repuire 必須
-            %br
-            = recaptcha_tags
             %br
             「次へ進む」のボタンを押すことにより、
             = link_to '利用規約', 'https://www.mercari.com/jp/tos_list/'
