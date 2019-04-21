@@ -31,7 +31,7 @@ class CreditsController < ApplicationController
       get_new_credit_months_years
       render :new
     end
-  end
+end
 
   def destroy
     credit_card = Credit.find(params[:id])
