@@ -36,4 +36,38 @@ describe ItemsController do
             expect(response).to render_template :index
         end
     end
+
+    describe 'DELETE #destroy' do
+        context "login" do
+            before do
+              login user
+            end
+            context "current user is seller exhibitting the item" do
+                before do
+                    @item = create(:item, delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id,
+                        user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id)
+                end
+                it 'item delete' do
+                    expect{delete :destroy, params: {id: @item.id}}.to change(Item, :count).by(-1)
+                end
+
+                it "renders the :delete template" do
+                    delete :destroy, params: {id: @item.id}
+                    expect(response).to redirect_to(item_listing_mypages_path)
+                end
+            end
+        end
+        context "not_login" do
+            before do
+                @not_login_user = create(:user)
+                @item = create(:item, delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id,
+                    user_id: @not_login_user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id)
+            end
+            context "can not destroy" do
+                it 'item' do
+                expect{delete :destroy, params: {id: @item.id}}.to change(Item, :count).by(0)
+                end
+            end
+        end
+    end
 end
