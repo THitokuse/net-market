@@ -95,6 +95,34 @@ mysql> show databases;
 →指定したテストファイルを実行する
 ```
 
+### docker上のMYSQLに日本語対応を追加する
+
+通常だと、latin対応になっているので、テーブル上に日本語を入力しても表示されない。
+そこで、/etc/mysql/my.cnfに記述し上書きすることで日本語設定にすることが出来る。
+
+ターミナル上でmy.cnfを編集したいのだが、vimが入っていないので、vimを入れてあげる。
+```
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "vim"]
+```
+Build後、以下のコードを実行
+```
+$ docker exec -it mercari_db_1 /bin/bash
+# apt-get update
+# apt-get install vim
+# vim etc/mysql/my.cnf
+```
+my.cnfの中で以下のコードを記述して保存
+```
+[mysqld]
+character-set-server=utf8
+collation-server=utf8_general_ci
+
+[client]
+default-character-set=utf8
+```
+もう一度Buildし直して、MYSQLを確認する
+
 
 ## メルカリDB設計
 
