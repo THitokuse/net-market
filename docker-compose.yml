@@ -5,6 +5,8 @@ services:
     environment:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: mercari_umeda
+      LANG: C.UTF-8
+      LANGUAGE: en_US
     ports:
       - "3306:3306" # ホストからゲストへポートフォワード
     volumes:
