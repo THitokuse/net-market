@@ -28,7 +28,7 @@
               .form-group
                 = f.password_field :password, autocomplete: "current-password", class: 'login-input-text input-default', placeholder: 'パスワード'
               .form-group
-                -#= recaptcha_tags
+                = recaptcha_tags
               .login-submit
                 = f.submit "ログイン", class: " btn-default btn-red recaptcha"
                 %a
