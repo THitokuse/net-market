@@ -36,6 +36,39 @@ describe ItemsController do
             expect(response).to render_template :index
         end
     end
+    
+    describe 'POST #create' do
+        context "login" do
+            before do
+                login user
+            end
+            context 'saves new items in the database' do
+
+                before do
+                    @item = create(:item, delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id,
+                        user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id)
+                end
+
+                it 'count up item' do
+                    expect{ post :create, params: {item: {name: 'おはよう', price: 5000, prefecture_code: 28, content: 'メルカリ', purchase_status: '購入済み', delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id, user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id, size_id: 1, upper_category_id: 1, middle_category_id: 1,lower_category_id: 1}}}.to change(Item, :count).by(1)
+                end
+
+                it 'redirect to top page' do
+                    post :create, params: {item: {name: 'おはよう', price: 5000, prefecture_code: 28, content: 'メルカリ', purchase_status: '購入済み', delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id, user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id, size_id: 1, upper_category_id: 1, middle_category_id: 1,lower_category_id: 1}}
+                    expect(response).to redirect_to(root_path)
+                end
+            end
+        end
+
+        context "faild item create" do
+            it 'redirect to new_item_path' do
+                post :create, params: {item:{name: ""}}
+                expect(response).to redirect_to(new_user_session_path)
+            end
+        end
+    end
+
+
 
     describe 'GET #edit' do
         context "login" do
