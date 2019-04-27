@@ -136,6 +136,18 @@ default-character-set=utf8
 ```
 もう一度Buildし直して、MYSQLを確認する
 
+### Docker コマンドメモ
+
+```
+# Rubyのバージョンを確認する
+$ docker-compose run --rm web ruby -v
+
+# Railsのバージョンを確認する
+$ docker-compose run --rm workspace php artisan -v
+
+# rails routesをしたい
+$ docker-compose run --rm web rails routes
+```
 
 ## メルカリDB設計
 
