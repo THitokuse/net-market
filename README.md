@@ -87,6 +87,19 @@ mysql> show databases;
 ```
 ここでmercariのDBの操作を行うことが可能。
 
+また、Sequel proでの閲覧も可能(docker-compose upした状態)
+sequel proで以下を設定する。
+```
+標準を選択
+
+名前: mercari_localhost
+ホスト: 127.0.0.1
+ユーザー名: root
+パスワード: mercari_umeda
+ポート: 4306
+```
+で接続する。
+
 ### docker環境でRSpecを実行する
 ```
 1.  docker-compose run web bundle exec rake db:migrate RAILS_ENV=test
