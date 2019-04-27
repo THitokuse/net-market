@@ -37,6 +37,38 @@ describe ItemsController do
         end
     end
 
+    describe 'GET #edit' do
+        context "login" do
+            before do
+                login user
+                @item = create(:item, delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id,
+                    user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id)
+            end
+            it "assigns the requested item to @item" do
+                get :edit, params: {id: @item.id}
+                expect(assigns(:item)).to eq(@item)
+            end
+            it "renders the :edit template" do
+                get :edit, params: {id: @item.id}
+                expect(response).to render_template :edit
+            end
+        end
+    end
+    describe "PATCH #update" do
+        context "login" do
+            before do
+                login user
+                @item = create(:item, delivery_date_id: delivery_date.id, delivery_burden_id: delivery_burden.id, delivery_method_id: delivery_method.id,
+                    user_id: user.id, brand_id: brand.id, condition_id: condition.id, status_id: status.id)
+            end
+            it "update item" do
+                pokemon = "ブラキオン"
+                get :edit, params: {id: @item.id, name: pokemon}
+                expect(@item.reload.name).not_to eq pokemon
+            end
+        end
+    end
+
     describe 'DELETE #destroy' do
         context "login" do
             before do
