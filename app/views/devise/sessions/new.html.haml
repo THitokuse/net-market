@@ -17,18 +17,16 @@
           .login-inner
             %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
               %i.fab.fa-facebook-square
-              = link_to 'Facebookでログイン'
+              = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path
             %button#google-login.btn-default.btn-sns.btn-sns-google
               %i.fab.fa-google-plus-g
-              = link_to 'Googleでログイン'
+              = link_to 'Googleでログイン', user_google_omniauth_authorize_path
           .login-form-inner
             = form_for(resource, as: resource_name, url: '/jp/login') do |f|
               .form-group.first
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'login-input-text input-default', placeholder: 'メールアドレス'
               .form-group
                 = f.password_field :password, autocomplete: "current-password", class: 'login-input-text input-default', placeholder: 'パスワード'
-              .form-group
-                = recaptcha_tags
               .login-submit
                 = f.submit "ログイン", class: " btn-default btn-red recaptcha"
                 %a

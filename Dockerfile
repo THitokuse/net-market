@@ -17,7 +17,7 @@ RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "vim"]
 
 
-RUN gem install bundler -v 1.17.1
+RUN gem install bundler -v 2.0.1
 
 RUN mkdir /mercari
 WORKDIR /mercari
