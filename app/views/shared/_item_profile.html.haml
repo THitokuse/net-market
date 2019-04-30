@@ -74,10 +74,12 @@
     %span.item--price.bold
       = number_to_currency(@item.price, unit: "¥ ", precision:0, format: "%u%n")
     %span.item--tax (税込)
-    %span.item--shipping__fee 送料込み
-  .text__center
-    .sales--point__message P 600 をお持ちです
-  = link_to "購入画面に進む", purchase_concern_item_path(@item), class: "item--buy__btn f18-24"
+    %span.item--shipping__fee
+      = @item.delivery_burden.name
+  - if current_page?(item_path(@item)) && @item.user_id != current_user.id
+    .text__center
+      .sales--point__message P 600 をお持ちです
+    = link_to "購入画面に進む", purchase_concern_item_path(@item), class: "item--buy__btn f18-24"
   .item--description.f14
     %p.item--description__inner
       = @item.content
