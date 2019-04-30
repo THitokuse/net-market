@@ -4,15 +4,16 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: mercari_umeda
-  host: db
 
 development:
   <<: *default
   database: mercari_development
+  host: db
 
 test:
   <<: *default
   database: mercari_test
+  host: db
 
 production:
   <<: *default
