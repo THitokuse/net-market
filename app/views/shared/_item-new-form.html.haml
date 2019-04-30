@@ -14,8 +14,8 @@
               .sell-upload-items-container
                 .sell-upload-items.have-item-0
               - 5.times do
-                = f.fields_for :item_images, ItemImage.new do |image|
-                  %label{class: "sell-upload-drop-box have-item-#{image.index - 1}"}
+                = f.fields_for :item_images, ItemImage.new, multiple: true do |image|
+                  %label{class: "sell-upload-drop-box have-item-#{image.index}"}
                     = image.file_field :image, class: "sell-upload-drop-file", style: "display:none;"
                     %pre.visible-pc ドラッグアンドドロップまたはクリックしてファイルをアップロード
                     = fa_icon "camera"

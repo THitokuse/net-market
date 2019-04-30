@@ -54,8 +54,8 @@ $(document).on('turbolinks:load', function(){
     }
 
     change_class_to_increment()
-    $(this).prop('style', "display:block;")
-    // $(this).next("label").prop('style', "display:block;")
+    $(this).prop('style', "display:none;")
+    $(this).next("label").prop('style', "display:block;")
 
     if(box_count == 5){
       var insert_box = append_uploadbox()
