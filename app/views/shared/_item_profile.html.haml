@@ -76,7 +76,7 @@
     %span.item--tax (税込)
     %span.item--shipping__fee
       = @item.delivery_burden.name
-  - if current_page?(item_path(@item)) && @item.user_id != current_user.id
+  - if current_page?(item_path(@item))
     .text__center
       .sales--point__message P 600 をお持ちです
     = link_to "購入画面に進む", purchase_concern_item_path(@item), class: "item--buy__btn f18-24"
