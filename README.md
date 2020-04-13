@@ -1,4 +1,4 @@
-# mercari
+# Net Market
 
 ## 開発環境(Environment)
 
@@ -13,7 +13,7 @@
 $ cd
 $ mkdir projects
 $ cd projects
-$ git clone https://github.com/THitokuse/mercari.git
+$ git clone https://github.com/THitokuse/net-market.git
 ```
 
 ### databaseを作成
@@ -65,7 +65,7 @@ $ docker exec -it mercari_web_1 /bin/bash
 ```
 ここでデバックなどのmercariの操作を行うことができる。
 
-### mercari dbにログインする
+### net-market dbにログインする
 ```console
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
@@ -85,7 +85,7 @@ mysql> show databases;
 | performance_schema  |
 +---------------------+
 ```
-ここでmercariのDBの操作を行うことが可能。
+ここでnet-marketのDBの操作を行うことが可能。
 
 また、Sequel proでの閲覧も可能(docker-compose upした状態)
 sequel proで以下を設定する。
@@ -149,15 +149,15 @@ $ docker-compose run --rm workspace php artisan -v
 $ docker-compose run --rm web rails routes
 ```
 
-## メルカリDB設計
+## ネットマーケットDB設計
 
 ### ER図
 https://www.draw.io/#G1OzJugJEFpL-U19UEEycdfbTGCAxYNAYY
 
-![メルカリER図](https://user-images.githubusercontent.com/45042275/55183070-5f939400-51d2-11e9-9950-6fe0605e4792.png)
+![ネットマーケットER図](https://user-images.githubusercontent.com/45042275/55183070-5f939400-51d2-11e9-9950-6fe0605e4792.png)
 
 ## Usersテーブル
-- メルカリユーザ用テーブル
+- ネットマーケットユーザ用テーブル
 
 |Column|Type|Options|
 |------|----|-------|
